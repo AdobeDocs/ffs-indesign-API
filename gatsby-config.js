@@ -11,7 +11,7 @@
  */
 
 module.exports = {
-  pathPrefix: process.env.PATH_PREFIX || '/firefly-services/docs/photoshop/',
+  pathPrefix: process.env.PATH_PREFIX || '/firefly-services/docs/indesign-apis/',
   siteMetadata: {
     versions: [
       {
