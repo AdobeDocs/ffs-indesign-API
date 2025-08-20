@@ -1,0 +1,878 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Firefly Service's RESTful InDesign APIs offer resources to automate tedious, time-consuming design tasks through scalable cloud services, encouraging more personalization at scale, creative automation, and faster content delivery.",
+    "version": "1.0.0",
+    "title": "Firefly Services - InDesign APIs",
+    "termsOfService": "https://www.adobe.com/content/dam/cc/en/legal/terms/enterprise/pdfs/PSLT-AdobeCreativeAPI-WW-2024v2.pdf",
+    "contact": {
+      "email": "idservices@adobe.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://indesign.adobe.io"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    },
+    {
+      "BearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Custom Scripts API",
+      "description": "The Custom Scripts API allows you to submit custom scripts to do almost anything you can do in InDesign through scripting."
+    },
+    {
+      "name": "Job Status API",
+      "description": "Get the job status of a custom script execution job. Each call retrieves the most recent status event for the job and each event refers to a different stage of execution."
+    },
+    {
+      "name": "Rendition API",
+      "description": "The Rendition API creates a version of a file in a specified format (e.g., PNG, JPEG, or PDF)."
+    },
+    {
+      "name": "Data Merge API",
+      "description": "The Data Merge API allows you to merge data with InDesign templates to create personalized documents."
+    },
+    {
+      "name": "Remap Links API",
+      "description": "The Remap Links API allows you to update links in InDesign documents to point to new locations."
+    }
+  ],
+  "paths": {
+    "/v3/scripts": {
+      "post": {
+        "tags": ["Custom Scripts API"],
+        "summary": "Submit a Custom Script",
+        "description": "Submit the custom script bundle. This returns the URL for posting an execution request for the custom script.",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "The custom script bundle, in ZIP format. This package describes the script to the app engine.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/scripts/{id}/execute": {
+      "post": {
+        "tags": ["Custom Scripts API"],
+        "summary": "Execute a Custom Script",
+        "description": "Execute a custom script that has been submitted.",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the custom script to execute.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "The input files and parameters for the custom script execution.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{id}": {
+      "get": {
+        "tags": ["Job Status API"],
+        "operationId": "getJobStatus",
+        "summary": "Get the status of a job",
+        "description": "Return the latest status of a custom script job that has been executed.",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the job you want to see the status of. This comes from the response of the executed job request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of a API Job execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/notstartedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/runningEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/succeededEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/failedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/partialSuccessEvent"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/create-rendition": {
+      "post": {
+        "tags": ["Rendition API"],
+        "summary": "Create JPEG, PNG, or PDF renditions",
+        "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document.",
+        "operationId": "renditionJob",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRenditionRequest"
+              }
+            }
+          },
+          "description": "This object specifies parameters for the JPEG, PNG or PDF output.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/data-merge": {
+      "post": {
+        "tags": ["Data Merge API"],
+        "summary": "Execute Data Merge",
+        "description": "Execute a data merge operation with an InDesign template and data source.",
+        "operationId": "dataMergeJob",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "The InDesign template file and data source for the merge operation.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/remap-links": {
+      "post": {
+        "tags": ["Remap Links API"],
+        "summary": "Remap Document Links",
+        "description": "Update links in an InDesign document to point to new locations.",
+        "operationId": "remapLinksJob",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          },
+          "description": "The InDesign document and link mapping configuration.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      },
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "BaseEvent": {
+        "type": "object",
+        "description": "The job event response object.",
+        "properties": {
+          "jobId": {
+            "description": "The GUID for the job.",
+            "type": "string"
+          }
+        }
+      },
+      "notstartedEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The status when a job is in queued state.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "not_started"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "runningEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "Job is in running state.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "running"
+                ]
+              },
+              "message": {
+                "type": "string",
+                "description": "A description of the current running state."
+              }
+            }
+          }
+        ]
+      },
+      "succeededEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job has succeeded.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "succeeded"
+                ]
+              },
+              "data": {
+                "type": "object",
+                "description": "The output response from the current state of the job."
+              },
+              "dataURL": {
+                "type": "string",
+                "description": "The data returned from the execution of the custom script. If the data size is between 250 KB and 20 MB, it will be provided as a pre-signed URL. If it is larger than 20 MB, the job will fail."
+              },
+              "outputs": {
+                "type": "object",
+                "description": "A list of URLs for all the generated assets."
+              }
+            }
+          }
+        ]
+      },
+      "failedEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job has failed.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "failed"
+                ]
+              },
+              "error": {
+                "type": "object",
+                "description": "The error details from the failed job."
+              }
+            }
+          }
+        ]
+      },
+      "partialSuccessEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job has partially succeeded.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "partial_success"
+                ]
+              },
+              "data": {
+                "type": "object",
+                "description": "The partial output response from the job."
+              },
+              "warnings": {
+                "type": "array",
+                "description": "List of warnings from the job execution.",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CreateRenditionRequest": {
+        "type": "object",
+        "description": "Request object for creating renditions",
+        "properties": {
+          "input": {
+            "type": "object",
+            "description": "Input file information",
+            "properties": {
+              "href": {
+                "type": "string",
+                "description": "URL to the input file"
+              },
+              "storage": {
+                "type": "string",
+                "enum": ["adobe"],
+                "description": "Storage type for the input file"
+              }
+            },
+            "required": ["href", "storage"]
+          },
+          "output": {
+            "type": "object",
+            "description": "Output configuration",
+            "properties": {
+              "href": {
+                "type": "string",
+                "description": "URL for the output file"
+              },
+              "storage": {
+                "type": "string",
+                "enum": ["adobe"],
+                "description": "Storage type for the output file"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["image/jpeg", "image/png", "application/pdf"],
+                "description": "MIME type for the output format"
+              }
+            },
+            "required": ["href", "storage", "type"]
+          }
+        },
+        "required": ["input", "output"]
+      }
+    },
+    "responses": {
+      "Accepted": {
+        "description": "The job has been accepted for processing.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "properties": {
+                "jobId": {
+                  "type": "string",
+                  "description": "The job ID."
+                },
+                "statusUrl": {
+                  "type": "string",
+                  "description": "The status URL."
+                }
+              }
+            }
+          }
+        },
+        "headers": {
+          "link": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "The status URL for a retry."
+          },
+          "retry-after": {
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The number of seconds until the user should try again."
+          },
+          "Content-Type": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "The type of content that is returned (e.g., `application/json`)."
+          },
+          "Content-Length": {
+            "schema": {
+              "type": "integer"
+            },
+            "description": "The length of the response content."
+          },
+          "Access-Control-Allow-Origin": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "The Cross Origin Resource Sharing (CORS) header."
+          },
+          "Access-Control-Allow-Methods": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "This indicates what HTTP methods are allowed."
+          },
+          "Access-Control-Allow-Headers": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "This indicates which HTTP headers can be used during the actual request."
+          },
+          "Access-Control-Allow-Credentials": {
+            "schema": {
+              "type": "string"
+            },
+            "description": "This header is used by servers to indicate that the client shall share HTTP responses."
+          },
+          "Access-Control-Max-Age": {
+            "schema": {
+              "type": "integer"
+            },
+            "description": "This indicates how long the results of a preflight request can be cached."
+          }
+        }
+      },
+      "BadParams": {
+        "description": "The request parameters are invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message describing the invalid parameters."
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "The request is not authorized.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message indicating authorization failure."
+                }
+              }
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The request is forbidden.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message indicating the request is forbidden."
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "The requested resource was not found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message indicating the resource was not found."
+                }
+              }
+            }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Too many requests have been made.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message indicating rate limit exceeded."
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "An internal server error occurred.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "description": "Error message indicating an internal server error."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
