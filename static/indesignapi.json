@@ -1775,7 +1775,7 @@
     },
     "responses": {
       "Accepted": {
-        "description": "The job has been accepted for processing.",
+        "description": "Accepted",
         "content": {
           "application/json": {
             "schema": {
