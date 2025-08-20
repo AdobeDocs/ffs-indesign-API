@@ -22,10 +22,33 @@
       "BearerAuth": []
     }
   ],
+  "tags": [
+    {
+      "name": "Custom scripts",
+      "description": "The Custom Scripts API allows you to submit custom scripts to do almost anything you can do in InDesign through scripting."
+    },
+    {
+      "name": "Rendition",
+      "description": "The Rendition API creates a version of a file in a specified format (e.g., PNG, JPEG, or PDF)."
+    },
+    {
+      "name": "Data merge",
+      "description": "The Data Merge API allows you to merge data with InDesign templates to create personalized documents."
+    },
+    {
+      "name": "Remap links",
+      "description": "The Remap Links API allows you to update links in InDesign documents to point to new locations."
+    },
+    {
+      "name": "Job status",
+      "description": "Get the job status of a custom script execution job. Each call retrieves the most recent status event for the job and each event refers to a different stage of execution."
+    }
+  ],
 
   "paths": {
     "/v3/scripts": {
       "post": {
+        "tags": ["Custom scripts"],
         "summary": "Submit a custom script",
         "description": "Submit the custom script bundle. This returns the URL for posting an execution request for the custom script.",
         "parameters": [
@@ -93,6 +116,7 @@
         }
       },
       "get": {
+        "tags": ["Custom scripts"],
         "summary": "List custom scripts API",
         "description": "Retrieves details of the latest version of all custom scripts registered by the customer. This includes version, script's download link, registration date, and script name. The response is paginated depending on list length.",
         "parameters": [
@@ -165,6 +189,7 @@
     },
     "/v3/scripts/{id}/execute": {
       "post": {
+        "tags": ["Custom scripts"],
         "summary": "Execute a custom script",
         "description": "Execute a custom script that has been submitted.",
         "parameters": [
@@ -243,6 +268,7 @@
     },
     "/v3/scripts/{script_name}": {
       "get": {
+        "tags": ["Custom scripts"],
         "summary": "Get custom script details API",
         "description": "Retrieves details of a single custom script registered by the customer. This includes version, script's download link, registration date, and script name.",
         "parameters": [
@@ -312,6 +338,7 @@
         }
       },
       "delete": {
+        "tags": ["Custom scripts"],
         "summary": "Delete custom script API",
         "description": "Deletes a single custom script registered by the customer. All versions of that script will be deleted.",
         "parameters": [
@@ -376,6 +403,7 @@
     },
     "/v3/{script_id}/{script_name}": {
       "post": {
+        "tags": ["Custom scripts"],
         "summary": "Submit a custom script execution request",
         "description": "Submit an execution request for a custom script. Define the input assets and parameters the custom script will use when it is executed against the app engine.",
         "parameters": [
@@ -463,6 +491,7 @@
     },
     "/v3/create-rendition": {
       "post": {
+        "tags": ["Rendition"],
         "summary": "Create JPEG, PNG, or PDF renditions",
         "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document. <br></br> The rendition output MIME types are: <ul> `image/jpeg` for JPEG. </ul> <ul> `image/png` for PNG. </ul> <ul> `application/pdf` for PDF. </ul>",
         "operationId": "renditionJob",
@@ -533,6 +562,7 @@
     },
     "/v3/merge-data": {
       "post": {
+        "tags": ["Data merge"],
         "summary": "Perform a data merge",
         "description": "Returns InDesign documents or PDFs that are created by merging the data provided and the specified template.<br></br>  The data merge output MIME types are: <ul> `image/jpeg` for JPEG. </ul> <ul> `image/png` for PNG. </ul>  <ul> `application/pdf` for PDF. </ul> <ul> `application/x-indesign` for INDD. </ul>",
         "operationId": "dataMerge",
@@ -603,6 +633,7 @@
     },
     "/v3/merge-data-tags": {
       "post": {
+        "tags": ["Data merge"],
         "summary": "Get data merge tags",
         "description": "Retrieves the data merge tags from a document.",
         "operationId": "dataMergeTags",
@@ -673,6 +704,7 @@
     },
     "/v3/remap-links": {
       "post": {
+        "tags": ["Remap links"],
         "summary": "Remap links",
         "description": "This service replaces existing file-based links in InDesign documents with AEM URLs. This is particularly useful for customers working with AEM using AEM Asset Link, as it allows designers to work with the output files post-generation by having direct links to AEM URLs.",
         "operationId": "remapLinks",
@@ -752,6 +784,7 @@
     },
     "/v3/status/{id}": {
       "get": {
+        "tags": ["Job status"],
         "operationId": "getJobStatus",
         "summary": "Get the status of a job",
         "description": "Return the latest status of a custom script job that has been executed.",
