@@ -244,7 +244,7 @@
     "/v3/merge-data": {
       "post": {
         "summary": "Perform a data merge",
-        "description": "Returns InDesign documents or PDFs that are created by merging the data provided and the specified template.",
+        "description": "Returns InDesign documents or PDFs that are created by merging the data provided and the specified template.<br></br>  The data merge output MIME types are: <ul> `image/jpeg` for JPEG. </ul> <ul> `image/png` for PNG. </ul>  <ul> `application/pdf` for PDF. </ul> <ul> `application/x-indesign` for INDD. </ul>",
         "operationId": "dataMerge",
         "parameters": [
           {
@@ -783,7 +783,7 @@
                 "enum": [
                   "Azure",
                   "Dropbox",
-                  "Aws"
+                  "AWS"
                 ]
               }
             }
@@ -913,7 +913,7 @@
                 "enum": [
                   "Azure",
                   "Dropbox",
-                  "Aws"
+                  "AWS"
                 ]
               }
             }
