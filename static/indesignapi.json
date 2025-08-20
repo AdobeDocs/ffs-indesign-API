@@ -22,32 +22,10 @@
       "BearerAuth": []
     }
   ],
-  "tags": [
-    {
-      "name": "Custom Scripts API",
-      "description": "The Custom Scripts API allows you to submit custom scripts to do almost anything you can do in InDesign through scripting."
-    },
-    {
-      "name": "Job Status API",
-      "description": "Get the job status of a custom script execution job. Each call retrieves the most recent status event for the job and each event refers to a different stage of execution."
-    },
-    {
-      "name": "Rendition API",
-      "description": "The Rendition API creates a version of a file in a specified format (e.g., PNG, JPEG, or PDF)."
-    },
-    {
-      "name": "Data Merge API",
-      "description": "The Data Merge API allows you to merge data with InDesign templates to create personalized documents."
-    },
-    {
-      "name": "Remap Links API",
-      "description": "The Remap Links API allows you to update links in InDesign documents to point to new locations."
-    }
-  ],
+
   "paths": {
     "/v3/scripts": {
       "post": {
-        "tags": ["Custom Scripts API"],
         "summary": "Submit a Custom Script",
         "description": "Submit the custom script bundle. This returns the URL for posting an execution request for the custom script.",
         "parameters": [
@@ -117,7 +95,6 @@
     },
     "/v3/scripts/{id}/execute": {
       "post": {
-        "tags": ["Custom Scripts API"],
         "summary": "Execute a Custom Script",
         "description": "Execute a custom script that has been submitted.",
         "parameters": [
@@ -196,7 +173,6 @@
     },
     "/v3/status/{id}": {
       "get": {
-        "tags": ["Job Status API"],
         "operationId": "getJobStatus",
         "summary": "Get the status of a job",
         "description": "Return the latest status of a custom script job that has been executed.",
@@ -289,7 +265,6 @@
     },
     "/v3/create-rendition": {
       "post": {
-        "tags": ["Rendition API"],
         "summary": "Create JPEG, PNG, or PDF renditions",
         "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document.",
         "operationId": "renditionJob",
@@ -360,7 +335,6 @@
     },
     "/v3/data-merge": {
       "post": {
-        "tags": ["Data Merge API"],
         "summary": "Execute Data Merge",
         "description": "Execute a data merge operation with an InDesign template and data source.",
         "operationId": "dataMergeJob",
@@ -431,7 +405,6 @@
     },
     "/v3/remap-links": {
       "post": {
-        "tags": ["Remap Links API"],
         "summary": "Remap Document Links",
         "description": "Update links in an InDesign document to point to new locations.",
         "operationId": "remapLinksJob",
