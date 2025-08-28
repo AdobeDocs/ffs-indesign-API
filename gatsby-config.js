@@ -15,7 +15,7 @@ module.exports = {
   siteMetadata: {
     pages: [
       {
-        title: 'Firefly Services',
+        title: 'All Firefly Services',
         path: 'https://developer.adobe.com/firefly-services/docs/guides/?aio_internal'
       },
       {
