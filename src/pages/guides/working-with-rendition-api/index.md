@@ -79,6 +79,6 @@ repository, and a [pre-signed URL][2] will be shared for those assets, which wil
 
 Consult this skeleton [cURL request][3] for more details.
 
-[1]: ../../concepts/index.md#Pre-signed-URLs
-[2]: ../../concepts/index.md#Pre-signed-URLs
+[1]: ../../getting_started/concepts/index.md#Pre-signed-URLs
+[2]: ../../getting_started/concepts/index.md#Pre-signed-URLs
 [3]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/
