@@ -71,8 +71,8 @@ This page contains the release notes and version history for Adobe InDesign APIs
 - Improved error code documentation and troubleshooting guides.
 
 <!-- Links -->
-[1]: ../api/remaplinks.md
-[2]: ../api/scripts.md
-[3]: ../help/usage_notes/index.md#user-data-handling
-[4]: ../api/datamerge.md
-[5]: ../how-tos/working-with-datamerge-api/index.md
+[1]: ../api/
+[2]: ../api/
+[3]: ../../getting_started/usage/index.md#user-data-handling
+[4]: ../api/
+[5]: ../../guides/working-with-datamerge-api/index.md
