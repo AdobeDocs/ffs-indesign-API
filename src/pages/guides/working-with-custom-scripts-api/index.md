@@ -147,7 +147,7 @@ Consult this skeleton [cURL request][6] for more details.
 ```
 
 [1]: ../writing-scripts-for-custom-scripts-api/
-[2]: ../../getting_started/concepts/index.md#Access-tokens
+[2]: ../../getting_started/index.md#Access-tokens
 [3]: ../writing-scripts-for-custom-scripts-api/
 [4]: ../../api/
 [5]: ../../getting_started/concepts/index.md#Pre-signed-URLs
