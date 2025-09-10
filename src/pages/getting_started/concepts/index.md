@@ -29,44 +29,6 @@ twitter:
 
 Consider these important concepts when using InDesign APIs.
 
-## Adobe Developer Console
-
-### Overview
-
-The **Adobe Developer Console** is an administration interface that
-enables developers to manage Adobe's APIs and services. To securely
-access Adobe's APIs, including the InDesign API, your application must
-authenticate using OAuth 2.0 protocols. This involves obtaining an
-access token that grants your application permissions to interact with
-Adobe's services.
-
-**You will need:**
-
-- An [Adobe Developer Console][1] account.
-
-- A [project][2] with Firefly API [OAuth Server-to-Server credentials set
-  up][3].
-
-- Add and configure **InDesign API Firefly Services** to your new project.
-
-- Access to your Client ID and Client Secret from the Developer Console.
-
-![InDesign APIs Onboarding](./image1.png)
-
-### Access tokens
-
-You can [generate access tokens][4] either directly from the Developer Console UI or programmatically.
-
-### Best practices
-
-- **Token management:** Access tokens are valid for 24 hours. Implement a mechanism to refresh tokens before they expire to maintain uninterrupted access.
-
-- **Scope limitation:** Request only the scopes necessary for your
-  application's functionality to adhere to the principle of least
-  privilege.
-
-- **Secure storage:** Store your Client ID, Client Secret, and access tokens securely to prevent unauthorized access.
-
 ## Pre-signed URLs
 
 ### What is a pre-signed URL?
@@ -336,65 +298,65 @@ For example in case number of outputs is greater than 10 in case of status api e
 
 ```json
 {
-	"jobId": "b50a4f99-4e80-4194-ac2a-043aaddae4ad",
-	"timestamp": "2025-08-29T16:31:27.741Z",
-	"status": "succeeded",
-	"data": {
-		"outputs": [
-			{
-				"renditions": [
-					{
-						"pageIndex": 1,
-						"path": [
-							"test/test.jpg"
-						]
-					},
-					{
-						"pageIndex": 2,
-						"path": [
-							"test/test2.jpg"
-						]
-					},
-					.
+  "jobId": "b50a4f99-4e80-4194-ac2a-043aaddae4ad",
+  "timestamp": "2025-08-29T16:31:27.741Z",
+  "status": "succeeded",
+  "data": {
+    "outputs": [
+      {
+        "renditions": [
+          {
+            "pageIndex": 1,
+            "path": [
+              "test/test.jpg"
+            ]
+          },
+          {
+            "pageIndex": 2,
+            "path": [
+              "test/test2.jpg"
+            ]
+          },
+          .
                     .
                     .
-					{
-						"pageIndex": 16,
-						"path": [
-							"test/test16.jpg"
-						]
-					}
-				],
-				"input": "test_16Pages.indd",
-			}
-		]
-	},
-	"outputs": [
-		{
-			"destination": {
-				"url": "<presignedURL>"
-			},
-			"source": "test\\test1.jpg"
-		},
-		{
-			"destination": {
-				"url": "<presignedURL>"
-			},
-			"source": "test\\test2.jpg"
-		},
-		.
+          {
+            "pageIndex": 16,
+            "path": [
+              "test/test16.jpg"
+            ]
+          }
+        ],
+        "input": "test_16Pages.indd",
+      }
+    ]
+  },
+  "outputs": [
+    {
+      "destination": {
+        "url": "<presignedURL>"
+      },
+      "source": "test\\test1.jpg"
+    },
+    {
+      "destination": {
+        "url": "<presignedURL>"
+      },
+      "source": "test\\test2.jpg"
+    },
+    .
         .
         .
-		{
-			"destination": {
-				"url": "<presignedURL>"
-			},
-			"source": "test\\test10.jpg"
-		}
-	],
-	"paging": {
-		"nextUrl": "https://indesign-stage.adobe.io/v3/status/b50a4f99-4e80-4194-ac2a-043aaddae4ad?size=10&page=1"
-	}
+    {
+      "destination": {
+        "url": "<presignedURL>"
+      },
+      "source": "test\\test10.jpg"
+    }
+  ],
+  "paging": {
+    "nextUrl": "https://indesign-stage.adobe.io/v3/status/b50a4f99-4e80-4194-ac2a-043aaddae4ad?size=10&page=1"
+  }
 }
 ```
 
@@ -410,10 +372,7 @@ those shown in the status calls of InDesign APIs. However, InDesign API events a
 Please refer to the [InDesign APIs Webhooks][9]
 for a detailed guide on setting up webhooks.
 
-[1]: https://developer.adobe.com/
-[2]: https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/
-[3]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/
-[4]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/#api-overview
+<!-- Links -->
 [5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
 [6]: https://dropbox.github.io/dropbox-api-v2-explorer/
 [7]: https://learn.microsoft.com/en-us/azure/storage/
