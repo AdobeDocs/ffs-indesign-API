@@ -72,8 +72,24 @@ module.exports = {
         header: true,
         pages: [
           {
-            title: 'Using the InDesign API',
-            path: '/guides/index.md'
+            title: 'Logging',
+            path: '/guides/logging/'
+          },
+          {
+            title: 'Working with Custom Scripts API',
+            path: '/guides/working-with-custom-scripts-api/'
+          },
+          {
+            title: 'Working with Data Merge API',
+            path: '/guides/working-with-datamerge-api/'
+          },
+          {
+            title: 'Working with Rendition API',
+            path: '/guides/working-with-rendition-api/'
+          },
+          {
+            title: 'Writing Scripts for Custom Scripts API',
+            path: '/guides/writing-scripts-for-custom-scripts-api/'
           }
         ]
       }
