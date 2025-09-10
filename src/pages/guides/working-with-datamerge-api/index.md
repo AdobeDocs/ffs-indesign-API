@@ -39,7 +39,7 @@ from data in a provided CSV file.
 
 The Data Merge API supports UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding.
 
-The [Data Merge API](../../api/datamerge.md) includes two components to complete the task: the data merge and the data merge tags.
+The [Data Merge API](../../api/) includes two components to complete the task: the data merge and the data merge tags.
 
 ## Quickstart
 
