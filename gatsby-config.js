@@ -56,6 +56,17 @@ module.exports = {
         ]
       },
       {
+        title: 'Learn More',
+        path: '/getting_started/concepts',
+        header: true,
+        pages: [
+          {
+            title: 'Concepts',
+            path: '/getting_started/concepts'
+          }
+        ]
+      },
+      {
         title: 'Guides',
         path: '/guides/',
         header: true,
