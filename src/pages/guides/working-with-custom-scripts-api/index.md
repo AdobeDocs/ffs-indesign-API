@@ -33,7 +33,8 @@ twitter:
 
 # Working with the Custom Scripts API
 
-With the Custom Scripts API, register [custom scripts bundle that you've created][1] with the API. Then use those custom scripts on documents by referencing the `{SCRIPT_ID}` and `{SCRIPT_NAME}`.
+With the Custom Scripts API, register [custom scripts bundle that you've created][1] with the API.
+Then use those custom scripts on documents by referencing the `{SCRIPT_ID}` and `{SCRIPT_NAME}`.
 
 ## Before you start
 
@@ -146,8 +147,8 @@ Consult this skeleton [cURL request][6] for more details.
 ```
 
 [1]: ../writing-scripts-for-custom-scripts-api/
-[2]: ../../concepts/index.md#Access-tokens
+[2]: ../../getting_started/concepts/index.md#Access-tokens
 [3]: ../writing-scripts-for-custom-scripts-api/
-[4]: ../../api/status.md
-[5]: ../../concepts/index.md#Pre-signed-URLs
+[4]: ../../api/
+[5]: ../../getting_started/concepts/index.md#Pre-signed-URLs
 [6]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/
