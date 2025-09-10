@@ -48,7 +48,7 @@ In the cURL commands, be sure to:
   
 ## Register a custom script
 
-![](./image4.png)
+![](./custom-script-workflow.png)
 
 New custom scripts get registered by making a POST call to the API.
 
@@ -81,7 +81,7 @@ In the response, you'll receive a url which contains `{SCRIPT_ID}` and `{SCRIPT_
 
 ## Execute a custom script
 
-![](./image5.png)
+![](./status-poll-script.png)
 
 Assets specified in the execution request are downloaded on the
 local file system using the specified identifiers. The custom script

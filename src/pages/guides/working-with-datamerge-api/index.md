@@ -32,7 +32,7 @@ twitter:
 ---
 # Working with the Data Merge API
 
-![Data Merge](./image3.png)
+![Data Merge](./data-merge-flow.png)
 
 Data merge generates variations of a template document
 from data in a provided CSV file.

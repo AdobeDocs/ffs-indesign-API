@@ -31,7 +31,7 @@ Adobe's services.
 
 - Access to your Client ID and Client Secret from the Developer Console.
 
-![InDesign APIs Onboarding](./image1.png)
+![InDesign APIs Onboarding](./add-an-api.png)
 
 ### Access tokens
 
