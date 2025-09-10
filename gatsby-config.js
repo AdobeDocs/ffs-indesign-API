@@ -63,6 +63,10 @@ module.exports = {
           {
             title: 'InDesign Concepts',
             path: '/getting_started/concepts'
+          },
+          {
+            title: 'Changelog',
+            path: '/getting_started/changelog/'
           }
         ]
       },
