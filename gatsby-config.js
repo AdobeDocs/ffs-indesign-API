@@ -61,7 +61,7 @@ module.exports = {
         header: true,
         pages: [
           {
-            title: 'Concepts',
+            title: 'InDesign Concepts',
             path: '/getting_started/concepts'
           }
         ]
