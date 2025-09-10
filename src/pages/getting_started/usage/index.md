@@ -18,19 +18,6 @@ keywords:
   - cloud services
   - document processing
 hideBreadcrumbNav: true
-og:
-  title: InDesign API Technical Usage Notes & Best Practices
-  description: >-
-    Comprehensive guide to InDesign API limitations, rate limits, file sizes,
-    storage types, and troubleshooting. Learn best practices for InDesign
-    automation.
-twitter:
-  card: summary
-  title: InDesign API Technical Usage Notes & Best Practices
-  description: >-
-    Comprehensive guide to InDesign API limitations, rate limits, file sizes,
-    storage types, and troubleshooting. Learn best practices for InDesign
-    automation.
 ---
 
 # Technical usage notes
