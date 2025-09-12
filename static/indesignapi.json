@@ -48,7 +48,7 @@
     "/v3/merge-data": {
       "post": {
         "summary": "Perform a data merge",
-        "description": "Returns InDesign documents or PDFs that are created by merging the data provided and the specified template.<br></br>  The data merge output MIME types are: <ul> `image/jpeg` for JPEG. </ul> <ul> `image/png` for PNG. </ul>  <ul> `application/pdf` for PDF. </ul> <ul> `application/x-indesign` for INDD. </ul>",
+        "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`).",
         "operationId": "dataMerge",
         "tags": [
           "Data Merge API"
@@ -194,7 +194,7 @@
     "/v3/remap-links": {
       "post": {
         "summary": "Remap links",
-        "description": "This service replaces existing file-based links in InDesign documents with AEM URLs. This is particularly useful for customers working with AEM using AEM Asset Link, as it allows designers to work with the output files post-generation by having direct links to AEM URLs.",
+        "description": "Replaces file-based links in InDesign documents with AEM URLs. Particularly useful for customers working with Adobe Experience Manager (AEM) using Adobe Asset Link, enabling designers to work with output files that have direct links to AEM URLs.",
         "operationId": "remapLinks",
         "tags": [
           "Remap Links API"
@@ -273,7 +273,7 @@
     "/v3/create-rendition": {
       "post": {
         "summary": "Create JPEG, PNG, or PDF renditions",
-        "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document. <br></br> The rendition output MIME types are:  <ul> `image/jpeg` for JPEG. </ul>  <ul> `image/png` for PNG. </ul> <ul> `application/pdf` for PDF. </ul>",
+        "description": "Creates JPEG, PNG, or PDF renditions of InDesign documents. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), and PDF (`application/pdf`).",
         "operationId": "renditionJob",
         "tags": [
           "Rendition API"
@@ -346,7 +346,7 @@
     "/v3/scripts": {
       "post": {
         "summary": "Submit a Custom Script",
-        "description": "Submit the custom script bundle. This returns the URL for posting an execution request for the custom script.",
+        "description": "Submits custom script bundles for registration. Returns a URL for posting execution requests for the registered script.",
         "operationId": "submitCustomScript",
         "tags": [
           "Custom Scripts API"
@@ -437,7 +437,7 @@
       },
       "get": {
         "summary": "List custom scripts API",
-        "description": "Retrieves details of the latest version of all custom scripts registered by the customer. This includes version, script's download link, registration date, and script name. The response is paginated depending on list length.",
+        "description": "Retrieves details of the latest version of all registered custom scripts. Includes version, download link, registration date, and script name. Response is paginated based on list length.",
         "operationId": "listCustomScripts",
         "tags": [
           "Custom Scripts API"
@@ -513,7 +513,7 @@
     "/v3/{script_id}/{script_name}": {
       "post": {
         "summary": "Submit a custom script execution request",
-        "description": "Submit an execution request for a custom script. Define the input assets and parameters the custom script will use when it is executed against the app engine.",
+        "description": "Submits execution requests for custom scripts. Defines input assets and parameters that the custom script will use during execution.",
         "operationId": "executeCustomScript",
         "tags": [
           "Custom Scripts API"
@@ -603,8 +603,8 @@
     },
     "/v3/scripts/{script_name}": {
       "get": {
-        "summary": "Get custom script details API",
-        "description": "Retrieves details of a single custom script registered by the customer. This includes version, script's download link, registration date, and script name.",
+        "summary": "Get Custom Script details",
+        "description": "Retrieves details of a single registered custom script. Includes version, download link, registration date, and script name.",
         "operationId": "getCustomScriptDetails",
         "tags": [
           "Custom Scripts API"
@@ -676,8 +676,8 @@
         }
       },
       "delete": {
-        "summary": "Delete custom script API",
-        "description": "Deletes a single custom script registered by the customer. All versions of that script will be deleted.",
+        "summary": "Delete a Custom Script",
+        "description": "Deletes a single registered custom script. All versions of the script will be permanently removed.",
         "operationId": "deleteCustomScript",
         "tags": [
           "Custom Scripts API"
@@ -746,7 +746,7 @@
       "get": {
         "operationId": "getJobStatus",
         "summary": "Get the status of a job",
-        "description": "Return the latest status of a custom script job that has been executed.",
+        "description": "Returns the latest status of an executed custom script job.",
         "tags": [
           "Job Status API"
         ],
