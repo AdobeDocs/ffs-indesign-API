@@ -42,6 +42,9 @@
         "summary": "Perform a data merge",
         "description": "Returns InDesign documents or PDFs that are created by merging the data provided and the specified template.<br></br>  The data merge output MIME types are: <ul> `image/jpeg` for JPEG. </ul> <ul> `image/png` for PNG. </ul>  <ul> `application/pdf` for PDF. </ul> <ul> `application/x-indesign` for INDD. </ul>",
         "operationId": "dataMerge",
+        "tags": [
+          "Data Merge API"
+        ],
         "parameters": [
           {
             "name": "x-gw-ims-org-id",
@@ -112,6 +115,9 @@
         "summary": "Get data merge tags",
         "description": "Retrieves the data merge tags from a document.",
         "operationId": "dataMergeTags",
+        "tags": [
+          "Data Merge API"
+        ],
         "parameters": [
           {
             "name": "x-gw-ims-org-id",
@@ -182,6 +188,9 @@
         "summary": "Remap links",
         "description": "This service replaces existing file-based links in InDesign documents with AEM URLs. This is particularly useful for customers working with AEM using AEM Asset Link, as it allows designers to work with the output files post-generation by having direct links to AEM URLs.",
         "operationId": "remapLinks",
+        "tags": [
+          "Remap Links API"
+        ],
         "parameters": [
           {
             "name": "x-gw-ims-org-id",
@@ -258,6 +267,9 @@
         "summary": "Create JPEG, PNG, or PDF renditions",
         "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document. <br></br> The rendition output MIME types are:  <ul> `image/jpeg` for JPEG. </ul>  <ul> `image/png` for PNG. </ul> <ul> `application/pdf` for PDF. </ul>",
         "operationId": "renditionJob",
+        "tags": [
+          "Rendition API"
+        ],
         "parameters": [
           {
             "name": "x-gw-ims-org-id",
