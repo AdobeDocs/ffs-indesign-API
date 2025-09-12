@@ -38,6 +38,10 @@
     {
       "name": "Custom Scripts API",
       "description": "The Custom Scripts API allows you to submit custom scripts to do almost anything you can do in InDesign through scripting."
+    },
+    {
+      "name": "Job Status API",
+      "description": "Get the job status of a custom script execution job. Each call retrieves the most recent status event for the job and each event refers to a different stage of execution. `not_started` is generated at the creation of the job. `running` is generated when execution begins (at app-engine). `succeeded` is generated when execution of an API Job is complete. `partial_success` is generated when execution of an API Job is complete but some non-critical errors occurred. `failed` is generated if an API Job execution fails."
     }
   ],
   "paths": {
@@ -731,6 +735,143 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{id}": {
+      "get": {
+        "operationId": "getJobStatus",
+        "summary": "Get the status of a job",
+        "description": "Return the latest status of a custom script job that has been executed.",
+        "tags": [
+          "Job Status API"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the job you want to see the status of. This comes from the response of the executed job request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "Number of output items to return per page when outputs are paginated. Defaults to 10.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 10
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Zero-based page index to retrieve when outputs are paginated. Defaults to 0.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of an API Job execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/notstartedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/runningEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/succeededEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/failedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/partialSuccessEvent"
+                    }
+                  ]
+                }
+              }
+            },
+            "headers": {
+              "retry-after": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The number of seconds until the user should try again."
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The type of content returned (e.g., `application/json`)."
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The length of the response."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -1632,6 +1773,194 @@
             "example": "3p-testing/test1"
           }
         }
+      },
+      "BaseEvent": {
+        "type": "object",
+        "description": "The job event response object.",
+        "properties": {
+          "jobId": {
+            "description": "The GUID for the job.",
+            "type": "string"
+          }
+        }
+      },
+      "notstartedEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The status when a job is in queued state.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "not_started"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "runningEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "Job is in running state.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "running"
+                ]
+              },
+              "message": {
+                "type": "string",
+                "description": "A description of the current running state."
+              }
+            }
+          }
+        ]
+      },
+      "succeededEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job has succeeded.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "succeeded"
+                ]
+              },
+              "data": {
+                "type": "object",
+                "description": "The output response from the current state of the job."
+              },
+              "dataURL": {
+                "type": "string",
+                "description": "The data returned from the execution of the job. If the data size is between 250 KB and 20 MB, it will be provided as a pre-signed URL. If it is larger than 20 MB, the job will fail."
+              },
+              "outputs": {
+                "type": "object",
+                "description": "A list of URLs for all the generated assets."
+              }
+            }
+          }
+        ]
+      },
+      "failedEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job is in a failed state.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "failed"
+                ]
+              },
+              "errors": {
+                "type": "array",
+                "description": "A list of errors that caused the job to fail.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "description": "The error code for the failure."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message for the failure"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "The source file of the error, if applicable."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "A URL related to an asset causing the failure(if any), if applicable."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "partialSuccessEvent": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseEvent"
+          },
+          {
+            "description": "The job has succeeded with some non-critical errors.",
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "The current state of the job.",
+                "enum": [
+                  "partial_success"
+                ]
+              },
+              "data": {
+                "type": "object",
+                "description": "The output response from the current state of the job."
+              },
+              "dataURL": {
+                "type": "string",
+                "description": "The data returned from the execution of the job. If the data size is between 250 KB and 20 MB, it will be provided as a pre-signed URL. If it is larger than 20 MB, the job will fail."
+              },
+              "outputs": {
+                "type": "object",
+                "description": "A list of URLs for all the successfully generated assets."
+              },
+              "errors": {
+                "type": "array",
+                "description": "A list of errors that occurred during a partially successful job.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "description": "The error code for the partial failure."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message for the partial failure"
+                    },
+                    "source": {
+                      "type": "string",
+                      "description": "The source file of the partial failure error, if applicable."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "A URL related to an asset causing the partial failure(if any), if applicable."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "responses": {
