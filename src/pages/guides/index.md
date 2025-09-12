@@ -21,7 +21,7 @@ keywords:
 
 # Guides
 
-Welcome to the InDesign API guides! 
+Welcome to the InDesign API guides!
 
 👉 **[Start with the Logging Guide →](/guides/logging/)**
 
