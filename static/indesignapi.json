@@ -30,6 +30,10 @@
     {
       "name": "Remap Links API",
       "description": "The Remap Links API allows you to replace file-based links in InDesign documents with AEM URLs. This is particularly useful for customers working with Adobe Experience Manager (AEM) using Adobe Asset Link, enabling designers to work with output files that have direct links to AEM URLs."
+    },
+    {
+      "name": "Rendition API",
+      "description": "The Rendition API creates a version of a file in a specified format (e.g., PNG, JPEG, or PDF)."
     }
   ],
   "paths": {
@@ -248,6 +252,76 @@
           }
         }
       }
+    },
+    "/v3/create-rendition": {
+      "post": {
+        "summary": "Create JPEG, PNG, or PDF renditions",
+        "description": "Create a JPEG, PNG, or PDF rendition of a specific InDesign document. <br></br> The rendition output MIME types are:  <ul> `image/jpeg` for JPEG. </ul>  <ul> `image/png` for PNG. </ul> <ul> `application/pdf` for PDF. </ul>",
+        "operationId": "renditionJob",
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRenditionRequest"
+              }
+            }
+          },
+          "description": "This object specifies parameters for the JPEG, PNG or PDF output.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -353,7 +427,7 @@
                 "enum": [
                   "Azure",
                   "Dropbox",
-                  "Aws"
+                  "AWS"
                 ]
               }
             }
@@ -483,7 +557,7 @@
                 "enum": [
                   "Azure",
                   "Dropbox",
-                  "Aws"
+                  "AWS"
                 ]
               }
             }
@@ -884,6 +958,211 @@
             }
           }
         }
+      },
+      "CreateRenditionRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequestWithOutput"
+          },
+          {
+            "description": "Inputs and properties with which the job should be processed.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocuments",
+                  "outputMediaType"
+                ],
+                "properties": {
+                  "targetDocuments": {
+                    "description": "The documents that will be processed and rendered. Currently, only one document at a time is supported.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1
+                  },
+                  "outputMediaType": {
+                    "description": "The MIME type output of the rendered file.",
+                    "type": "string",
+                    "enum": [
+                      "image/jpeg",
+                      "image/png",
+                      "application/pdf"
+                    ]
+                  },
+                  "exportingSpread": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Specify `true` if you consider range as spread numbers. Use `false` if you treat range as pages."
+                  },
+                  "pageRange": {
+                    "type": "string",
+                    "default": "All",
+                    "description": "The page ranges, based on the index of the page within the document. The value can be 'All', as well as numeral ranges. If `exportingSpread` is true, this range would represent spread indices in the document."
+                  },
+                  "quality": {
+                    "type": "string",
+                    "description": "Defines the quality of the output.",
+                    "default": "medium",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "high",
+                      "maximum"
+                    ]
+                  },
+                  "renderingStyle": {
+                    "type": "string",
+                    "description": "Specifies formatting options for the converted JPEG images.",
+                    "default": "baseline_encoding",
+                    "enum": [
+                      "baseline_encoding",
+                      "progressive_encoding"
+                    ]
+                  },
+                  "resolution": {
+                    "type": "integer",
+                    "default": 72,
+                    "description": "Specifies the resolution of the final image.",
+                    "minimum": 1,
+                    "maximum": 2400
+                  },
+                  "colorSpace": {
+                    "type": "string",
+                    "description": "Specifies formatting options for converted JPEG images.",
+                    "default": "rgb",
+                    "enum": [
+                      "rgb",
+                      "cmyk",
+                      "gray"
+                    ]
+                  },
+                  "embedColorProfile": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Specify `true` to embed the color profile. Otherwise, use `false`."
+                  },
+                  "antiAlias": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If `true`, anti-aliasing is used for text and vectors during export."
+                  },
+                  "simulateOverprint": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this simulates the effects of overprinting spot and processes colors in the same way they would occur with a print."
+                  },
+                  "useDocumentBleeds": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, the document's bleed settings are used in the exported JPEG."
+                  },
+                  "colorSettingsFile": {
+                    "type": "string",
+                    "description": "This is the color settings file to be used for generating a rendition."
+                  },
+                  "transparentBackground": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this uses a transparent background for the exported PNG. This is valid only for PNG renditions."
+                  },
+                  "createSeparateFiles": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Specify `true` to create separate PDF files for all the specified pages/spreads. This is applicable only in case of PDF rendition."
+                  },
+                  "optimizeForFastWebView": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Specify `true` to optimize the PDF for faster web viewing. This is applicable only in case of PDF rendition."
+                  },
+                  "embedPageThumbnails": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Specify `true` for embedding page thumbnails. This is applicable only in case of PDF rendition."
+                  },
+                  "includeBookmarks": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this displays bookmarks and table-of-contents entries as links in the bookmarks pane of the PDF document. If `false`, bookmarks are not exported. This is applicable only in case of PDF rendition."
+                  },
+                  "includeHyperlinks": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this includes the hyperlinks when exporting the document. This is applicable only in case of PDF rendition."
+                  },
+                  "exportNonprintingObjects": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this makes non-printing objects visible in the PDF document. This is applicable only in case of PDF rendition."
+                  },
+                  "exportGuidesAndGrids": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If `true`, this includes visible guides and baseline grids in the PDF. This is applicable only in case of PDF rendition. document."
+                  },
+                  "createTaggedPDF": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "If `true`, this creates a tagged PDF file. This is applicable only in case of PDF rendition."
+                  },
+                  "includeInteractiveElements": {
+                    "type": "string",
+                    "description": "Specifies the option to draw interactive elements. This is applicable only in case of PDF rendition.",
+                    "default": "do_not_include",
+                    "enum": [
+                      "do_not_include",
+                      "appearance_only"
+                    ]
+                  },
+                  "exportWhichLayers": {
+                    "type": "string",
+                    "description": "This indicates the image layers to be exported. This is applicable only in case of PDF rendition.",
+                    "default": "export_all_layers",
+                    "enum": [
+                      "export_all_layers",
+                      "export_visible_layers",
+                      "export_visible_printable_layers"
+                    ]
+                  },
+                  "jobOptionsFile": {
+                    "type": "string",
+                    "description": "This is the file used as the PDF creation settings file during the export. This will take precedence over the `pdfPreset` attribute. This is applicable only in case of PDF rendition."
+                  },
+                  "pdfPreset": {
+                    "type": "string",
+                    "description": "The export style to be used. This is applicable only in case of PDF rendition.",
+                    "default": "High Quality Print",
+                    "enum": [
+                      "High Quality Print",
+                      "PDF/X-1a:2001",
+                      "PDF/X-3:2002",
+                      "PDF/X-4:2008",
+                      "Press Quality",
+                      "Smallest File Size"
+                    ]
+                  },
+                  "outputFileBaseString": {
+                    "type": "string",
+                    "description": "The name of the output file.",
+                    "default": "It is derived from the original document filename."
+                  },
+                  "outputFolderPath": {
+                    "type": "string",
+                    "description": "The path of the output folder.",
+                    "default": "A unique temporary folder name would be created."
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     },
     "responses": {
