@@ -20,4 +20,4 @@ keywords:
   - batch processing
 ---
 
-<RedoclyAPIBlock src="/firefly-services/docs/indesign-apis/indesignapi.json" width="600px" disableSidebar scrollYOffset={64} generateCodeSamples="languages: [{lang: 'curl'}]" />
+<RedoclyAPIBlock src="/firefly-services/docs/indesign-apis/indesignapi.json" width="600px" scrollYOffset={64} generateCodeSamples="languages: [{lang: 'curl'}]" />
