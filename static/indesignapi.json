@@ -40,6 +40,10 @@
       "description": "Submit and execute custom scripts for InDesign automation. Supports comprehensive scripting capabilities for document manipulation and processing."
     },
     {
+      "name": "Document Info",
+      "description": "Retrieve comprehensive information about InDesign documents. Extracts metadata including page structure, links, fonts, page items, and text stories. Useful for document analysis, asset management, and workflow automation."
+    },
+    {
       "name": "Job Status",
       "description": "Track job execution status and lifecycle events. Retrieves the most recent status event for jobs across different execution stages: `not_started` (job creation), `running` (execution begins), `succeeded` (complete), `partial_success` (complete with non-critical errors), `failed` (execution failure)."
     }
@@ -735,6 +739,79 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/document-info": {
+      "post": {
+        "summary": "Get document information",
+        "description": "Retrieves comprehensive information about an InDesign document including pages, links, fonts, page items, and text stories. Returns data based on the enabled information types specified in the request.",
+        "operationId": "getDocumentInfo",
+        "tags": [
+          "Document Info"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentInfoRequest"
+              }
+            }
+          },
+          "description": "This job request object specifies parameters for extracting document information.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -1514,6 +1591,89 @@
             }
           }
         }
+      },
+      "DocumentInfoRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequest"
+          },
+          {
+            "description": "Inputs for the document information request.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocument"
+                ],
+                "properties": {
+                  "targetDocument": {
+                    "description": "The document to be used for data extraction.",
+                    "type": "string"
+                  },
+                  "pageInfo": {
+                    "description": "Settings for extracting page information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return pages information.",
+                        "default": true
+                      }
+                    }
+                  },
+                  "linkInfo": {
+                    "description": "Settings for extracting link information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return links information.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "fontInfo": {
+                    "description": "Settings for extracting font information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return fonts information.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "pageItemInfo": {
+                    "description": "Settings for extracting page item information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return page items details.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "textStoryInfo": {
+                    "description": "Settings for extracting text story information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return text stories information.",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "CreateRenditionRequest": {
         "allOf": [
