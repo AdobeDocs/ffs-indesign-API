@@ -45,3 +45,12 @@ Perform almost any InDesign task using a custom script. With this API you can su
 Retrieves the most recent status event of an API execution job.
 
 [1]: ./api/index.md
+
+
+<DiscoverBlock slots="link, text"/>
+
+[Document Info API][1]
+
+Retrieve comprehensive information about InDesign documents. Extracts metadata including page structure, links, fonts, page items, and text stories.
+
+[1]: ./api/index.md
