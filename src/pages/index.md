@@ -49,6 +49,6 @@ Retrieves the most recent status event of an API execution job.
 
 [Document Info API][1]
 
-Retrieve comprehensive information about InDesign documents. Extracts metadata including page structure, links, fonts, page items, and text stories.
+Retrieve information from INDD / IDML documents including layers, links and fonts.
 
 [1]: ./api/index.md
