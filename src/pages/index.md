@@ -4,7 +4,9 @@ description: This is the overview page of Adobe InDesign API.
 hideBreadcrumbNav: true
 ---
 
-<Hero slots="heading, text" background="rgb(0, 128, 80)"/>
+<Hero slots="image, heading, text" background="rgb(225, 190, 185)" theme="dark" />
+
+![InDesign Hero Image](./indesign-hero.png)
 
 # Adobe InDesign API - Firefly Services
 
