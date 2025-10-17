@@ -826,6 +826,9 @@
                   "$ref": "#/components/schemas/DocumentInfoResponse"
                 }
               }
+            }
+          }
+        }
       }
     },
     "/v3/status/{id}": {
