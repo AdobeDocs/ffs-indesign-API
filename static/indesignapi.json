@@ -911,6 +911,178 @@
                       "$ref": "#/components/schemas/partialSuccessEvent"
                     }
                   ]
+                },
+                "examples": {
+                  "documentInfoSucceeded": {
+                    "summary": "Document Info Job Succeeded",
+                    "description": "Example response when a Document Info job completes successfully with extracted document information.",
+                    "value": {
+                      "jobId": "f54e0fcb-260b-47c8-b340-f5a3bcf6b623",
+                      "status": "succeeded",
+                      "data": {
+                        "numSpreads": 6,
+                        "numPages": 10,
+                        "hiddenSpreads": 2,
+                        "pageInfo": {
+                          "items": [
+                            {
+                              "isParentSpread": false,
+                              "spreadId": 215,
+                              "spreadIndex": 3,
+                              "spreadName": "",
+                              "isHiddenSpread": false,
+                              "pages": [
+                                {
+                                  "pageId": 237,
+                                  "pageIndexInDocument": 5,
+                                  "pageIndexInSpread": 0,
+                                  "appliedParentSpread": 248,
+                                  "pageSide": "left_hand",
+                                  "pageName": "6",
+                                  "bounds": {
+                                    "left": 0,
+                                    "right": 595.275590551,
+                                    "top": 0,
+                                    "bottom": 841.889763778
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "pageItemInfo": {
+                          "items": [
+                            {
+                              "type": "TextFrame",
+                              "itemId": 255,
+                              "itemName": "",
+                              "locked": false,
+                              "visible": true,
+                              "layerName": "Layer 1",
+                              "bounds": {
+                                "left": 201,
+                                "right": 570,
+                                "top": 168,
+                                "bottom": 475
+                              },
+                              "parentType": "Spread",
+                              "parentId": 207,
+                              "pageId": 212,
+                              "pageIndex": 0,
+                              "spreadIndex": 0,
+                              "spreadId": 207,
+                              "liesOnParentPage": false,
+                              "liesOnPasteboard": false
+                            }
+                          ],
+                          "layers": [
+                            {
+                              "layerName": "Layer 1",
+                              "layerId": 204,
+                              "visible": true,
+                              "locked": false,
+                              "layerIndex": 0
+                            }
+                          ]
+                        },
+                        "textStoryInfo": {
+                          "items": [
+                            {
+                              "storyId": 237,
+                              "textOnPath": false,
+                              "textContainers": [
+                                {
+                                  "startIndex": 0,
+                                  "endIndex": 529,
+                                  "textContainerId": 255,
+                                  "paragraphStyles": [
+                                    {
+                                      "paragraphIndex": 0,
+                                      "styleName": "[Basic Paragraph]",
+                                      "fontName": "Krungthep Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 0,
+                                      "endCharIndex": 239
+                                    },
+                                    {
+                                      "paragraphIndex": 1,
+                                      "styleName": "[Basic Paragraph]",
+                                      "fontName": "Minion Pro Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 240,
+                                      "endCharIndex": 240
+                                    }
+                                  ],
+                                  "characterStyles": [
+                                    {
+                                      "styleName": "[None]",
+                                      "fontName": "Krungthep Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 0,
+                                      "endCharIndex": 238
+                                    },
+                                    {
+                                      "styleName": "[None]",
+                                      "fontName": "Minion Pro Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 239,
+                                      "endCharIndex": 242
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "fontInfo": {
+                          "items": [
+                            {
+                              "fontFamily": "Minion Pro",
+                              "fontStyleName": "Regular",
+                              "postscriptName": "MinionPro-Regular",
+                              "available": true,
+                              "fontType": "OPENTYPE_CFF"
+                            },
+                            {
+                              "fontFamily": "Krungthep",
+                              "fontStyleName": "Regular",
+                              "postscriptName": "Krungthep",
+                              "available": false,
+                              "fontType": "OPENTYPE_CFF"
+                            },
+                            {
+                              "fontFamily": "Marker Felt",
+                              "fontStyleName": "Thin",
+                              "postscriptName": "MarkerFelt-Thin",
+                              "available": false,
+                              "fontType": "OPENTYPE_CFF"
+                            }
+                          ]
+                        },
+                        "linkInfo": {
+                          "items": [
+                            {
+                              "linkId": 406,
+                              "status": "link_missing",
+                              "uri": "file:/Users/paraggupta/Downloads/image1.jpg",
+                              "linkType": "JPEG",
+                              "linkName": "image1.jpg",
+                              "pages": [
+                                {
+                                  "pageId": 234,
+                                  "pageIndex": 2,
+                                  "spreadIndex": 1,
+                                  "spreadId": 213,
+                                  "liesOnParentPage": false,
+                                  "liesOnPasteboard": false
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
