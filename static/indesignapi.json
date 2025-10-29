@@ -61,7 +61,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -70,7 +70,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -134,7 +134,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -143,7 +143,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -207,7 +207,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "Identifier for the IMS organization as defined in Adobe's developer console. This is optional.",
+            "description": "Identifier for the IMS organization as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -216,7 +216,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "API key as defined in Adobe's developer console.",
+            "description": "API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -286,7 +286,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -295,7 +295,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -359,7 +359,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -368,7 +368,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -450,7 +450,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -459,7 +459,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -526,7 +526,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -535,7 +535,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -617,7 +617,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -626,7 +626,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -690,7 +690,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -699,7 +699,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -758,7 +758,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -767,7 +767,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -831,7 +831,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -840,7 +840,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1078,7 +1078,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -1087,7 +1087,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
