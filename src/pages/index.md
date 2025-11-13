@@ -44,4 +44,10 @@ Perform almost any InDesign task using a custom script. With this API you can su
 
 Retrieves the most recent status event of an API execution job.
 
+<DiscoverBlock slots="link, text"/>
+
+[Document Info API][1]
+
+Retrieve information from INDD / IDML documents including layers, links and fonts.
+
 [1]: ./api/index.md
