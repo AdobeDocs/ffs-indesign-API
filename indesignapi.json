@@ -40,6 +40,10 @@
       "description": "Submit and execute custom scripts for InDesign automation. Supports comprehensive scripting capabilities for document manipulation and processing."
     },
     {
+      "name": "Document Info",
+      "description": "Retrieve information from INDD / IDML documents including layers, links and fonts."
+    },
+    {
       "name": "Job Status",
       "description": "Track job execution status and lifecycle events. Retrieves the most recent status event for jobs across different execution stages: `not_started` (job creation), `running` (execution begins), `succeeded` (complete), `partial_success` (complete with non-critical errors), `failed` (execution failure)."
     }
@@ -57,7 +61,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -66,7 +70,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -130,7 +134,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -139,7 +143,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -203,7 +207,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "Identifier for the IMS organization as defined in Adobe's developer console. This is optional.",
+            "description": "Identifier for the IMS organization as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -212,7 +216,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "API key as defined in Adobe's developer console.",
+            "description": "API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -282,7 +286,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -291,7 +295,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -355,7 +359,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -364,7 +368,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -446,7 +450,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -455,7 +459,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -522,7 +526,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -531,7 +535,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -613,7 +617,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -622,7 +626,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -686,7 +690,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
             "required": false,
             "schema": {
               "type": "string"
@@ -695,7 +699,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -742,6 +746,326 @@
         }
       }
     },
+    "/v3/document-info": {
+      "post": {
+        "summary": "Get document information",
+        "description": "Retrieve comprehensive information about INDD/IDML documents. Returns data based on the enabled information types specified in the request.",
+        "operationId": "getDocumentInfo",
+        "tags": [
+          "Document Info"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocumentInfoRequest"
+              }
+            }
+          },
+          "description": "This job request object specifies parameters for extracting document information.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{document-info_job_id}": {
+      "get": {
+        "operationId": "getDocumentInfoJobStatus",
+        "summary": "Get status - Document Info API",
+        "description": "Returns the latest status of a Document Info job. Poll this endpoint to retrieve the extracted document information including pages, links, fonts, page items, and text stories.",
+        "tags": [
+          "Document Info"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "document-info_job_id",
+            "in": "path",
+            "description": "The ID of the Document Info job you want to see the status of. This comes from the response of the Document Info request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of a Document Info job execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/notstartedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/runningEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/succeededEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/failedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/partialSuccessEvent"
+                    }
+                  ]
+                },
+                "examples": {
+                  "succeeded": {
+                    "summary": "Document Info Job Succeeded",
+                    "description": "Example response when a Document Info job completes successfully with extracted document information.",
+                    "value": {
+                      "jobId": "f54e0fcb-260b-47c8-b340-f5a3bcf6b623",
+                      "status": "succeeded",
+                      "data": {
+                        "numSpreads": 6,
+                        "numPages": 10,
+                        "hiddenSpreads": 2,
+                        "pageInfo": {
+                          "items": [
+                            {
+                              "isParentSpread": false,
+                              "spreadId": 215,
+                              "spreadIndex": 3,
+                              "spreadName": "",
+                              "isHiddenSpread": false,
+                              "pages": [
+                                {
+                                  "pageId": 237,
+                                  "pageIndexInDocument": 5,
+                                  "pageIndexInSpread": 0,
+                                  "appliedParentSpread": 248,
+                                  "pageSide": "left_hand",
+                                  "pageName": "6",
+                                  "bounds": {
+                                    "left": 0,
+                                    "right": 595.275590551,
+                                    "top": 0,
+                                    "bottom": 841.889763778
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "pageItemInfo": {
+                          "items": [
+                            {
+                              "type": "TextFrame",
+                              "itemId": 255,
+                              "itemName": "",
+                              "locked": false,
+                              "visible": true,
+                              "layerName": "Layer 1",
+                              "bounds": {
+                                "left": 201,
+                                "right": 570,
+                                "top": 168,
+                                "bottom": 475
+                              },
+                              "parentType": "Spread",
+                              "parentId": 207,
+                              "pageId": 212,
+                              "pageIndex": 0,
+                              "spreadIndex": 0,
+                              "spreadId": 207,
+                              "liesOnParentPage": false,
+                              "liesOnPasteboard": false
+                            }
+                          ],
+                          "layers": [
+                            {
+                              "layerName": "Layer 1",
+                              "layerId": 204,
+                              "visible": true,
+                              "locked": false,
+                              "layerIndex": 0
+                            }
+                          ]
+                        },
+                        "textStoryInfo": {
+                          "items": [
+                            {
+                              "storyId": 237,
+                              "textOnPath": false,
+                              "textContainers": [
+                                {
+                                  "startIndex": 0,
+                                  "endIndex": 529,
+                                  "textContainerId": 255,
+                                  "paragraphStyles": [
+                                    {
+                                      "paragraphIndex": 0,
+                                      "styleName": "[Basic Paragraph]",
+                                      "fontName": "Krungthep Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 0,
+                                      "endCharIndex": 239
+                                    }
+                                  ],
+                                  "characterStyles": [
+                                    {
+                                      "styleName": "[None]",
+                                      "fontName": "Krungthep Regular",
+                                      "fontStyle": "Regular",
+                                      "startCharIndex": 0,
+                                      "endCharIndex": 238
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "fontInfo": {
+                          "items": [
+                            {
+                              "fontFamily": "Minion Pro",
+                              "fontStyleName": "Regular",
+                              "postscriptName": "MinionPro-Regular",
+                              "available": true,
+                              "fontType": "OPENTYPE_CFF"
+                            },
+                            {
+                              "fontFamily": "Krungthep",
+                              "fontStyleName": "Regular",
+                              "postscriptName": "Krungthep",
+                              "available": false,
+                              "fontType": "OPENTYPE_CFF"
+                            }
+                          ]
+                        },
+                        "linkInfo": {
+                          "items": [
+                            {
+                              "linkId": 406,
+                              "status": "link_missing",
+                              "uri": "file:/Users/paraggupta/Downloads/image1.jpg",
+                              "linkType": "JPEG",
+                              "linkName": "image1.jpg",
+                              "pages": [
+                                {
+                                  "pageId": 234,
+                                  "pageIndex": 2,
+                                  "spreadIndex": 1,
+                                  "spreadId": 213,
+                                  "liesOnParentPage": false,
+                                  "liesOnPasteboard": false
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "retry-after": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The number of seconds until the user should try again."
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The type of content returned (e.g., `application/json`)."
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The length of the response."
+              }
+            }
+          }
+        }
+      }
+    },
     "/v3/status/{id}": {
       "get": {
         "operationId": "getJobStatus",
@@ -754,7 +1078,7 @@
           {
             "name": "x-gw-ims-org-id",
             "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
             "required": false,
             "schema": {
               "type": "string"
@@ -763,7 +1087,7 @@
           {
             "name": "x-api-key",
             "in": "header",
-            "description": "The API key as defined in Adobe's developer console.",
+            "description": "The API key as defined in Adobe's Developer Console.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1514,6 +1838,89 @@
             }
           }
         }
+      },
+      "DocumentInfoRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequest"
+          },
+          {
+            "description": "Inputs for the document information request.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocument"
+                ],
+                "properties": {
+                  "targetDocument": {
+                    "description": "The document to be used for data extraction.",
+                    "type": "string"
+                  },
+                  "pageInfo": {
+                    "description": "Settings for extracting page information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return pages information.",
+                        "default": true
+                      }
+                    }
+                  },
+                  "linkInfo": {
+                    "description": "Settings for extracting link information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return links information.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "fontInfo": {
+                    "description": "Settings for extracting font information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return fonts information.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "pageItemInfo": {
+                    "description": "Settings for extracting page item information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return page items details.",
+                        "default": false
+                      }
+                    }
+                  },
+                  "textStoryInfo": {
+                    "description": "Settings for extracting text story information.",
+                    "type": "object",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "If true, return text stories information.",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "CreateRenditionRequest": {
         "allOf": [
