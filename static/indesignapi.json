@@ -832,7 +832,7 @@
     "/v3/app-versions": {
       "get": {
         "summary": "Get Current App Versions",
-        "description": "Retrieves information about all registered InDesign app versions available for the product. Returns major version, minor version, and status for each registered app version.",
+        "description": "Retrieves information about all available InDesign app versions. Returns major version, minor version, and status for each registered app version.",
         "operationId": "listAppVersions",
         "tags": [
           "Custom Scripts"
@@ -2393,8 +2393,7 @@
             "description": "Status of this app version",
             "enum": [
               "active",
-              "inactive",
-              "deprecated"
+              "preview"
             ],
             "example": "active"
           }

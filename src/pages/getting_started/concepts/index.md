@@ -380,17 +380,17 @@ for a detailed guide on setting up webhooks.
 
 ## Validation workflow for adopting new App Version
 
-Indesign Team will deploy the new app version in advance with preview status before actually making it live so customers can valdate their custom scripts before fully adopting the new version aftet this is marked active. This workflow helps ensure your scripts continue to work correctly with the new app version.
+New InDesign app version will be available in advance with preview status before becoming active and default so that users can validate their custom scripts before adopting the new app version. This workflow helps ensure that custom scripts continue to work correctly with the new app version.
 
-### Step 1: Validate against new app version with x-app version header
+### step 1: Validate against new InDesign app version with x-app-version header
 
 ![validation step](./app-version-validation-step1.png)
 
-### Step 2: If Custom Script uses ALWAYS_LATEST Strategy
+### step 2: If Custom Script uses ALWAYS_LATEST Strategy
 
 ![App Version Update Step](./app-version-update-strategy1.png)
 
-### Step 3: If Custom Script uses FIXED_MAJOR_VERSION or FIXED_MAJOR_AND_MINOR_VERSION Strategy
+### step 3: If Custom Script uses FIXED_MAJOR_VERSION or FIXED_MAJOR_AND_MINOR_VERSION Strategy
 
 Once validation is complete, update your production scripts to use the new app version.
 
