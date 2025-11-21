@@ -394,7 +394,7 @@ New InDesign app version will be available in advance with preview status before
 
 Once validation is complete, update your production scripts to use the new app version.
 
-![App Version Update Step](./app-version-update-strategy2-strategy3.png)
+![App Version Update Step](./app-version-update-strategy2-and-strategy3.png)
 
 <!-- Links -->
 [5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
