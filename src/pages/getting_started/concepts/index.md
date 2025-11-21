@@ -386,7 +386,6 @@ Indesign Team will deploy the new app-version in advance with preview status bef
 
 ![validation step](./app-version-validation-step1.png)
 
-
 ### Step 2: If Custom Script uses ALWAYS_LATEST Strategy
 
 ![App Version Update Step](./app-version-update-strategy1.png)
