@@ -748,7 +748,7 @@
     },
     "/v3/scripts/{script_name}/app-version": {
       "put": {
-        "summary": "Update App Version for Custom Script",
+        "summary": "Update Custom Script App Version",
         "description": "Updates the InDesign app version configuration for a registered custom script. Allows customers to specify version strategies: use latest version, fix to a major version, or fix to a specific major and minor version.",
         "operationId": "updateScriptAppVersion",
         "tags": [
@@ -831,8 +831,8 @@
     },
     "/v3/app-versions": {
       "get": {
-        "summary": "List Registered App Versions",
-        "description": "Retrieves information about all registered InDesign app-versions available for the product. Returns major version, minor version, and status for each registered app-version.",
+        "summary": "Get Current App Versions",
+        "description": "Retrieves information about all registered InDesign app versions available for the product. Returns major version, minor version, and status for each registered app version.",
         "operationId": "listAppVersions",
         "tags": [
           "Custom Scripts"
@@ -2349,7 +2349,7 @@
         "properties": {
           "appVersionStrategy": {
             "type": "string",
-            "description": "Strategy for determining the InDesign app-version to use. LATEST_VERSION uses the most recent version, FIXED_MAJOR_VERSION locks to a major version, FIXED_MAJOR_AND_MINOR_VERSION locks to a specific version.",
+            "description": "Strategy for determining the InDesign app version to use. LATEST_VERSION uses the most recent version, FIXED_MAJOR_VERSION locks to a major version, FIXED_MAJOR_AND_MINOR_VERSION locks to a specific version.",
             "enum": [
               "LATEST_VERSION",
               "FIXED_MAJOR_VERSION",
@@ -2371,7 +2371,7 @@
       },
       "AppVersionInfo": {
         "type": "object",
-        "description": "Information about a registered InDesign app-version",
+        "description": "Information about a registered InDesign app version",
         "properties": {
           "product": {
             "type": "string",

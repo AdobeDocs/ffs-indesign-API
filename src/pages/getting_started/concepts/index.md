@@ -143,7 +143,7 @@ The manifest file is a plain JSON file with the following structure:
 | `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 4-255 characters. It must not have any white space. | X |
 | `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
 | `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
-| `host.appVersionStrategy` | string | Defines how the system selects the app-version for capability execution: LATEST_VERSION (always uses newest), FIXED_MAJOR_VERSION (locks to specific major version), or FIXED_MAJOR_AND_MINOR_VERSION (locks to specific major.minor version). | X |
+| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: LATEST_VERSION (always uses newest), FIXED_MAJOR_VERSION (locks to specific major version), or FIXED_MAJOR_AND_MINOR_VERSION (locks to specific major.minor version). | X |
 | `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using FIXED_MAJOR_VERSION strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
 | `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using FIXED_MAJOR_AND_MINOR_VERSION strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
 | `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. |  |
@@ -380,9 +380,9 @@ for a detailed guide on setting up webhooks.
 
 ## Validation workflow for adopting new App Version
 
-Indesign Team will deploy the new app-version in advance with preview status before actually making it live so customers can valdate their custom scripts before fully adopting the new version aftet this is marked active. This workflow helps ensure your scripts continue to work correctly with the new app version.
+Indesign Team will deploy the new app version in advance with preview status before actually making it live so customers can valdate their custom scripts before fully adopting the new version aftet this is marked active. This workflow helps ensure your scripts continue to work correctly with the new app version.
 
-### Step 1: Validate against new app-version with x-app-version header
+### Step 1: Validate against new app version with x-app version header
 
 ![validation step](./app-version-validation-step1.png)
 

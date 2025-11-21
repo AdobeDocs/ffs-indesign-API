@@ -45,8 +45,8 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 *Custom Scripts API - New Endpoints*
 
-- **Update Script App Version**: New `PUT /v3/scripts/{script_name}/app-version` endpoint to update InDesign app-version configuration for registered scripts. Supports three strategies: LATEST_VERSION, FIXED_MAJOR_VERSION, and FIXED_MAJOR_AND_MINOR_VERSION.
-- **List Registered App Versions**: New `GET /v3/app-versions` endpoint to retrieve all registered InDesign app-versions with their status information.
+- **Update Custom Script App Version**: New `PUT /v3/scripts/{script_name}/app-version` endpoint to update InDesign app version configuration for registered scripts. Supports three strategies: LATEST_VERSION, FIXED_MAJOR_VERSION, and FIXED_MAJOR_AND_MINOR_VERSION.
+- **Get Current App Versions**: New `GET /v3/app-versions` endpoint to retrieve all registered InDesign app versions with their status information.
 
 ### Enhancements
 
@@ -54,6 +54,14 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 - **List Custom Scripts Response Enhancement**: The `GET /v3/scripts` endpoint now includes `majorAppVersion` and `minorAppVersion` fields in the response, providing information about the InDesign application version requirements for each registered script.
 - **Get Custom Script Details Enhancement**: The `GET /v3/scripts/{script_name}` endpoint now also includes the same version fields.
+
+## November 13, 2025
+
+### New Features
+
+*DocuementInfo API*
+
+- **Get Indesign Document Information**: New `POST /v3/document-info` endpoint to retrieve information about INDD/IDML documents.
 
 ## September 3, 2025
 
