@@ -39,6 +39,29 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## November 20, 2025
+
+### New Features
+
+*Custom Scripts API - New Endpoints*
+
+- **Update Custom Script App Version**: New `PUT /v3/scripts/{script_name}/app-version` endpoint to update InDesign app version configuration for registered scripts. Supports three strategies: LATEST_VERSION, FIXED_MAJOR_VERSION, and FIXED_MAJOR_AND_MINOR_VERSION. [View endpoint documentation][6]
+- **Get Available App Versions**: New `GET /v3/app-versions` endpoint to retrieve all available InDesign app versions with their status information. [View endpoint documentation][8]
+
+### Enhancements
+
+- **Specify or Update Custom Script App Version**: The `POST /v3/scripts` endpoint now allow `appVersionStrategy`, `majorAppVersion` and `minorAppVersion` fields in the manifest file to control Indesign app version for new or registered Custom Script.
+- **List Custom Scripts Response Enhancement**: The `GET /v3/scripts` endpoint now includes `majorAppVersion` and `minorAppVersion` fields in the response, providing information about the InDesign application version requirements for each registered script.
+- **Get Custom Script Details Enhancement**: The `GET /v3/scripts/{script_name}` endpoint now also includes the above mentioned version fields.
+
+## November 13, 2025
+
+### New Features
+
+*DocumentInfo API*
+
+- **Get InDesign Document Information**: New `POST /v3/document-info` endpoint to retrieve information about INDD/IDML documents. [View endpoint documentation][7]
+
 ## September 3, 2025
 
 ### Enhancements
@@ -76,3 +99,6 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [3]: ../../getting_started/usage/index.md#user-data-handling
 [4]: ../../api/index.md
 [5]: ../../guides/working-with-datamerge-api/index.md
+[6]: ../../api/index.md
+[7]: ../../api/index.md
+[8]: ../../api/index.md
