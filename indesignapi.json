@@ -746,6 +746,155 @@
         }
       }
     },
+    "/v3/scripts/{script_name}/app-version": {
+      "put": {
+        "summary": "Update Custom Script App Version",
+        "description": "Updates the InDesign app version configuration for a registered custom script. Allows customers to specify version strategies: use latest version, fix to a major version, or fix to a specific major and minor version.",
+        "operationId": "updateScriptAppVersion",
+        "tags": [
+          "Custom Scripts"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "script_name",
+            "in": "path",
+            "description": "Name of the custom script to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppVersionUpdateRequest"
+              }
+            }
+          },
+          "description": "Configuration for the app version strategy. The majorAppVersion and minorAppVersion fields are optional and their requirement depends on the selected strategy."
+        },
+        "responses": {
+          "200": {
+            "description": "App version configuration updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "App version configuration updated successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/app-versions": {
+      "get": {
+        "summary": "Get Current App Versions",
+        "description": "Retrieves information about all available InDesign app versions. Returns major version, minor version, and status for each registered app version.",
+        "operationId": "listAppVersions",
+        "tags": [
+          "Custom Scripts"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of registered app versions for the product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AppVersionInfo"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/v3/document-info": {
       "post": {
         "summary": "Get document information",
@@ -2178,6 +2327,75 @@
             "type": "string",
             "description": "Name of the custom script",
             "example": "3p-testing/test1"
+          },
+          "majorAppVersion": {
+            "type": "string",
+            "description": "Major version of the InDesign app required for this script",
+            "example": "20"
+          },
+          "minorAppVersion": {
+            "type": "string",
+            "description": "Minor version of the InDesign app required for this script",
+            "example": "1"
+          }
+        }
+      },
+      "AppVersionUpdateRequest": {
+        "type": "object",
+        "description": "Request body for updating app version configuration for a custom script",
+        "required": [
+          "appVersionStrategy"
+        ],
+        "properties": {
+          "appVersionStrategy": {
+            "type": "string",
+            "description": "Strategy for determining the InDesign app version to use. LATEST_VERSION uses the most recent version, FIXED_MAJOR_VERSION locks to a major version, FIXED_MAJOR_AND_MINOR_VERSION locks to a specific version.",
+            "enum": [
+              "LATEST_VERSION",
+              "FIXED_MAJOR_VERSION",
+              "FIXED_MAJOR_AND_MINOR_VERSION"
+            ],
+            "example": "FIXED_MAJOR_AND_MINOR_VERSION"
+          },
+          "majorAppVersion": {
+            "type": "string",
+            "description": "Major version of the InDesign app. Required when appVersionStrategy is FIXED_MAJOR_VERSION or FIXED_MAJOR_AND_MINOR_VERSION.",
+            "example": "20"
+          },
+          "minorAppVersion": {
+            "type": "string",
+            "description": "Minor version of the InDesign app. Required when appVersionStrategy is FIXED_MAJOR_AND_MINOR_VERSION.",
+            "example": "1"
+          }
+        }
+      },
+      "AppVersionInfo": {
+        "type": "object",
+        "description": "Information about a registered InDesign app version",
+        "properties": {
+          "product": {
+            "type": "string",
+            "description": "The product name",
+            "example": "indesign"
+          },
+          "majorAppVersion": {
+            "type": "string",
+            "description": "Major version of the InDesign app",
+            "example": "20"
+          },
+          "minorAppVersion": {
+            "type": "string",
+            "description": "Minor version of the InDesign app",
+            "example": "1"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of this app version",
+            "enum": [
+              "active",
+              "preview"
+            ],
+            "example": "active"
           }
         }
       },
