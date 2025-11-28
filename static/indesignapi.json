@@ -2349,22 +2349,22 @@
         "properties": {
           "appVersionStrategy": {
             "type": "string",
-            "description": "Strategy for determining the InDesign app version to use. LATEST_VERSION uses the most recent version, FIXED_MAJOR_VERSION locks to a major version, FIXED_MAJOR_AND_MINOR_VERSION locks to a specific version.",
+            "description": "Strategy for determining the InDesign app version to use. latest_version uses the most recent version, fixed_major_version locks to a major version, fixed_major_and_minor_version locks to a specific version.",
             "enum": [
-              "LATEST_VERSION",
-              "FIXED_MAJOR_VERSION",
-              "FIXED_MAJOR_AND_MINOR_VERSION"
+              "latest_version",
+              "fixed_major_version",
+              "fixed_major_and_minor_version"
             ],
-            "example": "FIXED_MAJOR_AND_MINOR_VERSION"
+            "example": "fixed_major_and_minor_version"
           },
           "majorAppVersion": {
             "type": "string",
-            "description": "Major version of the InDesign app. Required when appVersionStrategy is FIXED_MAJOR_VERSION or FIXED_MAJOR_AND_MINOR_VERSION.",
+            "description": "Major version of the InDesign app. Required when appVersionStrategy is fixed_major_version or fixed_major_and_minor_version.",
             "example": "20"
           },
           "minorAppVersion": {
             "type": "string",
-            "description": "Minor version of the InDesign app. Required when appVersionStrategy is FIXED_MAJOR_AND_MINOR_VERSION.",
+            "description": "Minor version of the InDesign app. Required when appVersionStrategy is fixed_major_and_minor_version.",
             "example": "1"
           }
         }

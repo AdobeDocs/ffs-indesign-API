@@ -123,7 +123,7 @@ The manifest file is a plain JSON file with the following structure:
     "version": "<x.y.z>",
     "host": {
         "app": "indesign",
-        "appVersionStrategy": "LATEST_VERSION" | "FIXED_MAJOR_VERSION" | "FIXED_MAJOR_AND_MINOR_VERSION",
+        "appVersionStrategy": "latest_version" | "fixed_major_version" | "fixed_major_and_minor_version",
         "majorAppVersion": 20,  // optional depending on strategy
         "minorAppVersion": 1  // optional depending on strategy
     },
@@ -143,14 +143,14 @@ The manifest file is a plain JSON file with the following structure:
 | `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 4-255 characters. It must not have any white space. | X |
 | `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
 | `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
-| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: LATEST_VERSION (always uses newest), FIXED_MAJOR_VERSION (locks to specific major version), or FIXED_MAJOR_AND_MINOR_VERSION (locks to specific major.minor version). | X |
-| `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using FIXED_MAJOR_VERSION strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
-| `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using FIXED_MAJOR_AND_MINOR_VERSION strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
+| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: latest_version (always uses newest), fixed_major_version (locks to specific major version), or fixed_major_and_minor_version (locks to specific major.minor version). | X |
+| `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using fixed_major_version strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
+| `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using fixed_major_and_minor_version strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
 | `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. |  |
 
-- When a customer registers a script without specifying the strategy, the system automatically chooses LATEST_VERSION as the default strategy..
-- majorAppVersion parameter is mandatory if appVersionStrategy is FIXED_MAJOR_VERSION.
-- majorAppVersion  and minorAppVersion are mandatory if appVersionStrategy is FIXED_MAJOR_AND_MINOR_VERSION.
+- When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
+- majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
+- majorAppVersion and minorAppVersion are mandatory if appVersionStrategy is fixed_major_and_minor_version.
 
 ### The `apiEntryPoints` field
 
@@ -390,7 +390,7 @@ New InDesign app version will be available in advance with preview status before
 
 ![App Version Update Step](./app-version-update-strategy1.png)
 
-### step 3: If Custom Script uses FIXED_MAJOR_VERSION or FIXED_MAJOR_AND_MINOR_VERSION Strategy
+### step 3: If Custom Script uses fixed_major_version or fixed_major_and_minor_version Strategy
 
 Once validation is complete, update your production scripts to use the new app version.
 
