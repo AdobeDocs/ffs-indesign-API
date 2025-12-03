@@ -51,7 +51,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 ### Enhancements
 
 - **Specify or Update Custom Script App Version**: The `POST /v3/scripts` endpoint now allow `appVersionStrategy`, `majorAppVersion` and `minorAppVersion` fields in the manifest file to control Indesign app version for new or registered Custom Script.
-- **List Custom Scripts Response Enhancement**: The `GET /v3/scripts` endpoint now includes `majorAppVersion` and `minorAppVersion` fields in the response, providing information about the InDesign application version requirements for each registered script.
+- **List Custom Scripts Response Enhancement**: The `GET /v3/scripts` endpoint now includes `appVersionStrategy`, `majorAppVersion` and `minorAppVersion` fields in the response, providing information about the InDesign application version requirements for each registered script.
 - **Get Custom Script Details Enhancement**: The `GET /v3/scripts/{script_name}` endpoint now also includes the above mentioned version fields.
 
 ## November 13, 2025
