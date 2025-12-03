@@ -2328,6 +2328,16 @@
             "description": "Name of the custom script",
             "example": "3p-testing/test1"
           },
+          "appVersionStrategy": {
+            "type": "string",
+            "description": "Strategy used to determine the InDesign app version for this script",
+            "enum": [
+              "latest_version",
+              "fixed_major_version",
+              "fixed_major_and_minor_version"
+            ],
+            "example": "fixed_major_and_minor_version"
+          },
           "majorAppVersion": {
             "type": "string",
             "description": "Major version of the InDesign app required for this script",
