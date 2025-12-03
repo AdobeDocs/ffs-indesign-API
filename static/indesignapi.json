@@ -1128,6 +1128,7 @@
                                       "styleName": "[Basic Paragraph]",
                                       "fontName": "Krungthep Regular",
                                       "fontStyle": "Regular",
+                                      "fontSize": 12,
                                       "startCharIndex": 0,
                                       "endCharIndex": 239
                                     }
@@ -1137,6 +1138,7 @@
                                       "styleName": "[None]",
                                       "fontName": "Krungthep Regular",
                                       "fontStyle": "Regular",
+                                      "fontSize": 12,
                                       "startCharIndex": 0,
                                       "endCharIndex": 238
                                     }
