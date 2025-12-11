@@ -1955,8 +1955,12 @@
             ],
             "properties": {
               "targetDocument": {
-                "description": "The InDesign document in which links need to be remapped.",
-                "type": "string"
+                "description": "The InDesign documents in which links need to be remapped.",
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
               },
               "dataSource": {
                 "description": "Array of link mappings containing source and destination URIs.",
