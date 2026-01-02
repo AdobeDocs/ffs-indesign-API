@@ -16,7 +16,48 @@ module.exports = {
     pages: [
       {
         title: 'All Firefly Services',
-        path: 'https://developer.adobe.com/firefly-services/docs/guides/?aio_internal'
+        menu: [
+          {
+            title: "Firefly Services Home",
+            description: "Introduction and general information about all Firefly services.",
+            path: "https://developer.adobe.com/firefly-services/docs/guides/?aio_internal"
+          },
+          {
+            title: "Firefly API",
+            description: "Docs and references for Firefly API.",
+            path: "https://developer.adobe.com/firefly-services/docs/firefly-api/?aio_internal"
+          },
+          {
+            title: "Photoshop API",
+            description: "Docs and references for Photoshop API.",
+            path: "https://developer.adobe.com/firefly-services/docs/photoshop/?aio_internal"
+          },
+          {
+            title: "Lightroom API",
+            description: "Docs and references for Lightroom API.",
+            path: "https://developer.adobe.com/firefly-services/docs/lightroom/?aio_internal"
+          },
+          {
+            title: "Audio/Video API",
+            description: "Docs and references for Audio/Video API.",
+            path: "https://developer.adobe.com/audio-video-firefly-services/?aio_internal"
+          },
+          {
+            title: "InDesign API",
+            description: "Docs and references for InDesign API.",
+            path: "https://developer.adobe.com/firefly-services/docs/indesign-apis/?aio_internal"
+          },
+          {
+            title: "Substance 3D API",
+            description: "Unlock generative AI for rendering and object composites.",
+            path: "https://developer.adobe.com/firefly-services/docs/s3dapi/?aio_internal"
+          },
+          {
+            title: "Content Tagging API",
+            description: "Docs and references for Content Tagging services.",
+            path: "https://experienceleague.adobe.com/docs/experience-platform/intelligent-services/content-commerce-ai/overview.html"
+          }
+        ]
       },
       {
         title: 'About InDesign API',
