@@ -1224,7 +1224,7 @@
     "/v3/convert-to-indesign": {
       "post": {
         "summary": "Convert PDF to InDesign document",
-        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is always a ZIP file named 'output.zip' containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is always a ZIP file named 'output.zip' containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 100 pages only.<br>- Does not support OCR scenarios (scanned PDF files).",
         "operationId": "convertToInDesign",
         "tags": [
           "Convert to InDesign"
@@ -1272,6 +1272,156 @@
         "responses": {
           "202": {
             "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{convert-to-indesign_job_id}": {
+      "get": {
+        "operationId": "getConvertToInDesignJobStatus",
+        "summary": "Get status - Convert to InDesign API",
+        "description": "Returns the latest status of a PDF to InDesign conversion job. Poll this endpoint to retrieve the conversion results, warnings, and download URL for the output ZIP file.",
+        "tags": [
+          "Convert to InDesign"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "convert-to-indesign_job_id",
+            "in": "path",
+            "description": "The ID of the Convert to InDesign job you want to see the status of. This comes from the response of the Convert to InDesign request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of a Convert to InDesign job execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/notstartedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/runningEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/succeededEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/failedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/partialSuccessEvent"
+                    }
+                  ]
+                },
+                "examples": {
+                  "succeeded": {
+                    "summary": "Convert to InDesign Job Succeeded",
+                    "description": "Example response when a PDF to InDesign conversion job completes successfully. The output is a ZIP file containing the converted INDD/IDML documents and assets.",
+                    "value": {
+                      "jobId": "413d57e8-1092-4476-8a9f-16eacabd2d6d",
+                      "timestamp": "2025-12-17T06:08:45.267Z",
+                      "status": "succeeded",
+                      "data": {
+                        "outputs": [
+                          {
+                            "outputPath": "output/test",
+                            "input": "test.pdf",
+                            "warnings": {
+                              "missingLinks": [
+                                "file:/Users/labuser/Downloads/Untitled-1%20Folder1/doc1%20Folder/Links/testAI-3.ai"
+                              ],
+                              "missingFonts": [
+                                "Abelone Regular"
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "outputs": [
+                        {
+                          "destination": {
+                            "url": ""
+                          },
+                          "source": "output.zip"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "retry-after": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The number of seconds until the user should try again."
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The type of content returned (e.g., `application/json`)."
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The length of the response."
+              }
+            }
           },
           "400": {
             "$ref": "#/components/responses/BadParams"
