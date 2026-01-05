@@ -44,6 +44,10 @@
       "description": "Retrieve information from INDD / IDML documents including layers, links and fonts."
     },
     {
+      "name": "Convert to InDesign",
+      "description": "Convert PDF documents to InDesign (INDD or IDML) format. The output is a ZIP file containing the converted documents and all associated assets."
+    },
+    {
       "name": "Job Status",
       "description": "Track job execution status and lifecycle events. Retrieves the most recent status event for jobs across different execution stages: `not_started` (job creation), `running` (execution begins), `succeeded` (complete), `partial_success` (complete with non-critical errors), `failed` (execution failure)."
     }
@@ -1217,6 +1221,79 @@
         }
       }
     },
+    "/v3/convert-to-indesign": {
+      "post": {
+        "summary": "Convert PDF to InDesign document",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is always a ZIP file named 'output.zip' containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.",
+        "operationId": "convertToInDesign",
+        "tags": [
+          "Convert to InDesign"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertToInDesignRequest"
+              }
+            }
+          },
+          "description": "This job request object specifies parameters for converting PDF to InDesign format.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/v3/status/{id}": {
       "get": {
         "operationId": "getJobStatus",
@@ -2076,6 +2153,113 @@
             }
           }
         ]
+      },
+      "ConvertToInDesignRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequestWithOutput"
+          },
+          {
+            "description": "Inputs for converting PDF to InDesign document.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocuments",
+                  "inputMediaType",
+                  "outputMediaType"
+                ],
+                "properties": {
+                  "targetDocuments": {
+                    "description": "Array of PDF documents to convert. Currently supports one document at a time.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1
+                  },
+                  "inputMediaType": {
+                    "description": "The MIME type of the input file.",
+                    "type": "string",
+                    "enum": [
+                      "application/pdf"
+                    ],
+                    "default": "application/pdf"
+                  },
+                  "outputMediaType": {
+                    "description": "The MIME type of the output file.",
+                    "type": "string",
+                    "enum": [
+                      "application/x-indesign",
+                      "application/vnd.adobe.indesign-idml-package"
+                    ],
+                    "default": "application/x-indesign"
+                  },
+                  "embedLinks": {
+                    "description": "If true, all links (images and other assets) from the PDF are embedded directly in the resulting INDD/IDML file. If false (default), the INDD/IDML file is created with external links, and all assets are provided in a separate folder within the output ZIP.",
+                    "type": "boolean",
+                    "default": false
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ConvertToInDesignResponse": {
+        "type": "object",
+        "description": "Response data returned when PDF to InDesign conversion is successful. This data is returned in the `data` field of the succeeded status response. The output is always a ZIP file containing subfolders for each converted PDF with the requested INDD/IDML file and associated assets.",
+        "properties": {
+          "outputs": {
+            "type": "array",
+            "description": "Array of conversion outputs. Each item provides information about the conversion result for a specific input PDF.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "outputPath": {
+                  "type": "string",
+                  "description": "Path to the output folder for the particular input PDF file within the ZIP archive."
+                },
+                "input": {
+                  "type": "string",
+                  "description": "Name of the input PDF file that was converted."
+                },
+                "warnings": {
+                  "type": "object",
+                  "description": "Warnings encountered during conversion.",
+                  "properties": {
+                    "missingLinks": {
+                      "type": "array",
+                      "description": "Array of links that are missing or inaccessible in the converted document.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "missingFonts": {
+                      "type": "array",
+                      "description": "Array of fonts that are not available in the runtime environment.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "otherWarnings": {
+                      "type": "array",
+                      "description": "Array of other warnings generated during conversion.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "CreateRenditionRequest": {
         "allOf": [
