@@ -1298,7 +1298,7 @@
       "get": {
         "operationId": "getConvertToInDesignJobStatus",
         "summary": "Get status - Convert to InDesign API",
-        "description": "Returns the latest status of a PDF to InDesign conversion job. Poll this endpoint to retrieve the conversion results, warnings, and download URL for the output ZIP file.",
+        "description": "Returns the latest status of a job, in this case aPDF to InDesign conversion job. Poll this endpoint to retrieve the job results, warnings, and download URL of the output, in this case an output ZIP file.",
         "tags": [
           "Convert to InDesign"
         ],
