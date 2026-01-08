@@ -11,6 +11,8 @@ keywords:
   - Rendition API
   - Custom Scripts API
   - Remap Links API
+  - Document Info API
+  - Convert to InDesign API
   - REST API
   - cloud services
   - enterprise solutions
