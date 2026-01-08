@@ -1224,7 +1224,7 @@
     "/v3/convert-to-indesign": {
       "post": {
         "summary": "Convert PDF to InDesign document",
-        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is always a ZIP file named 'output.zip' containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 100 pages only.<br>- Does not support OCR scenarios (scanned PDF files).",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 100 pages only.<br>- Does not support OCR scenarios (scanned PDF files).",
         "operationId": "convertToInDesign",
         "tags": [
           "Convert to InDesign"
@@ -2354,6 +2354,11 @@
                     "description": "If true, all links (images and other assets) from the PDF are embedded directly in the resulting INDD/IDML file. If false (default), the INDD/IDML file is created with external links, and all assets are provided in a separate folder within the output ZIP.",
                     "type": "boolean",
                     "default": false
+                  },
+                  "outputFilebaseString": {
+                    "description": "The name of the output ZIP file. If not specified, defaults to 'output.zip'.",
+                    "type": "string",
+                    "default": "output.zip"
                   }
                 }
               }
