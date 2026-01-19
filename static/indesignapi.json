@@ -1224,7 +1224,7 @@
     "/v3/convert-to-indesign": {
       "post": {
         "summary": "Convert PDF to InDesign document",
-        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 100 pages only.<br>- Does not support OCR scenarios (scanned PDF files).",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 200 pages only.<br>- Does not support OCR scenarios (scanned PDF files) or Password protected PDFs.<br>- Only PDFs upto 150MB in size are supported.<br>- The API does not suppoprt conversion of PDF files that are corrupted or malformed in any manner and were created from unreliable sources. <br>- The API does not support documents with advanced bullets and numbers and advanced table features.",
         "operationId": "convertToInDesign",
         "tags": [
           "Convert to InDesign"
@@ -1717,7 +1717,7 @@
                 "type": "object",
                 "properties": {
                   "fonts": {
-                    "description": "Settings related to fonts.",
+                    "description": "Settings related to fonts. It is recommended to include fonts to avoid missing fonts warnings when processing the job.",
                     "type": "object",
                     "properties": {
                       "fontsDirectories": {
@@ -2325,7 +2325,7 @@
                 ],
                 "properties": {
                   "targetDocuments": {
-                    "description": "Array of PDF documents to convert. Currently supports one document at a time.",
+                    "description": "Array of PDF documents to convert. Each entry corresponds to the filename of the PDF document to convert. Currently supports one document at a time.",
                     "type": "array",
                     "items": {
                       "type": "string"
