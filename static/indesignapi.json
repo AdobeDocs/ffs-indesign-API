@@ -1221,13 +1221,13 @@
         }
       }
     },
-    "/v3/convert-to-indesign": {
+    "/v3/convert-pdf-to-indesign": {
       "post": {
         "summary": "Convert PDF to InDesign document",
         "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 200 pages only.<br>- Does not support OCR scenarios (scanned PDF files) or Password protected PDFs.<br>- Only PDFs upto 150MB in size are supported.<br>- The API does not suppoprt conversion of PDF files that are corrupted or malformed in any manner and were created from unreliable sources. <br>- The API does not support documents with advanced bullets and numbers and advanced table features.",
-        "operationId": "convertToInDesign",
+        "operationId": "convertPDFToInDesign",
         "tags": [
-          "Convert to InDesign"
+          "Convert PDF to InDesign"
         ],
         "parameters": [
           {
@@ -1294,7 +1294,7 @@
         }
       }
     },
-    "/v3/status/{convert-to-indesign_job_id}": {
+    "/v3/status/{convert-pdf-to-indesign_job_id}": {
       "get": {
         "operationId": "getConvertToInDesignJobStatus",
         "summary": "Get status - Convert to InDesign API",
@@ -1331,7 +1331,7 @@
             }
           },
           {
-            "name": "convert-to-indesign_job_id",
+            "name": "convert-pdf-to-indesign_job_id",
             "in": "path",
             "description": "The ID of the Convert to InDesign job you want to see the status of. This comes from the response of the Convert to InDesign request.",
             "required": true,
@@ -2320,7 +2320,6 @@
                 "type": "object",
                 "required": [
                   "targetDocuments",
-                  "inputMediaType",
                   "outputMediaType"
                 ],
                 "properties": {
@@ -2332,14 +2331,6 @@
                     },
                     "minItems": 1,
                     "maxItems": 1
-                  },
-                  "inputMediaType": {
-                    "description": "The MIME type of the input file.",
-                    "type": "string",
-                    "enum": [
-                      "application/pdf"
-                    ],
-                    "default": "application/pdf"
                   },
                   "outputMediaType": {
                     "description": "The MIME type of the output file.",
