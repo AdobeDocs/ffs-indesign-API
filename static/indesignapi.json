@@ -1294,7 +1294,7 @@
         }
       }
     },
-    "/v3/status/{convert-pdf-to-indesign_job_id}": {
+    "/v3/status/{convertPDF-to-indesign_job_id}": {
       "get": {
         "operationId": "getConvertPDFToInDesignJobStatus",
         "summary": "Get status - Convert to InDesign API",
@@ -1331,9 +1331,9 @@
             }
           },
           {
-            "name": "convert-pdf-to-indesign_job_id",
+            "name": "convertPDF-to-indesign_job_id",
             "in": "path",
-            "description": "The ID of the Convert to InDesign job you want to see the status of. This comes from the response of the Convert to InDesign request.",
+            "description": "The ID of the Convert PDF to InDesign job you want to see the status of. This comes from the response of the Convert PDF to InDesign request.",
             "required": true,
             "schema": {
               "type": "string"
