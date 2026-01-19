@@ -44,7 +44,7 @@
       "description": "Retrieve information from INDD / IDML documents including layers, links and fonts."
     },
     {
-      "name": "Convert to InDesign",
+      "name": "Convert PDF to InDesign",
       "description": "Convert PDF documents to InDesign (INDD or IDML) format. The output is a ZIP file containing the converted documents and all associated assets."
     },
     {
@@ -1296,11 +1296,11 @@
     },
     "/v3/status/{convert-pdf-to-indesign_job_id}": {
       "get": {
-        "operationId": "getConvertToInDesignJobStatus",
+        "operationId": "getConvertPDFToInDesignJobStatus",
         "summary": "Get status - Convert to InDesign API",
         "description": "Returns the latest status of a job, in this case a PDF to InDesign conversion job. Poll this endpoint to retrieve the job results, warnings, and download URL of the output, in this case an output ZIP file.",
         "tags": [
-          "Convert to InDesign"
+          "Convert PDF to InDesign"
         ],
         "parameters": [
           {
