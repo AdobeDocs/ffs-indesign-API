@@ -13,6 +13,10 @@
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/firefly-services/docs/indesign-apis/',
   siteMetadata: {
+    docs: {
+        title: 'Submit Feedback',
+        path: 'https://developer.adobe.com/firefly-services/docs/guides/support/'
+    },
     pages: [
       {
         title: 'All Firefly Services',
