@@ -131,6 +131,10 @@ module.exports = {
           {
             title: 'Writing Scripts for Custom Scripts API',
             path: '/guides/writing-scripts-for-custom-scripts-api/'
+          },
+          {
+            title: 'PDF to InDesign Conversion Notes',
+            path: '/guides/pdf-to-indesign-conversion-notes/'
           }
         ]
       }

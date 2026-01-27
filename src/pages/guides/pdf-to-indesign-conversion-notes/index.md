@@ -16,14 +16,14 @@ hideBreadcrumbNav: true
 
 ## Points to note
 
-1. Convert multiple PDFs from any source (e.g., PDFs created from Illustrator, Photoshop, Express, Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Apple Numbers, Canva, etc.).
-2. Strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested ordered and unordered lists, spot colors, and gradients are supported.
-3. Superscript & Subscript are visually correct and editable in most cases.
-4. Tables are supported.
-5. Paragraph and Character Styles are created as part of the PDF to INDD document conversion. (InDesign will not create Paragraph and Character Styles if, during the PDF conversion process, it detects that the number of unique styles in the document exceeds 80.)
-6. PDF conversion supports the Drop Shadow Effect in PDFs created in InDesign. Object opacity, Blending modes, and optimization of the creation of a number of text frames are now fully or partially supported for PDFs.
-7. Grouping of paragraphs into a single text frame is supported.
-8. Use the Preserve InDesign Editing Capabilities during Export PDF. This will help recreate the PDF as it was originally created in InDesign.
+- Convert multiple PDFs from any source (e.g., PDFs created from Illustrator, Photoshop, Express, Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Apple Numbers, Canva, etc.).
+- Strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested ordered and unordered lists, spot colors, and gradients are supported.
+- Superscript & Subscript are visually correct and editable in most cases.
+- Tables are supported.
+- Paragraph and Character Styles are created as part of the PDF to INDD document conversion. (InDesign will not create Paragraph and Character Styles if, during the PDF conversion process, it detects that the number of unique styles in the document exceeds 80.)
+- PDF conversion supports the Drop Shadow Effect in PDFs created in InDesign. Object opacity, Blending modes, and optimization of the creation of a number of text frames are now fully or partially supported for PDFs.
+- Grouping of paragraphs into a single text frame is supported.
+- Use the Preserve InDesign Editing Capabilities during Export PDF. This will help recreate the PDF as it was originally created in InDesign.
 
 ## Limitations
 
