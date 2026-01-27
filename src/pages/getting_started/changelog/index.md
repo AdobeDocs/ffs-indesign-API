@@ -12,6 +12,8 @@ keywords:
   - Rendition API
   - Custom Scripts API
   - Remap Links API
+  - Convert PDF to InDesign API
+  - PDF to InDesign
   - REST API
   - cloud services
   - enterprise solutions
@@ -38,6 +40,14 @@ twitter:
 ## Overview
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
+
+## January 27, 2026
+
+### New Features
+
+*Convert PDF to InDesign API*
+
+- **Convert PDF to InDesign**: New `POST /v3/convert-pdf-to-indesign` endpoint to convert PDFs into editable InDesign (INDD or IDML) documents. [View endpoint documentation][9]
 
 ## November 20, 2025
 
@@ -102,3 +112,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [6]: ../../api/index.md
 [7]: ../../api/index.md
 [8]: ../../api/index.md
+[9]: ../../api/index.md
