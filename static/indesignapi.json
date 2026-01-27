@@ -1225,7 +1225,6 @@
       "post": {
         "summary": "Convert PDF to InDesign document",
         "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.",
-        "x-notes": "See [PDF to InDesign conversion notes](/firefly-services/docs/indesign-apis/guides/pdf-to-indesign-conversion-notes/).",
         "operationId": "convertPDFToInDesign",
         "tags": [
           "Convert PDF to InDesign"
