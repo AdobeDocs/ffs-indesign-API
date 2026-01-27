@@ -1224,7 +1224,7 @@
     "/v3/convert-pdf-to-indesign": {
       "post": {
         "summary": "Convert PDF to InDesign document",
-        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:**<br>- Supports PDFs up to 200 pages only.<br>- Does not support OCR scenarios (scanned PDF files) or Password protected PDFs.<br>- Only PDFs upto 150MB in size are supported.<br>- The API does not suppoprt conversion of PDF files that are corrupted or malformed in any manner and were created from unreliable sources. <br>- The API does not support documents with advanced bullets and numbers and advanced table features.",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.<br><br>**Limitations:** See the <a href=\"/guides/pdf-to-indesign-conversion-notes/\">PDF to InDesign conversion notes</a>.",
         "operationId": "convertPDFToInDesign",
         "tags": [
           "Convert PDF to InDesign"
@@ -1294,7 +1294,7 @@
         }
       }
     },
-    "/v3/status/{convertPDF-to-indesign_job_id}": {
+    "/v3/status/{convert-pdf-to-indesign_job_id}": {
       "get": {
         "operationId": "getConvertPDFToInDesignJobStatus",
         "summary": "Get status - Convert to InDesign API",
@@ -1331,7 +1331,7 @@
             }
           },
           {
-            "name": "convertPDF-to-indesign_job_id",
+            "name": "convert-pdf-to-indesign_job_id",
             "in": "path",
             "description": "The ID of the Convert PDF to InDesign job you want to see the status of. This comes from the response of the Convert PDF to InDesign request.",
             "required": true,
@@ -1677,16 +1677,7 @@
             "properties": {
               "url": {
                 "type": "string",
-                "description": "The URL of the asset."
-              },
-              "storageType": {
-                "type": "string",
-                "description": "This is optional parameter, however IT IS RECOMMENDED to provide this information.",
-                "enum": [
-                  "Azure",
-                  "Dropbox",
-                  "AWS"
-                ]
+                "description": "The pre-signed URL of the input asset. This is the URL of the asset that will be downloaded and acted upon during the job."
               }
             }
           },
@@ -1744,7 +1735,7 @@
                           ],
                           "properties": {
                             "targetDocument": {
-                              "description": "The document in which the relinking is to be done.",
+                              "description": "The document in which the relinking is to be done. Relinking of assets is required to ensure that there are no missing links in the output document.",
                               "type": "string"
                             },
                             "mapping": {
