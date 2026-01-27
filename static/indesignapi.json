@@ -44,6 +44,10 @@
       "description": "Retrieve information from INDD / IDML documents including layers, links and fonts."
     },
     {
+      "name": "Convert PDF to InDesign",
+      "description": "Convert PDF documents to InDesign (INDD or IDML) format. The output is a ZIP file containing the converted documents and all associated assets."
+    },
+    {
       "name": "Job Status",
       "description": "Track job execution status and lifecycle events. Retrieves the most recent status event for jobs across different execution stages: `not_started` (job creation), `running` (execution begins), `succeeded` (complete), `partial_success` (complete with non-critical errors), `failed` (execution failure)."
     }
@@ -1217,6 +1221,229 @@
         }
       }
     },
+    "/v3/convert-pdf-to-indesign": {
+      "post": {
+        "summary": "Convert PDF to InDesign document",
+        "description": "Converts PDF documents to editable InDesign (INDD or IDML) format. The output is a ZIP file (default name 'output.zip') containing subfolders (named after each input PDF) with the converted document and associated assets. If `embedLinks` is false, assets are provided in a separate folder within the ZIP. If `embedLinks` is true, all links are embedded in the InDesign file. Returns warnings for missing fonts and links.",
+        "operationId": "convertPDFToInDesign",
+        "tags": [
+          "Convert PDF to InDesign"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's developer console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's developer console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertToInDesignRequest"
+              }
+            }
+          },
+          "description": "This job request object specifies parameters for converting PDF to InDesign format.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{convert-pdf-to-indesign_job_id}": {
+      "get": {
+        "operationId": "getConvertPDFToInDesignJobStatus",
+        "summary": "Get status - Convert to InDesign API",
+        "description": "Returns the latest status of a job, in this case a PDF to InDesign conversion job. Poll this endpoint to retrieve the job results, warnings, and download URL of the output, in this case an output ZIP file.",
+        "tags": [
+          "Convert PDF to InDesign"
+        ],
+        "parameters": [
+          {
+            "name": "x-gw-ims-org-id",
+            "in": "header",
+            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key as defined in Adobe's Developer Console.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "The authorization token with bearer \"token_value\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "convert-pdf-to-indesign_job_id",
+            "in": "path",
+            "description": "The ID of the Convert PDF to InDesign job you want to see the status of. This comes from the response of the Convert PDF to InDesign request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of a Convert to InDesign job execution.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/notstartedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/runningEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/succeededEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/failedEvent"
+                    },
+                    {
+                      "$ref": "#/components/schemas/partialSuccessEvent"
+                    }
+                  ]
+                },
+                "examples": {
+                  "succeeded": {
+                    "summary": "Convert to InDesign Job Succeeded",
+                    "description": "Example response when a PDF to InDesign conversion job completes successfully. The output is a ZIP file containing the converted INDD/IDML documents and assets.",
+                    "value": {
+                      "jobId": "413d57e8-1092-4476-8a9f-16eacabd2d6d",
+                      "timestamp": "2025-12-17T06:08:45.267Z",
+                      "status": "succeeded",
+                      "data": {
+                        "outputs": [
+                          {
+                            "outputPath": "output/test",
+                            "input": "test.pdf",
+                            "warnings": {
+                              "missingLinks": [
+                                "file:/Users/labuser/Downloads/Untitled-1%20Folder1/doc1%20Folder/Links/testAI-3.ai"
+                              ],
+                              "missingFonts": [
+                                "Abelone Regular"
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "outputs": [
+                        {
+                          "destination": {
+                            "url": ""
+                          },
+                          "source": "output.zip"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "retry-after": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The number of seconds until the user should try again."
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "The type of content returned (e.g., `application/json`)."
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The length of the response."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/v3/status/{id}": {
       "get": {
         "operationId": "getJobStatus",
@@ -1450,16 +1677,7 @@
             "properties": {
               "url": {
                 "type": "string",
-                "description": "The URL of the asset."
-              },
-              "storageType": {
-                "type": "string",
-                "description": "This is optional parameter, however IT IS RECOMMENDED to provide this information.",
-                "enum": [
-                  "Azure",
-                  "Dropbox",
-                  "AWS"
-                ]
+                "description": "The pre-signed URL of the input asset. This is the URL of the asset that will be downloaded and acted upon during the job."
               }
             }
           },
@@ -1490,7 +1708,7 @@
                 "type": "object",
                 "properties": {
                   "fonts": {
-                    "description": "Settings related to fonts.",
+                    "description": "Settings related to fonts. It is recommended to include fonts to avoid missing fonts warnings when processing the job.",
                     "type": "object",
                     "properties": {
                       "fontsDirectories": {
@@ -1517,7 +1735,7 @@
                           ],
                           "properties": {
                             "targetDocument": {
-                              "description": "The document in which the relinking is to be done.",
+                              "description": "The document in which the relinking is to be done. Relinking of assets is required to ensure that there are no missing links in the output document.",
                               "type": "string"
                             },
                             "mapping": {
@@ -2076,6 +2294,109 @@
             }
           }
         ]
+      },
+      "ConvertToInDesignRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequestWithOutput"
+          },
+          {
+            "description": "Inputs for converting PDF to InDesign document.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocuments",
+                  "outputMediaType"
+                ],
+                "properties": {
+                  "targetDocuments": {
+                    "description": "Array of PDF documents to convert. Each entry corresponds to the filename of the PDF document to convert. Currently supports one document at a time.",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1
+                  },
+                  "outputMediaType": {
+                    "description": "The MIME type of the output file.",
+                    "type": "string",
+                    "enum": [
+                      "application/x-indesign",
+                      "application/vnd.adobe.indesign-idml-package"
+                    ],
+                    "default": "application/x-indesign"
+                  },
+                  "embedLinks": {
+                    "description": "If true, all links (images and other assets) from the PDF are embedded directly in the resulting INDD/IDML file. If false (default), the INDD/IDML file is created with external links, and all assets are provided in a separate folder within the output ZIP.",
+                    "type": "boolean",
+                    "default": false
+                  },
+                  "outputFilebaseString": {
+                    "description": "The name of the output ZIP file. If not specified, defaults to 'output.zip'.",
+                    "type": "string",
+                    "default": "output.zip"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ConvertToInDesignResponse": {
+        "type": "object",
+        "description": "Response data returned when PDF to InDesign conversion is successful. This data is returned in the `data` field of the succeeded status response. The output is always a ZIP file containing subfolders for each converted PDF with the requested INDD/IDML file and associated assets.",
+        "properties": {
+          "outputs": {
+            "type": "array",
+            "description": "Array of conversion outputs. Each item provides information about the conversion result for a specific input PDF.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "outputPath": {
+                  "type": "string",
+                  "description": "Path to the output folder for the particular input PDF file within the ZIP archive."
+                },
+                "input": {
+                  "type": "string",
+                  "description": "Name of the input PDF file that was converted."
+                },
+                "warnings": {
+                  "type": "object",
+                  "description": "Warnings encountered during conversion.",
+                  "properties": {
+                    "missingLinks": {
+                      "type": "array",
+                      "description": "Array of links that are missing or inaccessible in the converted document.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "missingFonts": {
+                      "type": "array",
+                      "description": "Array of fonts that are not available in the runtime environment.",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "otherWarnings": {
+                      "type": "array",
+                      "description": "Array of other warnings generated during conversion.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "CreateRenditionRequest": {
         "allOf": [
