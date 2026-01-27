@@ -133,7 +133,7 @@ module.exports = {
             path: '/guides/writing-scripts-for-custom-scripts-api/'
           },
           {
-            title: 'PDF to InDesign Conversion Notes',
+            title: 'Working with PDF to InDesign Conversion API',
             path: '/guides/pdf-to-indesign-conversion-notes/'
           }
         ]
