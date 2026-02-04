@@ -120,6 +120,28 @@ repository, and a [pre-signed URL](/indesign-apis/concepts/#pre-signed-urls) wil
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### Multiline Records in Data Merge API
+Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing.Here, is an sample
+Here is a sample CSV file demonstrating multiline records compatible with the Data Merge API. Notice how line breaks within a field are preserved by enclosing the entire field value with double quotes:
+
+```
+Name,Address,Comments
+Alice Smith,123 Main St,"First line of comment.
+Second line of comment."
+Bob Johnson,"456 Oak Ave
+Suite 12
+Riverside, CA","Single line comment."
+Cara Lee,Newport,comment value
+```
+
+- Each field containing actual line breaks is wrapped in double quotes.
+- The Data Merge API correctly interprets newlines within quoted fields as part of the field value.
+- Unquoted field values (such as Bob Johnson's "Single line comment.") will be treated as single-line.
+
+When uploading this CSV to the Data Merge API, the merged output will preserve all newlines in the relevant fields.
+
+
+
 ### Output Path Variations in Data Merge API
 
 When using the Data Merge API, the output file paths are determined by the `outputFolderPath` and `outputFileBaseString` parameters in the request. Here are the different scenarios and their corresponding output paths:
