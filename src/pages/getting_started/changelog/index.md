@@ -40,13 +40,13 @@ twitter:
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
 
-## Feburary 6 , 2026
+## February 6, 2026
 
 ### Enhancements
 
 - **Multiline records support in DataMerge**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now support and correctly process multiline records. Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing. [Learn more about multiline support.][9]
 - **UTF-8 encoded CSV file support**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now accept and process UTF-8 encoded CSV files, enabling support for special characters such as emojis and international text. [Learn more about UTF-8 support.][10]
-- **HTML5 Export using custom scripts**: Using custom script user can now export HTML5 pages from InDesign API.
+- **HTML5 Export using custom scripts**: Using a custom script, users can now export HTML5 pages from InDesign API.
   ```
   doc.html5ExportPreferences.textExportFormat = TextExportFormatEnum.HTML_TAG;
   doc.exportFile(ExportFormat.HTML5,html_File_path);
