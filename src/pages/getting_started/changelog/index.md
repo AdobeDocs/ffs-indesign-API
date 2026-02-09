@@ -115,5 +115,5 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [6]: ../../api/index.md
 [7]: ../../api/index.md
 [8]: ../../api/index.md
-[9]: ../../guides/working-with-datamerge-api/#multiline-records-in-data-merge-api
-[10]: ../../guides/working-with-datamerge-api/#utf-8-encoded-csv-file-support
+[9]: ../../guides/working-with-datamerge-api/index.md#multiline-records-in-data-merge-api
+[10]: ../../guides/working-with-datamerge-api/index.md#utf-8-encoded-csv-file-support
