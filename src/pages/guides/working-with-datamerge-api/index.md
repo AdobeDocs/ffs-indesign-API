@@ -141,6 +141,30 @@ Cara Lee,Newport,comment value
 When uploading this CSV to the Data Merge API, the merged output will preserve all newlines in the relevant fields.
 
 
+### UTF-8 encoded CSV file support
+The Data Merge API now supports CSV files encoded in UTF-8. This enables you to work with documents containing special characters such as emojis and international text, improving compatibility across different languages and symbols.
+
+When preparing your CSV, ensure it is saved as UTF-8 (with or without BOM), especially if your data includes non-English or special characters.
+
+#### Example UTF-8 CSV file
+
+Below is a sample CSV file containing special (UTF-8) characters:
+
+```
+Name,Message,Emoji
+Juan Pérez,"¡Bienvenido a la demostración!",😊
+Chloé Dubois,"Bonjour de Paris!","🌍"
+李华,"你好，世界","🌏"
+Miyuki Satō,"東京へようこそ!","🗾"
+```
+
+- Fields like `Name`, `Message`, or `Emoji` may contain accented Latin characters or emoji, which are represented correctly in UTF-8 encoding.
+- Save your file as UTF-8 in your text editor (for example, in VSCode: File > Save with Encoding > UTF-8).
+
+When you upload this UTF-8 encoded CSV to the Data Merge API, the merged document will preserve these special characters and emojis in the output. Make sure applied font is available and have the required glyphs.
+
+
+
 
 ### Output Path Variations in Data Merge API
 
