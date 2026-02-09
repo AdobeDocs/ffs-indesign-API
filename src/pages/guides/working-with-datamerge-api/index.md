@@ -121,10 +121,12 @@ repository, and a [pre-signed URL](/indesign-apis/concepts/#pre-signed-urls) wil
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
 ### Multiline Records in Data Merge API
-Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing.Here, is an sample
+
+Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing.
+
 Here is a sample CSV file demonstrating multiline records compatible with the Data Merge API. Notice how line breaks within a field are preserved by enclosing the entire field value with double quotes:
 
-```
+```csv
 Name,Address,Comments
 Alice Smith,123 Main St,"First line of comment.
 Second line of comment."
@@ -140,8 +142,8 @@ Cara Lee,Newport,comment value
 
 When uploading this CSV to the Data Merge API, the merged output will preserve all newlines in the relevant fields.
 
-
 ### UTF-8 encoded CSV file support
+
 The Data Merge API now supports CSV files encoded in UTF-8. This enables you to work with documents containing special characters such as emojis and international text, improving compatibility across different languages and symbols.
 
 When preparing your CSV, ensure it is saved as UTF-8 (with or without BOM), especially if your data includes non-English or special characters.
@@ -150,7 +152,7 @@ When preparing your CSV, ensure it is saved as UTF-8 (with or without BOM), espe
 
 Below is a sample CSV file containing special (UTF-8) characters:
 
-```
+```csv
 Name,Message,Emoji
 Juan Pérez,"¡Bienvenido a la demostración!",😊
 Chloé Dubois,"Bonjour de Paris!","🌍"
@@ -162,9 +164,6 @@ Miyuki Satō,"東京へようこそ!","🗾"
 - Save your file as UTF-8 in your text editor (for example, in VSCode: File > Save with Encoding > UTF-8).
 
 When you upload this UTF-8 encoded CSV to the Data Merge API, the merged document will preserve these special characters and emojis in the output. Make sure applied font is available and have the required glyphs.
-
-
-
 
 ### Output Path Variations in Data Merge API
 
