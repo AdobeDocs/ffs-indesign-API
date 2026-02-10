@@ -11,6 +11,12 @@
  */
 
 /**
+ * Header offset to account for fixed navigation bar.
+ * Matches the scrollYOffset used in RedoclyAPIBlock component.
+ */
+const HEADER_OFFSET = 80;
+
+/**
  * Handles hash scrolling for dynamically rendered content (like Redocly API docs).
  * Waits for the target element to appear in the DOM before scrolling.
  */
@@ -37,8 +43,14 @@ const scrollToHashElement = (hash, maxAttempts = 50, interval = 100) => {
     }
 
     if (element) {
-      // Element found, scroll to it instantly (no visible animation)
-      element.scrollIntoView({ behavior: 'instant', block: 'start' });
+      // Element found, scroll to it with offset for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - HEADER_OFFSET;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'instant'
+      });
       return;
     }
 
