@@ -28,34 +28,37 @@ Creates document variations from CSV data and an InDesign file.
 
 <DiscoverBlock slots="link, text"/>
 
-[Rendition API][1]
+[Rendition API][2]
 
 Creates renditions of a file in either PNG, JPG, or PDF format.
 
 <DiscoverBlock slots="link, text"/>
 
-[Custom Scripts API][1]
+[Custom Scripts API][3]
 
 Perform almost any InDesign task using a custom script. With this API you can submit and execute custom scripts.
 
 <DiscoverBlock slots="link, text"/>
 
-[Status API][1]
+[Status API][4]
 
 Retrieves the most recent status event of an API execution job.
 
 <DiscoverBlock slots="link, text"/>
 
-[Document Info API][1]
+[Document Info API][5]
 
 Retrieve information from INDD / IDML documents including layers, links and fonts.
 
 <DiscoverBlock slots="link, text"/>
 
-[Convert to InDesign API][2]
+[Convert to InDesign API][6]
 
 Convert PDF documents to editable InDesign format. Output includes all converted files and assets in a ZIP archive.
 
-[1]: ./api/index.md
-
-[2]: ./api/index.md
+[1]: ./api/index.md#tag/Data-Merge
+[2]: ./api/index.md#tag/Rendition
+[3]: ./api/index.md#tag/Custom-Scripts
+[4]: ./api/index.md#tag/Job-Status
+[5]: ./api/index.md#tag/Document-Info
+[6]: ./api/index.md#tag/Document-Info
