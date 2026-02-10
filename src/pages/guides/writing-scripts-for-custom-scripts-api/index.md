@@ -310,10 +310,70 @@ function GetFailureReturnObj(errorCode, errorString) {
 }
 ```
 
+## Logging
+
+Logging can be important for debugging your own scripts and to keep track of decisions made during a script execution. You can log the data during script execution in two ways: collect logs in an array or log data in the application's log.
+
+### Collect logs in an array
+
+It's possible to collect logs in an array and then dump them with a
+function similar to `WriteToFile`.
+
+We've created a UTILS.jsx file that contains reusable utility functions. These functions help maintain clean, modular, and efficient code. Add the relative path to the list of assets to be uploaded. You can use UTILS.jsx functionality or create a similar one for your use case.
+
+```javascript
+//Logging Instructions
+
+UTILS.logFilePath='LogFile1.txt'
+UTILS.InitiateLogging() // Initialising logging. This will create an empty array to store logs.
+UTILS.OpenLogFileHandle() // Opening the file handle to create the log file.
+UTILS.AddAssetToBeUploaded(UTILS.logFilePath) // Adding the log file to the list of files to be uploaded.
+UTILS.Log('Sample Log 1') // Logging a sample log.
+UTILS.Log('Sample Log 2') // Logging a sample log. This automatically writes the log to the file, one line at a time.
+```
+
+### Log data in the application's log
+
+Data can be logged in the application's log. Use the script calls below to redirect the provided log to the application's log:
+
+```javascript
+    // The following should come in the application log, which can be dumped using generalSettings/appLogs/logsRelativePath
+    app.consoleout('Logging in app\'s std::out')
+    app.consoleerr('Logging in app\'s std::err')
+```
+
+You can dump the application's log into a file by adding the `generalSettings` object, as shown below:
+
+```json
+    "params": {
+        "targetDocument": "doc.indd",
+        "outputPath": "idmlDoc.idml",
+        "generalSettings": {
+            "appLogs": {
+                "logsRelativePath": "appLog.txt"
+            }
+        }
+    }
+```
+
 ## Sample Scripts
 
 To help you get started with writing custom scripts for the Custom Scripts API, we have created a collection of sample scripts. These scripts demonstrate various use cases and best practices for constructing custom script bundles and handling input/output in your scripts. The repository includes scripts in both Extendscript and UXP formats.
 
 You can find the sample scripts on our GitHub repository: [Sample Scripts for Custom Scripts API](https://github.com/AdobeDocs/indesign-api-docs/tree/main/SampleScripts).
+
+## InDesign Server Scripting API Reference
+
+For comprehensive documentation on all available InDesign Server objects, methods, and properties, refer to the ExtendScript API reference. This resource provides detailed information about the InDesign object model, including:
+
+- **Application**: The root object for accessing InDesign functionality
+- **Document**: Methods for creating, opening, and manipulating documents
+- **Page and Spread**: Layout and page management
+- **TextFrame and Story**: Text content and formatting
+- **Graphic and Image**: Working with placed graphics
+- **Styles**: Paragraph, character, object, table, and cell styles
+- **DataMerge**: Data merge automation objects
+
+[InDesign ExtendScript API Reference (InDesign Server)](https://www.indesignjs.de/extendscriptAPI/indesign-server14/#Application.html)
 
 [1]: ../../getting_started/concepts/index.md#Custom-Script-bundle-structure
