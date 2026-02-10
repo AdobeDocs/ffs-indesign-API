@@ -56,9 +56,9 @@ Retrieve information from INDD / IDML documents including layers, links and font
 
 Convert PDF documents to editable InDesign format. Output includes all converted files and assets in a ZIP archive.
 
-[1]: ./api/index.md#tag/Data-Merge
-[2]: ./api/index.md#tag/Rendition
-[3]: ./api/index.md#tag/Custom-Scripts
-[4]: ./api/index.md#tag/Job-Status
-[5]: ./api/index.md#tag/Document-Info
-[6]: ./api/index.md#tag/Document-Info
+[1]: /api/#tag/Data-Merge
+[2]: /api/#tag/Rendition
+[3]: /api/#tag/Custom-Scripts
+[4]: /api/#tag/Job-Status
+[5]: /api/#tag/Document-Info
+[6]: /api/#tag/Document-Info
