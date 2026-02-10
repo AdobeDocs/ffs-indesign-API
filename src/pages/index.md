@@ -50,8 +50,8 @@ Retrieves the most recent status event of an API execution job.
 
 Retrieve information from INDD / IDML documents including layers, links and fonts.
 
-[1]: ./api/index.md#tag/Data-Merge
-[2]: ./api/index.md#tag/Rendition
-[3]: ./api/index.md#tag/Custom-Scripts
-[4]: ./api/index.md#tag/Job-Status
-[5]: ./api/index.md#tag/Document-Info
+[1]: /api/#tag/Data-Merge
+[2]: /api/#tag/Rendition
+[3]: /api/#tag/Custom-Scripts
+[4]: /api/#tag/Job-Status
+[5]: /api/#tag/Document-Info
