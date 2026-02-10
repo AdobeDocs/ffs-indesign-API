@@ -37,10 +37,8 @@ const scrollToHashElement = (hash, maxAttempts = 50, interval = 100) => {
     }
 
     if (element) {
-      // Element found, scroll to it
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      // Element found, scroll to it instantly (no visible animation)
+      element.scrollIntoView({ behavior: 'instant', block: 'start' });
       return;
     }
 

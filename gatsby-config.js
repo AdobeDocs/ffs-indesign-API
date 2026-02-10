@@ -117,10 +117,6 @@ module.exports = {
         header: true,
         pages: [
           {
-            title: 'Logging',
-            path: '/guides/logging/'
-          },
-          {
             title: 'Working with Custom Scripts API',
             path: '/guides/working-with-custom-scripts-api/'
           },
