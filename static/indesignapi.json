@@ -1530,7 +1530,7 @@
                                 "properties": {
                                   "currentURI": {
                                     "type": "string",
-                                    "description": "The existing URI of the link that needs relinking. If multiple links with this URI are found, all will be relinked. If `linkID is provided, this attribute will be ignored. Either `currentURI` or `linkID` should be present."
+                                    "description": "The existing URI of the link that needs relinking. If multiple links with this URI are found, all will be relinked. If `linkID` is provided, this attribute will be ignored. Either `currentURI` or `linkID` should be present."
                                   },
                                   "linkID": {
                                     "type": "integer",
