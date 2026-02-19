@@ -34,6 +34,7 @@ This guide covers essential logging techniques for debugging and monitoring your
 - [Working with Data Merge API](/guides/working-with-datamerge-api/) - Data merge automation
 - [Working with Rendition API](/guides/working-with-rendition-api/) - Document rendering
 - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/) - Script development
+- [PDF to InDesign Conversion Notes](/guides/pdf-to-indesign-conversion-notes/) - PDF To InDesign Points to note and limitations
 
 ---
 
