@@ -41,13 +41,25 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
-## January 27, 2026
+## February 20, 2026
 
 ### New Features
 
 *Convert PDF to InDesign API*
 
 - **Convert PDF to InDesign**: New `POST /v3/convert-pdf-to-indesign` endpoint to convert PDFs into editable InDesign (INDD or IDML) documents. [View endpoint documentation][9]
+## February 6, 2026
+
+### Enhancements
+
+- **Multiline records support in DataMerge**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now support and correctly process multiline records. Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing. [Learn more about multiline support.][9]
+- **UTF-8 encoded CSV file support**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now accept and process UTF-8 encoded CSV files, enabling support for special characters such as emojis and international text. [Learn more about UTF-8 support.][10]
+- **HTML5 Export using custom scripts**: Using a custom script, users can now export HTML5 pages from InDesign API.
+
+  ```javascript
+  doc.html5ExportPreferences.textExportFormat = TextExportFormatEnum.HTML_TAG;
+  doc.exportFile(ExportFormat.HTML5, html_File_path);
+  ```
 
 ## November 20, 2025
 
@@ -113,3 +125,5 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [7]: ../../api/index.md
 [8]: ../../api/index.md
 [9]: ../../api/index.md
+[9]: ../../guides/working-with-datamerge-api/index.md#multiline-records-in-data-merge-api
+[10]: ../../guides/working-with-datamerge-api/index.md#utf-8-encoded-csv-file-support
