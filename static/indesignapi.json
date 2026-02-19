@@ -2298,7 +2298,7 @@
               "nextUrl": {
                 "type": "string",
                 "description": "URL for the next page of results",
-                "example": "https://indesign.adobe.io/api/v3/scripts?page=2"
+                "example": "https://indesign.adobe.io/api/v3/scripts?page=1"
               }
             }
           }
