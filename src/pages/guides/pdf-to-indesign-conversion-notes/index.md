@@ -16,22 +16,18 @@ hideBreadcrumbNav: true
 
 ## Points to note
 
-- Convert multiple PDFs from any source (e.g., PDFs created from Illustrator, Photoshop, Express, Microsoft Word, Microsoft Excel, Microsoft PowerPoint, Apple Numbers, Canva, etc.).
-- Strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested ordered and unordered lists, spot colors, and gradients are supported.
-- Superscript & Subscript are visually correct and editable in most cases.
-- Tables are supported.
-- Paragraph and Character Styles are created as part of the PDF to INDD document conversion. (InDesign will not create Paragraph and Character Styles if, during the PDF conversion process, it detects that the number of unique styles in the document exceeds 80.)
-- PDF conversion supports the Drop Shadow Effect in PDFs created in InDesign. Object opacity, Blending modes, and optimization of the creation of a number of text frames are now fully or partially supported for PDFs.
-- Grouping of paragraphs into a single text frame is supported.
-- Use the Preserve InDesign Editing Capabilities during Export PDF. This will help recreate the PDF as it was originally created in InDesign.
+- Convert multiple PDFs from any source, including files created in Illustrator, Photoshop, Express, Microsoft Word, Excel, PowerPoint, Apple Numbers, Canva, and more.
+- Preserve rich formatting such as strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested lists, spot colors, and gradients.
+- Create Paragraph and Character Styles automatically during PDF-to-InDesign conversion. This will not work if InDesign detects more than 80 unique styles during the PDF-to-InDesign conversion process.
+- Retain advanced PDF effects, including drop shadows from InDesign, with full or partial support for object opacity, blending modes, and optimized multi-frame text.
+- Group related paragraphs into a single text frame for cleaner layouts.
+- Use Preserve InDesign Editing Capabilities when exporting PDFs from InDesign to accurately recreate the original InDesign file.
 
 ## Limitations
 
-- Supports PDFs up to 200 pages only.
-- Does not support OCR scenarios (scanned PDF files) or Password protected PDFs.
-- Only PDFs upto 150MB in size are supported.
-- The API does not suppoprt conversion of PDF files that are corrupted or malformed in any manner and were created from unreliable sources.
-- The API does not support documents with advanced bullets and numbers and advanced table features.
+- Supports only PDFs up to 200 pages and 150 MB.
+- Does not support scanned, OCR-based, password-protected, corrupted, or malformed PDFs, especially those created from unreliable sources.
+- The API does not support documents that use advanced bullets, numbering, or complex table features.
 
 ## Reference
 
