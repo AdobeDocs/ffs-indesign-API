@@ -28,7 +28,3 @@ hideBreadcrumbNav: true
 - Supports only PDFs up to **200 pages** and **150 MB**.
 - Does not support scanned, OCR-based, password-protected, corrupted, or malformed PDFs, especially those created from unreliable sources.
 - The API does not support documents that use advanced bullets, numbering, or complex table features.
-
-## Reference
-
-- Consult [Convert PDFs to InDesign Documents](https://helpx.adobe.com/indesign/using/convert-pdf-to-indesign-file.html) for converting PDFs to InDesign in the desktop workflow
