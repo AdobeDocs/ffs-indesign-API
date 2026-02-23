@@ -32,4 +32,3 @@ hideBreadcrumbNav: true
 ## Reference
 
 - Consult [Convert PDFs to InDesign Documents](https://helpx.adobe.com/indesign/using/convert-pdf-to-indesign-file.html) for converting PDFs to InDesign in the desktop workflow
-
