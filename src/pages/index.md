@@ -58,4 +58,4 @@ Convert PDF documents to editable InDesign format. Output includes all converted
 
 [1]: ./api/index.md
 
-[2]: ./api/index.md#tag/Convert-to-InDesign
+[2]: ./api/index.md
