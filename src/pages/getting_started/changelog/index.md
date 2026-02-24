@@ -48,6 +48,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 *Convert PDF to InDesign API*
 
 - **Convert PDF to InDesign**: New `POST /v3/convert-pdf-to-indesign` endpoint to convert PDFs into editable InDesign (INDD or IDML) documents. [View endpoint documentation][9]. See [PDF to InDesign conversion notes][10] for additoinal notes about the new API.
+
 ## February 6, 2026
 
 ### Enhancements
