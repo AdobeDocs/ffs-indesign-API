@@ -50,8 +50,15 @@ Retrieves the most recent status event of an API execution job.
 
 Retrieve information from INDD / IDML documents including layers, links and fonts.
 
+<DiscoverBlock slots="link, text"/>
+
+[Convert to InDesign API][6]
+
+Convert PDF documents to editable InDesign format. Output includes all converted files and assets in a ZIP archive.
+
 [1]: /api/#tag/Data-Merge
 [2]: /api/#tag/Rendition
 [3]: /api/#tag/Custom-Scripts
 [4]: /api/#tag/Job-Status
 [5]: /api/#tag/Document-Info
+[6]: /api/#tag/Document-Info
