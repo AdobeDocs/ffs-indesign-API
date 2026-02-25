@@ -378,25 +378,7 @@ those shown in the status calls of InDesign APIs. However, InDesign API events a
 Please refer to the [InDesign APIs Webhooks][9]
 for a detailed guide on setting up webhooks.
 
-## Validation workflow for adopting new App Version
-
-New InDesign app version will be available in advance with preview status before becoming active and default so that users can validate their custom scripts before adopting the new app version. This workflow helps ensure that custom scripts continue to work correctly with the new app version.
-
-### step 1: Validate against new InDesign app version with x-app-version header
-
-![validation step](./app-version-validation-step1.png)
-
-### step 2: If Custom Script uses ALWAYS_LATEST Strategy
-
-![App Version Update Step](./app-version-update-strategy1.png)
-
-### step 3: If Custom Script uses fixed_major_version or fixed_major_and_minor_version Strategy
-
-Once validation is complete, update your production scripts to use the new app version.
-
-![App Version Update Step](./app-version-update-strategy2-and-strategy3.png)
-
-<!-- Links -->
+[//]: # (Links)
 [5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
 [6]: https://dropbox.github.io/dropbox-api-v2-explorer/
 [7]: https://learn.microsoft.com/en-us/azure/storage/

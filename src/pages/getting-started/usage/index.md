@@ -131,5 +131,5 @@ This metadata is stored in the database.
 
 All data is stored and processed under appropriate security measures to prevent unauthorized access and ensure confidentiality.
 
-<!-- Links -->
+[//]: # (Links)
 [1]: ../changelog/index.md
