@@ -372,7 +372,7 @@ those shown in the status calls of InDesign APIs. However, InDesign API events a
 Please refer to the [InDesign APIs Webhooks][9]
 for a detailed guide on setting up webhooks.
 
-<!-- Links -->
+[//]: # (Links)
 [5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
 [6]: https://dropbox.github.io/dropbox-api-v2-explorer/
 [7]: https://learn.microsoft.com/en-us/azure/storage/

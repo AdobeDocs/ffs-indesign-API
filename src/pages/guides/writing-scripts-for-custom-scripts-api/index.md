@@ -316,4 +316,4 @@ To help you get started with writing custom scripts for the Custom Scripts API, 
 
 You can find the sample scripts on our GitHub repository: [Sample Scripts for Custom Scripts API](https://github.com/AdobeDocs/indesign-api-docs/tree/main/SampleScripts).
 
-[1]: ../../getting_started/concepts/index.md#Custom-Script-bundle-structure
+[1]: ../../getting-started/concepts/index.md#Custom-Script-bundle-structure
