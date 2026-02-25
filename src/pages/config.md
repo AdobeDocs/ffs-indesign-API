@@ -1,0 +1,23 @@
+- pathPrefix:
+    - /firefly-services/docs/indesign-apis/
+
+- pages:
+    - [All Firefly Services](https://developer.adobe.com/firefly-services/docs/guides/?aio_internal)
+    - [About InDesign API](/index.md)
+    - [Getting Started](/getting-started/index.md)
+    - [Guides](/guides/index.md)
+    - [API Reference](/api/index.md)
+
+- subPages:
+    - Getting Started header
+    - [Authentication](/getting-started/index.md)
+    - [Technical Usage Notes](/getting-started/usage/index.md)
+    - Learn More header
+    - [InDesign Concepts](/getting-started/concepts/index.md)
+    - [Changelog](/getting-started/changelog/index.md)
+    - Guides header
+    - [Logging](/guides/logging/index.md)
+    - [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/index.md)
+    - [Working with Data Merge API](/guides/working-with-datamerge-api/index.md)
+    - [Working with Rendition API](/guides/working-with-rendition-api/index.md)
+    - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md)
