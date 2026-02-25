@@ -35,6 +35,6 @@ This guide covers essential logging techniques for debugging and monitoring your
 - [Working with Rendition API](/guides/working-with-rendition-api/index.md) - Document rendering
 - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md) - Script development
 
----
+<HorizontalLine />
 
 *Choose a guide above to get started with InDesign API automation.*
