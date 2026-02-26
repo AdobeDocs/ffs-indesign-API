@@ -127,5 +127,5 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [8]: ../../api/index.md
 [9]: ../../guides/working-with-datamerge-api/index.md#multiline-records-in-data-merge-api
 [10]: ../../guides/working-with-datamerge-api/index.md#utf-8-encoded-csv-file-support
-[11]: ../../api/#tag/Convert-PDF-to-InDesign
+[11]: ../../api/index.md
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
