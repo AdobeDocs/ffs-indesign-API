@@ -65,7 +65,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -138,7 +138,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -211,7 +211,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -290,7 +290,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -363,7 +363,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -454,7 +454,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -530,7 +530,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -621,7 +621,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -694,7 +694,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -771,7 +771,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -845,7 +845,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -911,7 +911,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -984,7 +984,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1251,7 +1251,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\".",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1324,7 +1324,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\".",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1456,7 +1456,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `bearer <access_token>`.",
+            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
             "required": true,
             "schema": {
               "type": "string"
