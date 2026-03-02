@@ -14,7 +14,7 @@
  * Header offset to account for fixed navigation bar.
  * Matches the scrollYOffset used in RedoclyAPIBlock component.
  */
-const HEADER_OFFSET = 70;
+const HEADER_OFFSET = 60;
 
 /**
  * Handles hash scrolling for dynamically rendered content (like Redocly API docs).
