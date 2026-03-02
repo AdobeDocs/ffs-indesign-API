@@ -46,7 +46,7 @@ Otherwise, the maximum supported file size is 1GB.
 
 ### Assets
 
-The number of assets (input + output) that can be passed in a single payload is 99.
+The number of assets (input + output) that can be passed in a single payload is 1000.
 
 ### Origins and domains
 
