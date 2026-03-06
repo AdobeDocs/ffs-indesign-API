@@ -243,15 +243,13 @@ Custom fonts or user fonts can be provided as a regular asset.
     "assets":[
         {
             "source": {
-                "url":"<YOUR PRE-SIGNED URL>",
-                "type":"HTTP_GET"
+                "url":"<PRE-SIGNED URL FOR DOCUMENT>"
             },
             "destination" : "Cheese_final.indd"
         },
         {
             "source": {
-                "url":"<YOUR PRE-SIGNED URL>",
-                "type":"HTTP_GET"
+                "url":"<PRE-SIGNED URL FOR FONT FILE>"
             },
             "destination" : "FontName.otf"
         }
@@ -397,8 +395,8 @@ Once validation is complete, update your production scripts to use the new app v
 ![App Version Update Step](./app-version-update-strategy2-and-strategy3.png)
 
 <!-- Links -->
-[5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
-[6]: https://dropbox.github.io/dropbox-api-v2-explorer/
-[7]: https://learn.microsoft.com/en-us/azure/storage/
+[5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html
+[6]: https://dropbox.github.io/dropbox-api-v2-explorer/#files_get_temporary_link
+[7]: https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens?tabs=Containers
 [8]: ../../guides/writing-scripts-for-custom-scripts-api/index.md
 [9]: https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup/
