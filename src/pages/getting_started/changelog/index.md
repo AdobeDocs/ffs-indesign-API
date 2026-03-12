@@ -53,6 +53,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 ### Enhancements
 
+- **API capability naming rules for custom scripts:** Script names (the `name` field in the manifest) must be 3–255 characters and may only use: alphanumeric (a-z, A-Z, 0-9), hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator for hierarchical names (for example, `renditions/jpeg`). Any other character is rejected. See [Key Concepts — API capability naming rules][13].
 - **Multiline records support in DataMerge**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now support and correctly process multiline records. Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing. [Learn more about multiline support.][9]
 - **UTF-8 encoded CSV file support**: The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now accept and process UTF-8 encoded CSV files, enabling support for special characters such as emojis and international text. [Learn more about UTF-8 support.][10]
 - **HTML5 Export using custom scripts**: Using a custom script, users can now export HTML5 pages from InDesign API.
@@ -129,3 +130,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [10]: ../../guides/working-with-datamerge-api/index.md#utf-8-encoded-csv-file-support
 [11]: ../../api/index.md
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
+[13]: ../concepts/index.md#API-capability-naming-rules
