@@ -23,17 +23,17 @@ keywords:
 
 Welcome to the InDesign API guides!
 
-👉 **[Start with the Logging Guide →](/guides/logging/index.md)**
+👉 **[Start with the Custom Scripts API Guide →](/guides/working-with-custom-scripts-api/)**
 
-This guide covers essential logging techniques for debugging and monitoring your InDesign API scripts.
+This guide covers advanced scripting techniques for automating InDesign tasks.
 
 ## Available Guides
 
-- [Logging](/guides/logging/index.md) - Learn how to implement logging in your scripts
-- [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/index.md) - Advanced scripting techniques
-- [Working with Data Merge API](/guides/working-with-datamerge-api/index.md) - Data merge automation
-- [Working with Rendition API](/guides/working-with-rendition-api/index.md) - Document rendering
-- [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md) - Script development
+- [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/) - Advanced scripting techniques
+- [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/) - Script development and logging
+- [Working with Data Merge API](/guides/working-with-datamerge-api/) - Data merge automation
+- [Working with Rendition API](/guides/working-with-rendition-api/) - Document rendering
+- [PDF to InDesign Conversion Notes](/guides/pdf-to-indesign-conversion-notes/) - PDF To InDesign Points to note and limitations
 
 <HorizontalLine />
 

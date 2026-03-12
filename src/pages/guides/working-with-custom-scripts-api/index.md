@@ -44,7 +44,7 @@ In the cURL commands, be sure to:
 
 -  Update the `Authorization` with the bearer access token.
 -  Update `x-api-key` with the client ID.
--  Update `x-gw-ims-org-id` with your organization ID.
+-  (Optional) Update `x-gw-ims-org-id` with your organization ID.
   
 ## Register a custom script
 

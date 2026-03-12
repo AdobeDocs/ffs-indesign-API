@@ -123,8 +123,9 @@ The manifest file is a plain JSON file with the following structure:
     "version": "<x.y.z>",
     "host": {
         "app": "indesign",
-        "minVersion": "17.0.0",
-        "maxVersion": "99.9.9"
+        "appVersionStrategy": "latest_version" | "fixed_major_version" | "fixed_major_and_minor_version",
+        "majorAppVersion": 20,  // optional depending on strategy
+        "minorAppVersion": 1  // optional depending on strategy
     },
     "apiEntryPoints": [
         {
@@ -142,9 +143,14 @@ The manifest file is a plain JSON file with the following structure:
 | `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 4-255 characters. It must not have any white space. | X |
 | `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
 | `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
-| `host.minVersion` | string | The minimum required version of the host app that can run this plugin, in x.y format. The version number must be two segments. Typically, the minor segment will be always set to 0 (e.g., 17.0). | X |
-| `host.maxVersion` | string | The maximum version of the host app that can run this plugin. Use the same formatting as `host.minVersion`. |  |
+| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: latest_version (always uses newest), fixed_major_version (locks to specific major version), or fixed_major_and_minor_version (locks to specific major.minor version). | X |
+| `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using fixed_major_version strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
+| `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using fixed_major_and_minor_version strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
 | `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. |  |
+
+- When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
+- majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
+- majorAppVersion and minorAppVersion are mandatory if appVersionStrategy is fixed_major_and_minor_version.
 
 ### The `apiEntryPoints` field
 
@@ -237,15 +243,13 @@ Custom fonts or user fonts can be provided as a regular asset.
     "assets":[
         {
             "source": {
-                "url":"<YOUR PRE-SIGNED URL>",
-                "type":"HTTP_GET"
+                "url":"<PRE-SIGNED URL FOR DOCUMENT>"
             },
             "destination" : "Cheese_final.indd"
         },
         {
             "source": {
-                "url":"<YOUR PRE-SIGNED URL>",
-                "type":"HTTP_GET"
+                "url":"<PRE-SIGNED URL FOR FONT FILE>"
             },
             "destination" : "FontName.otf"
         }
@@ -372,9 +376,27 @@ those shown in the status calls of InDesign APIs. However, InDesign API events a
 Please refer to the [InDesign APIs Webhooks][9]
 for a detailed guide on setting up webhooks.
 
+## Validation workflow for adopting new App Version
+
+New InDesign app version will be available in advance with preview status before becoming active and default so that users can validate their custom scripts before adopting the new app version. This workflow helps ensure that custom scripts continue to work correctly with the new app version.
+
+### step 1: Validate against new InDesign app version with x-app-version header
+
+![validation step](./app-version-validation-step1.png)
+
+### step 2: If Custom Script uses ALWAYS_LATEST Strategy
+
+![App Version Update Step](./app-version-update-strategy1.png)
+
+### step 3: If Custom Script uses fixed_major_version or fixed_major_and_minor_version Strategy
+
+Once validation is complete, update your production scripts to use the new app version.
+
+![App Version Update Step](./app-version-update-strategy2-and-strategy3.png)
+
 [//]: # (Links)
-[5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html
-[6]: https://dropbox.github.io/dropbox-api-v2-explorer/
-[7]: https://learn.microsoft.com/en-us/azure/storage/
+[5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html
+[6]: https://dropbox.github.io/dropbox-api-v2-explorer/#files_get_temporary_link
+[7]: https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens?tabs=Containers
 [8]: ../../guides/writing-scripts-for-custom-scripts-api/index.md
 [9]: https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup/
