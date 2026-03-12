@@ -17,7 +17,7 @@
     - [API Reference](/api/index.md)
 
 - buttons:
-    - [Submit Feedback](https://developer.adobe.com/firefly-services/docs/guides/support/)
+    - [Support](https://airtable.com/appu5RTWgdM95jynx/pagyuT1qspNJcPU2E/form)
     - [Console](https://developer.adobe.com/console/) consoleId
 
 - subPages:
@@ -28,7 +28,6 @@
     - [InDesign Concepts](/getting-started/concepts/index.md)
     - [Changelog](/getting-started/changelog/index.md)
     - Guides header
-    - [Logging](/guides/logging/index.md)
     - [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/index.md)
     - [Working with Data Merge API](/guides/working-with-datamerge-api/index.md)
     - [Working with Rendition API](/guides/working-with-rendition-api/index.md)
