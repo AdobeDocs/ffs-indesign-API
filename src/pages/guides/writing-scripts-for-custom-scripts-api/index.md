@@ -37,6 +37,16 @@ Use this document to construct the script files for the Custom Scripts API.
 
 The script's author defines the custom attributes and values for a particular endpoint using *script.js* files in the custom script bundle[1]. Refer to the examples below to construct your scripts.
 
+## Script name (capability name) requirements
+
+The script name is the `name` field in your custom script manifest. It must follow the [API capability naming rules][2]:
+
+- **Length:** 3–255 characters.
+- **Allowed characters** (anything else is rejected):
+  - **Alphanumeric:** a-z, A-Z, 0-9
+  - **Safe special characters:** hyphen (-), underscore (_), period (.)
+  - **Forward slash (/):** Only as a segment separator for hierarchical names (for example, `renditions/jpeg`).
+
 ## Including input in a custom script
 
 ### When no input is required
@@ -377,3 +387,4 @@ For comprehensive documentation on all available InDesign Server objects, method
 [InDesign ExtendScript API Reference (InDesign Server)](https://www.indesignjs.de/extendscriptAPI/indesign-server14/#Application.html)
 
 [1]: ../../getting_started/concepts/index.md#Custom-Script-bundle-structure
+[2]: ../../getting_started/concepts/index.md#API-capability-naming-rules
