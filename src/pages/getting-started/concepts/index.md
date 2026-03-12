@@ -140,7 +140,7 @@ The manifest file is a plain JSON file with the following structure:
 | Field | Type | Description | Required |
 |-------|------|-------------|----------|
 | `manifestVersion` | string | The version of the manifest file format. Currently, only 1.0.0 is supported. | X |
-| `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 4-255 characters. It must not have any white space. | X |
+| `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 3–255 characters. Only the following characters are allowed: alphanumeric (a-z, A-Z, 0-9), hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator for hierarchical names (for example, `renditions/jpeg`). Any other character is rejected. | X |
 | `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
 | `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
 | `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: latest_version (always uses newest), fixed_major_version (locks to specific major version), or fixed_major_and_minor_version (locks to specific major.minor version). | X |
@@ -151,6 +151,16 @@ The manifest file is a plain JSON file with the following structure:
 - When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
 - majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
 - majorAppVersion and minorAppVersion are mandatory if appVersionStrategy is fixed_major_and_minor_version.
+
+### API capability naming rules
+
+Script names (the `name` field in the manifest) must follow these rules:
+
+- **Length:** 3–255 characters.
+- **Allowed characters** (anything else is rejected):
+  - **Alphanumeric:** a-z, A-Z, 0-9
+  - **Safe special characters:** hyphen (-), underscore (_), period (.)
+  - **Forward slash (/):** Allowed only as a segment separator for hierarchical names (for example, `renditions/jpeg`).
 
 ### The `apiEntryPoints` field
 
