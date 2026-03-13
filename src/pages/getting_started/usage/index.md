@@ -66,6 +66,7 @@ InDesign APIs currently support the following storage types:
 * Adobe Experience Manager (AEM)
 * Google Cloud Platform
 * Box.com
+* Frame.io
 
 InDesign APIs currently support the following storage types for
 
