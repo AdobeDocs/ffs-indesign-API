@@ -4,7 +4,7 @@ description: This is the overview page of Adobe InDesign API.
 hideBreadcrumbNav: true
 ---
 
-<Hero slots="image, heading, text" background="rgb(225, 190, 185)" theme="dark" />
+<Superhero slots="image, heading, text" background="rgb(225, 190, 185)" theme="dark" />
 
 ![InDesign Hero Image](./indesign-hero.png)
 

@@ -47,7 +47,7 @@ You can [generate access tokens][4] either directly from the Developer Console U
 
 - **Secure storage:** Store your Client ID, Client Secret, and access tokens securely to prevent unauthorized access.
 
-<!-- Links -->
+[//]: # (Links)
 [1]: https://developer.adobe.com/
 [2]: https://developer.adobe.com/developer-console/docs/guides/projects/projects-empty/
 [3]: https://developer.adobe.com/developer-console/docs/guides/services/services-add-api-oauth-s2s/

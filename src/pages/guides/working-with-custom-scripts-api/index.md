@@ -48,7 +48,7 @@ In the cURL commands, be sure to:
   
 ## Register a custom script
 
-![](./custom-script-workflow.png)
+![Custom script workflow](./custom-script-workflow.png)
 
 New custom scripts get registered by making a POST call to the API.
 
@@ -81,7 +81,7 @@ In the response, you'll receive a url which contains `{SCRIPT_ID}` and `{SCRIPT_
 
 ## Execute a custom script
 
-![](./status-poll-script.png)
+![Status poll script](./status-poll-script.png)
 
 Assets specified in the execution request are downloaded on the
 local file system using the specified identifiers. The custom script
@@ -147,8 +147,8 @@ Consult this skeleton [cURL request][6] for more details.
 ```
 
 [1]: ../writing-scripts-for-custom-scripts-api/
-[2]: ../../getting_started/index.md#Access-tokens
+[2]: ../../getting-started/index.md#Access-tokens
 [3]: ../writing-scripts-for-custom-scripts-api/
 [4]: ../../api/
-[5]: ../../getting_started/concepts/index.md#Pre-signed-URLs
+[5]: ../../getting-started/concepts/index.md#Pre-signed-URLs
 [6]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/

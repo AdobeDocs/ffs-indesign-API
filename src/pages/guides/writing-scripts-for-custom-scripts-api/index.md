@@ -376,4 +376,5 @@ For comprehensive documentation on all available InDesign Server objects, method
 
 [InDesign ExtendScript API Reference (InDesign Server)](https://www.indesignjs.de/extendscriptAPI/indesign-server14/#Application.html)
 
-[1]: ../../getting_started/concepts/index.md#Custom-Script-bundle-structure
+[//]: # (Links)
+[1]: ../../getting-started/concepts/index.md#Custom-Script-bundle-structure

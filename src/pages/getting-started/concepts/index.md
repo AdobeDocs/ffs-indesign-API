@@ -394,7 +394,7 @@ Once validation is complete, update your production scripts to use the new app v
 
 ![App Version Update Step](./app-version-update-strategy2-and-strategy3.png)
 
-<!-- Links -->
+[//]: # (Links)
 [5]: https://docs.aws.amazon.com/AmazonS3/latest/userguide/ShareObjectPreSignedURL.html
 [6]: https://dropbox.github.io/dropbox-api-v2-explorer/#files_get_temporary_link
 [7]: https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens?tabs=Containers
