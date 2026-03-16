@@ -138,15 +138,15 @@ The manifest file is a plain JSON file with the following structure:
 ```
 
 | Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `manifestVersion` | string | The version of the manifest file format. Currently, only 1.0.0 is supported. | X |
-| `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 3–255 characters. Only the following characters are allowed: alphanumeric (a-z, A-Z, 0-9), hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator for hierarchical names (for example, `renditions/jpeg`). Any other character is rejected. | X |
-| `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
-| `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
-| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: latest_version (always uses newest), fixed_major_version (locks to specific major version), or fixed_major_and_minor_version (locks to specific major.minor version). | X |
-| `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using fixed_major_version strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
-| `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using fixed_major_and_minor_version strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
-| `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. |  |
+|-------|:----:|-------------|----------|
+| `manifestVersion` | str | The version of the manifest file format. Currently, only 1.0.0 is supported. | YES |
+| `name` | str | Script name used to invoke the capability. Length and allowed characters: see **API capability naming rules** below. | YES |
+| `version` | str | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | YES |
+| `host.app` | str | The host application used to execute this script. Currently, the only valid value is `indesign`. | YES |
+| `host.appVersionStrategy` | str | How the system selects the app version: latest_version, fixed_major_version, or fixed_major_and_minor_version. | YES |
+| `host.majorAppVersion` | str | The major version of the app (e.g. 20 in 20.0.34). Required when appVersionStrategy is fixed_major_version or fixed_major_and_minor_version. | NO |
+| `host.minorAppVersion` | str | The minor version of the app (e.g. 0 in 20.0.34). Required when appVersionStrategy is fixed_major_and_minor_version. | NO |
+| `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. | NO |
 
 - When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
 - majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
@@ -154,13 +154,40 @@ The manifest file is a plain JSON file with the following structure:
 
 ### API capability naming rules
 
-Script names (the `name` field in the manifest) must follow these rules:
+The script name is the `name` field in your custom script manifest. It identifies your capability when registering and invoking the script. Names must follow the rules below; names that do not comply are rejected by the API.
+
+**Rules**
 
 - **Length:** 3–255 characters.
-- **Allowed characters** (anything else is rejected):
+- **Allowed characters** (any other character is rejected):
   - **Alphanumeric:** a-z, A-Z, 0-9
-  - **Safe special characters:** hyphen (-), underscore (_), period (.)
-  - **Forward slash (/):** Allowed only as a segment separator for hierarchical names (for example, `renditions/jpeg`).
+  - **Hyphen (-), underscore (_), period (.)**
+  - **Forward slash (/):** Allowed only as a segment separator for hierarchical names (for example, `renditions/jpeg`). Do not use leading or trailing slashes, or consecutive slashes.
+
+**Valid name examples**
+
+| Example | Notes |
+|--------|--------|
+| `my-script` | Lowercase, hyphen; 3+ characters. |
+| `export_to_idml` | Underscores allowed. |
+| `Rendition.v1` | Period allowed; mixed case allowed. |
+| `renditions/jpeg` | Forward slash as segment separator for a hierarchy. |
+| `com.acme.scripts/processor` | Combined period and slash. |
+
+**Names that are rejected**
+
+| Example | Reason |
+|--------|--------|
+| `ab` | Too short (fewer than 3 characters). |
+| `my script` | Space not allowed. |
+| `script@work` | At sign (@) not allowed. |
+| `script#2` | Hash (#) not allowed. |
+| `renditions//jpeg` | Consecutive slashes not allowed. |
+| `/renditions/jpeg` | Leading slash not allowed. |
+| `renditions/jpeg/` | Trailing slash not allowed. |
+| `café` or `naïve` | Accented characters not allowed; use a-z, A-Z, 0-9 only. |
+
+When in doubt, use only letters, numbers, hyphens, underscores, and periods—and forward slash only between segments for hierarchical names.
 
 ### The `apiEntryPoints` field
 

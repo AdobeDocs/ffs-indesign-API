@@ -153,4 +153,4 @@ Consult this skeleton [cURL request][6] for more details.
 [4]: ../../api/
 [5]: ../../getting-started/concepts/index.md#Pre-signed-URLs
 [6]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/
-[7]: ../../getting_started/concepts/index.md#API-capability-naming-rules
+[7]: ../../getting_started/concepts/index.md#api-capability-naming-rules

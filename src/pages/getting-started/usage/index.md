@@ -54,10 +54,6 @@ Only a specific set of origins/domains are supported.
 
 Please reach out to Adobe to whitelist any alternative origins/domains you may be using.
 
-### Custom script naming
-
-Custom script names (the `name` field in the script manifest) must be 3–255 characters and may only use: alphanumeric (a-z, A-Z, 0-9), hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator. Any other character is rejected. See [Key Concepts — API capability naming rules][2] for the full rules.
-
 ## Supported storage types
 
 InDesign APIs currently support the following storage types:
