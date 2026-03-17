@@ -134,4 +134,3 @@ All data is stored and processed under appropriate security measures to prevent 
 
 [//]: # (Links)
 [1]: ../changelog/index.md
-[2]: ../concepts/index.md#API-capability-naming-rules
