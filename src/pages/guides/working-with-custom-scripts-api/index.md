@@ -39,7 +39,7 @@ Then use those custom scripts on documents by referencing the `{SCRIPT_ID}` and 
 ## Before you start
 
 - You'll need [a valid access token and client ID][2].
-- **Script naming:** The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API capability naming rules][7] for details.
+- **Script naming:** The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API Capability Naming Rules][7] for details.
 
 In the cURL commands, be sure to:
 

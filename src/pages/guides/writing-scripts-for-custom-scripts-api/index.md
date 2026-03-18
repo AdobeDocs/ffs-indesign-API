@@ -39,7 +39,7 @@ The script's author defines the custom attributes and values for a particular en
 
 ## Script name requirements
 
-The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API capability naming rules][2] for details.
+The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API Capability Naming Rules][2] for details.
 
 ## Including input in a custom script
 

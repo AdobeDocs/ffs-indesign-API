@@ -45,7 +45,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 ### Enhancements
 
-- **API capability naming rules for custom scripts:** We have introduced key changes in custom script naming. See [Key Concepts — API capability naming rules][13] for details and examples.
+- **API Capability Naming Rules for Custom Scripts:** We have introduced key changes in custom script naming. See [Key Concepts — API Capability Naming Rules][13] for details and examples.
 
 ## February 24, 2026
 

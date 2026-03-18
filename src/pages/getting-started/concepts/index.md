@@ -139,20 +139,20 @@ The manifest file is a plain JSON file with the following structure:
 
 | Field | Type | Description | Required |
 |-------|:----:|-------------|----------|
-| `manifestVersion` | str | The version of the manifest file format. Currently, only 1.0.0 is supported. | YES |
-| `name` | str | Script name used to invoke the capability. Please refer to [API capability naming rules](#api-capability-naming-rules) for more details. | YES |
-| `version` | str | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | YES |
-| `host.app` | str | The host application used to execute this script. Currently, the only valid value is `indesign`. | YES |
-| `host.appVersionStrategy` | str | How the system selects the app version: latest_version, fixed_major_version, or fixed_major_and_minor_version. | YES |
-| `host.majorAppVersion` | str | The major version of the app (e.g. 20 in 20.0.34). Required when appVersionStrategy is fixed_major_version or fixed_major_and_minor_version. | NO |
-| `host.minorAppVersion` | str | The minor version of the app (e.g. 0 in 20.0.34). Required when appVersionStrategy is fixed_major_and_minor_version. | NO |
+| `manifestVersion` | string | The version of the manifest file format. Currently, only 1.0.0 is supported. | YES |
+| `name` | string| Script name used to invoke the capability. Please refer to [API Capability Naming Rules](#api-capability-naming-rules) for more details. | YES |
+| `version` | string| The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | YES |
+| `host.app` | string| The host application used to execute this script. Currently, the only valid value is `indesign`. | YES |
+| `host.appVersionStrategy` | string| How the system selects the app version: latest_version, fixed_major_version, or fixed_major_and_minor_version. | NO |
+| `host.majorAppVersion` | string| The major version of the app (e.g. 20 in 20.0.34). Required when appVersionStrategy is fixed_major_version or fixed_major_and_minor_version. | NO |
+| `host.minorAppVersion` | string| The minor version of the app (e.g. 0 in 20.0.34). Required when appVersionStrategy is fixed_major_and_minor_version. | NO |
 | `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. | NO |
 
 - When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
 - majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
 - majorAppVersion and minorAppVersion are mandatory if appVersionStrategy is fixed_major_and_minor_version.
 
-### API capability naming rules
+### API Capability Naming Rules
 
 The script name is the `name` field in your custom script manifest. It identifies your capability when registering and invoking the script. Names must follow the rules below; names that do not comply are rejected by the API.
 
