@@ -154,7 +154,7 @@ The manifest file is a plain JSON file with the following structure:
 
 ### API Capability Naming Rules
 
-The script name is the `name` field in your custom script manifest. It identifies your capability when registering and invoking the script. Names must follow the rules below; names that do not comply are rejected by the API.
+The script name is the `name` field in your custom script manifest. It identifies your capability when registering and invoking the script. Names must follow the rules below. Any non-compliant names will not be permitted for registration.
 
 **Rules**
 
