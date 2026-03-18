@@ -108,8 +108,8 @@ custom-script-folder
 
 |File|Description|Required|
 |---|---|---|
-|manifest.json|The custom script manifest. All the details of the script are described in this file.|X|
-|script.js|The primary executable for the script. This script gets executed by the product script engine and, depending on the product script engine support, it can depend on other files in nested directories in the ZIP file.|X|
+|manifest.json|The custom script manifest. All the details of the script are described in this file.|YES|
+|script.js|The primary executable for the script. This script gets executed by the product script engine and, depending on the product script engine support, it can depend on other files in nested directories in the ZIP file.|YES|
 
 ### Custom Script manifest
 
@@ -140,7 +140,7 @@ The manifest file is a plain JSON file with the following structure:
 | Field | Type | Description | Required |
 |-------|:----:|-------------|----------|
 | `manifestVersion` | str | The version of the manifest file format. Currently, only 1.0.0 is supported. | YES |
-| `name` | str | Script name used to invoke the capability. Length and allowed characters: see **API capability naming rules** below. | YES |
+| `name` | str | Script name used to invoke the capability. Please refer to [API capability naming rules](#api-capability-naming-rules) for more details. | YES |
 | `version` | str | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | YES |
 | `host.app` | str | The host application used to execute this script. Currently, the only valid value is `indesign`. | YES |
 | `host.appVersionStrategy` | str | How the system selects the app version: latest_version, fixed_major_version, or fixed_major_and_minor_version. | YES |
@@ -168,9 +168,9 @@ The script name is the `name` field in your custom script manifest. It identifie
 
 | Example | Notes |
 |--------|--------|
-| `my-script` | Lowercase, hyphen; 3+ characters. |
+| `my-script` | Lowercase, hyphen and 3+ characters. |
 | `export_to_idml` | Underscores allowed. |
-| `Rendition.v1` | Period allowed; mixed case allowed. |
+| `Rendition.v1` | Period and mixed case allowed. |
 | `renditions/jpeg` | Forward slash as segment separator for a hierarchy. |
 | `com.acme.scripts/processor` | Combined period and slash. |
 
@@ -185,9 +185,8 @@ The script name is the `name` field in your custom script manifest. It identifie
 | `renditions//jpeg` | Consecutive slashes not allowed. |
 | `/renditions/jpeg` | Leading slash not allowed. |
 | `renditions/jpeg/` | Trailing slash not allowed. |
-| `café` or `naïve` | Accented characters not allowed; use a-z, A-Z, 0-9 only. |
+| `café` or `naïve` | Accented characters not allowed. |
 
-When in doubt, use only letters, numbers, hyphens, underscores, and periods—and forward slash only between segments for hierarchical names.
 
 ### The `apiEntryPoints` field
 
@@ -195,9 +194,9 @@ In the manifest file, the `apiEntryPoints` attribute is an array of `EntryPointD
 
 |Field|Type|Description|Required|
 |---|---|---|---|
-|`type`|string|The type of entry point. Valid values are `capability`.|X|
-|`path`|string|The file path should be used based on the type. The default is to look for the files in the root directory of the ZIP file. However, this can also be any nested path in the ZIP file.|X|
-|`language`|string|The language of the script. It can be an extended script, UXP script, or JavaScript.||
+|`type`|string|The type of entry point. Valid values are `capability`.|YES|
+|`path`|string|The file path should be used based on the type. The default is to look for the files in the root directory of the ZIP file. However, this can also be any nested path in the ZIP file.|YES|
+|`language`|string|The language of the script. It can be an extended script, UXP script, or JavaScript.|YES|
 
 - Each entry point specifies a custom script or a custom script specification.
 - There can be only one entry of each type in the array.

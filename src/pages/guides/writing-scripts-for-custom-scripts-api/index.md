@@ -37,15 +37,9 @@ Use this document to construct the script files for the Custom Scripts API.
 
 The script's author defines the custom attributes and values for a particular endpoint using *script.js* files in the custom script bundle[1]. Refer to the examples below to construct your scripts.
 
-## Script name (capability name) requirements
+## Script name requirements
 
-The script name is the `name` field in your custom script manifest. It must follow the [API capability naming rules][2]:
-
-- **Length:** 3–255 characters.
-- **Allowed characters** (anything else is rejected):
-  - **Alphanumeric:** a-z, A-Z, 0-9
-  - **Safe special characters:** hyphen (-), underscore (_), period (.)
-  - **Forward slash (/):** Only as a segment separator for hierarchical names (for example, `renditions/jpeg`).
+The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API capability naming rules][7] for details.
 
 ## Including input in a custom script
 

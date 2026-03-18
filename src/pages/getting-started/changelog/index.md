@@ -45,7 +45,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 ### Enhancements
 
-- **API capability naming rules for custom scripts:** Script names (the `name` field in the manifest) must be 3–255 characters and should only use: alphanumeric (a-z, A-Z, 0-9), hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator. Any other character is rejected. See [Key Concepts — API capability naming rules][13] for details and examples.
+- **API capability naming rules for custom scripts:** We have introduced key changes in custom script naming. See [Key Concepts — API capability naming rules][13] for details and examples.
 
 ## February 24, 2026
 
