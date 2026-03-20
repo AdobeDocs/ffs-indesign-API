@@ -41,6 +41,12 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## March 18, 2026
+
+### Enhancements
+
+- **API Capability Naming Rules for Custom Scripts:** We have introduced key changes in custom script naming. See [Key Concepts — API Capability Naming Rules][13] for details and examples.
+
 ## February 24, 2026
 
 ### New Features
@@ -129,3 +135,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [10]: ../../guides/working-with-datamerge-api/index.md#utf-8-encoded-csv-file-support
 [11]: ../../api/index.md
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
+[13]: ../concepts/index.md#api-capability-naming-rules

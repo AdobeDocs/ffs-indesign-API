@@ -108,8 +108,8 @@ custom-script-folder
 
 |File|Description|Required|
 |---|---|---|
-|manifest.json|The custom script manifest. All the details of the script are described in this file.|X|
-|script.js|The primary executable for the script. This script gets executed by the product script engine and, depending on the product script engine support, it can depend on other files in nested directories in the ZIP file.|X|
+|manifest.json|The custom script manifest. All the details of the script are described in this file.|YES|
+|script.js|The primary executable for the script. This script gets executed by the product script engine and, depending on the product script engine support, it can depend on other files in nested directories in the ZIP file.|YES|
 
 ### Custom Script manifest
 
@@ -138,19 +138,55 @@ The manifest file is a plain JSON file with the following structure:
 ```
 
 | Field | Type | Description | Required |
-|-------|------|-------------|----------|
-| `manifestVersion` | string | The version of the manifest file format. Currently, only 1.0.0 is supported. | X |
-| `name` | string | The name of the custom script. The custom script can be invoked using this. It should be between 4-255 characters. It must not have any white space. | X |
-| `version` | string | The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | X |
-| `host.app` | string | The host application would be used to execute this script. Currently, the only valid value is `indesign`. | X |
-| `host.appVersionStrategy` | string | Defines how the system selects the app version for capability execution: latest_version (always uses newest), fixed_major_version (locks to specific major version), or fixed_major_and_minor_version (locks to specific major.minor version). | X |
-| `host.majorAppVersion` | string | The major version number of the app (first digit in version format like 20.0.34). When using fixed_major_version strategy, the system automatically selects the latest minor and patch versions within this major version. | X |
-| `host.minorAppVersion` | string | The minor version number of the app (second digit in version format like 20.0.34). When using fixed_major_and_minor_version strategy, the system automatically selects the latest patch version within this major.minor combination. | X |
-| `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. |  |
+|-------|:----:|-------------|----------|
+| `manifestVersion` | string | The version of the manifest file format. Currently, only 1.0.0 is supported. | YES |
+| `name` | string| Script name used to invoke the capability. Please refer to [API Capability Naming Rules](#api-capability-naming-rules) for more details. | YES |
+| `version` | string| The version number of the custom script, in x.y.z format. The version must be three segments and each version component must be between 0 and 99. | YES |
+| `host.app` | string| The host application used to execute this script. Currently, the only valid value is `indesign`. | YES |
+| `host.appVersionStrategy` | string| How the system selects the app version: latest_version, fixed_major_version, or fixed_major_and_minor_version. | NO |
+| `host.majorAppVersion` | string| The major version of the app (e.g. 20 in 20.0.34). Required when appVersionStrategy is fixed_major_version or fixed_major_and_minor_version. | NO |
+| `host.minorAppVersion` | string| The minor version of the app (e.g. 0 in 20.0.34). Required when appVersionStrategy is fixed_major_and_minor_version. | NO |
+| `apiEntryPoints` | array | An array of `<EntryPointDefinition>` objects. Describes the API entry points for the custom script. | NO |
 
 - When a customer registers a script without specifying the strategy, the system automatically chooses latest_version as the default strategy.
 - majorAppVersion parameter is mandatory if appVersionStrategy is fixed_major_version.
 - majorAppVersion and minorAppVersion are mandatory if appVersionStrategy is fixed_major_and_minor_version.
+
+### API Capability Naming Rules
+
+The script name is the `name` field in your custom script manifest. It identifies your capability when registering and invoking the script. Names must follow the rules below. Any non-compliant names will not be permitted for registration.
+
+**Rules**
+
+- **Length:** 3–255 characters.
+- **Allowed characters** (any other character is rejected):
+  - **Alphanumeric:** a-z, A-Z, 0-9
+  - **Hyphen (-), underscore (_), period (.)**
+  - **Forward slash (/):** Allowed only as a segment separator for hierarchical names (for example, `renditions/jpeg`). Do not use leading or trailing slashes, or consecutive slashes.
+
+**Valid name examples**
+
+| Example | Notes |
+|--------|--------|
+| `my-script` | Lowercase, hyphen and 3+ characters. |
+| `export_to_idml` | Underscores allowed. |
+| `Rendition.v1` | Period and mixed case allowed. |
+| `renditions/jpeg` | Forward slash as segment separator for a hierarchy. |
+| `com.acme.scripts/processor` | Combined period and slash. |
+
+**Names that are rejected**
+
+| Example | Reason |
+|--------|--------|
+| `ab` | Too short (fewer than 3 characters). |
+| `my script` | Space not allowed. |
+| `script@work` | At sign (@) not allowed. |
+| `script#2` | Hash (#) not allowed. |
+| `renditions//jpeg` | Consecutive slashes not allowed. |
+| `/renditions/jpeg` | Leading slash not allowed. |
+| `renditions/jpeg/` | Trailing slash not allowed. |
+| `café` or `naïve` | Accented characters not allowed. |
+
 
 ### The `apiEntryPoints` field
 
@@ -158,9 +194,9 @@ In the manifest file, the `apiEntryPoints` attribute is an array of `EntryPointD
 
 |Field|Type|Description|Required|
 |---|---|---|---|
-|`type`|string|The type of entry point. Valid values are `capability`.|X|
-|`path`|string|The file path should be used based on the type. The default is to look for the files in the root directory of the ZIP file. However, this can also be any nested path in the ZIP file.|X|
-|`language`|string|The language of the script. It can be an extended script, UXP script, or JavaScript.||
+|`type`|string|The type of entry point. Valid values are `capability`.|YES|
+|`path`|string|The file path should be used based on the type. The default is to look for the files in the root directory of the ZIP file. However, this can also be any nested path in the ZIP file.|YES|
+|`language`|string|The language of the script. It can be an extended script, UXP script, or JavaScript.|YES|
 
 - Each entry point specifies a custom script or a custom script specification.
 - There can be only one entry of each type in the array.

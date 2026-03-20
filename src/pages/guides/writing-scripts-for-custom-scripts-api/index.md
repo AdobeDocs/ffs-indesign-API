@@ -37,6 +37,10 @@ Use this document to construct the script files for the Custom Scripts API.
 
 The script's author defines the custom attributes and values for a particular endpoint using *script.js* files in the custom script bundle[1]. Refer to the examples below to construct your scripts.
 
+## Script name requirements
+
+The script name (the `name` in your manifest) must be 3–255 characters and should only use: a-z, A-Z, 0-9, hyphen (-), underscore (_), period (.), and forward slash (/) as a segment separator (for example, `renditions/jpeg`). Everything else is rejected. See [Key Concepts — API Capability Naming Rules][2] for details.
+
 ## Including input in a custom script
 
 ### When no input is required
@@ -378,3 +382,4 @@ For comprehensive documentation on all available InDesign Server objects, method
 
 [//]: # (Links)
 [1]: ../../getting-started/concepts/index.md#Custom-Script-bundle-structure
+[2]: ../../getting-started/concepts/index.md#api-capability-naming-rules
