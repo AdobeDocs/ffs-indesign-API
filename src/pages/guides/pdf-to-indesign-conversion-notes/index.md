@@ -1,6 +1,6 @@
 ---
-title: PDF to InDesign Conversion Notes
-description: Notes and limitations for converting PDFs to editable InDesign files.
+title: Tips for PDF to InDesign Conversion
+description: Notes, tips, and limitations for converting PDFs to editable InDesign files.
 keywords:
   - Adobe InDesign API
   - PDF to InDesign
@@ -8,13 +8,13 @@ keywords:
   - INDD
   - IDML
   - limitations
-  - conversion notes
+  - conversion tips
 hideBreadcrumbNav: true
 ---
 
 # PDF to InDesign conversion notes
 
-## Points to note
+When converting PDFs to editableInDesign files, please note these important points:
 
 - Convert multiple PDFs from any source, including files created in Illustrator, Photoshop, Express, Microsoft Word, Excel, PowerPoint, Apple Numbers, Canva, and more.
 - Preserve rich formatting such as strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested lists, spot colors, and gradients.
