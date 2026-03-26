@@ -33,7 +33,7 @@ This guide covers advanced scripting techniques for automating InDesign tasks.
 - [Writing Scripts for Custom Scripts API](./writing-scripts-for-custom-scripts-api/index.md) - Script development and logging
 - [Working with Data Merge API](./working-with-datamerge-api/index.md) - Data merge automation
 - [Working with Rendition API](./working-with-rendition-api/index.md) - Document rendering
-- [PDF to InDesign Conversion Notes](./pdf-to-indesign-conversion-notes/index.md) - PDF To InDesign Points to note and limitations
+- [Tips for PDF to InDesign Conversion](./pdf-to-indesign-conversion-notes/index.md) - PDF To InDesign Points to note and limitations
 
 <HorizontalLine />
 
