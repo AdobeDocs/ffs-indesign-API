@@ -14,7 +14,7 @@ hideBreadcrumbNav: true
 
 # PDF to InDesign conversion notes
 
-## Points to note
+When converting PDFs to editableInDesign files, please note these important points:
 
 - Convert multiple PDFs from any source, including files created in Illustrator, Photoshop, Express, Microsoft Word, Excel, PowerPoint, Apple Numbers, Canva, and more.
 - Preserve rich formatting such as strikethrough, superscript and subscript, baseline shift, underline, tables, special characters, hyperlinks, nested lists, spot colors, and gradients.
