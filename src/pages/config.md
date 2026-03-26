@@ -32,3 +32,4 @@
     - [Working with Data Merge API](/guides/working-with-datamerge-api/index.md)
     - [Working with Rendition API](/guides/working-with-rendition-api/index.md)
     - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md)
+    - [PDF to InDesign Conversion Notes](/guides/pdf-to-indesign-conversion-notes/index.md)
