@@ -1,6 +1,6 @@
 ---
-title: PDF to InDesign Conversion Notes
-description: Notes and limitations for converting PDFs to editable InDesign files.
+title: Tips for PDF to InDesign Conversion
+description: Notes, tips, and limitations for converting PDFs to editable InDesign files.
 keywords:
   - Adobe InDesign API
   - PDF to InDesign
@@ -8,7 +8,7 @@ keywords:
   - INDD
   - IDML
   - limitations
-  - conversion notes
+  - conversion tips
 hideBreadcrumbNav: true
 ---
 
