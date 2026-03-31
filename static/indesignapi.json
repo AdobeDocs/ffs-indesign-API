@@ -16,10 +16,8 @@
   ],
   "security": [
     {
-      "ApiKeyAuth": []
-    },
-    {
-      "BearerAuth": []
+      "AccessToken": [],
+      "X-Api-Key": []
     }
   ],
   "tags": [
@@ -61,35 +59,7 @@
         "tags": [
           "Data Merge"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -134,35 +104,7 @@
         "tags": [
           "Data Merge"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -209,37 +151,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-aem-token",
             "in": "header",
             "description": "Bearer token generated for the AEM technical account without the bearer keyword.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -286,35 +201,7 @@
         "tags": [
           "Rendition"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -359,35 +246,7 @@
         "tags": [
           "Custom Scripts"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -452,33 +311,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "description": "Page number for pagination",
@@ -528,24 +360,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "script_id",
             "in": "path",
             "description": "script_id as reported in the response to custom script submit request.",
@@ -559,15 +373,6 @@
             "in": "path",
             "description": "The name of the custom script, specified in the custom script manifest.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -619,37 +424,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "script_name",
             "in": "path",
             "description": "Name of the custom script",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -692,37 +470,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "script_name",
             "in": "path",
             "description": "Name of the custom script to delete",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -759,24 +510,6 @@
           "Custom Scripts"
         ],
         "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "script_name",
             "in": "path",
@@ -841,35 +574,7 @@
         "tags": [
           "Custom Scripts"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "List of registered app versions for the product",
@@ -907,35 +612,7 @@
         "tags": [
           "Document Info"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -982,37 +659,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "document-info_job_id",
             "in": "path",
             "description": "The ID of the Document Info job you want to see the status of. This comes from the response of the Document Info request.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1229,35 +879,7 @@
         "tags": [
           "Convert PDF to InDesign"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1304,37 +926,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "convert-pdf-to-indesign_job_id",
             "in": "path",
             "description": "The ID of the Convert PDF to InDesign job you want to see the status of. This comes from the response of the Convert PDF to InDesign request.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1454,37 +1049,10 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "The authorization token with bearer \"token_value\". For example: `Bearer <access_token>`.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "The API key as defined in Adobe's Developer Console.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "The ID of the job you want to see the status of. This comes from the response of the executed job request.",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-gw-ims-org-id",
-            "in": "header",
-            "description": "This is the identifier for Adobe Identity Management Service (IMS) as defined in Adobe's Developer Console. This is optional.",
-            "required": false,
             "schema": {
               "type": "string"
             }
@@ -1584,15 +1152,16 @@
   },
   "components": {
     "securitySchemes": {
-      "ApiKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "x-api-key"
-      },
-      "BearerAuth": {
+      "AccessToken": {
         "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "description": "The Adobe-generated access token, S2S format."
+      },
+      "X-Api-Key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header",
+        "description": "The client ID for authentication."
       }
     },
     "schemas": {
@@ -1639,7 +1208,7 @@
           "Lithuanian",
           "Malayalam (India)",
           "Marathi (India)",
-          "Norwegian: Bokmål",
+          "Norwegian: Bokm\u00e5l",
           "Norwegian: Nynorsk",
           "Oriya (India)",
           "Polish",
@@ -1975,7 +1544,7 @@
                       "fittingOption": {
                         "description": "The method of fitting content in a frame.\n* `content_aware_fit` - Selects best crop region of the content for the frame based on Adobe Sensei. This preserves frame size but it might scale the content size. If this fitting is set, the `centerImage` property is turned-off.\n* `fill_proportional` - Resizes content to fill the frame while preserving the proportions of the content. If the content and frame have different proportions, some of the content is obscured by the bounding box of the frame.\n* `fit_content_to_frame` - Resizes content to fit the frame. Content that is a different size than the frame appears stretched or squeezed.\n* `fit_frame_to_content` - Resizes the frame so it fits the content.\n* `honor_existing_style` - Applies the frame fitting based on existing settings applied on the original frame.\n* `preserve_sizes` - Preserves the original sizes of the frame and the content. Content that is larger than the frame is obscured around the edges.\n* `proportional` - Resizes content to fit the frame while preserving content proportions. If the content and frame have different proportions, an empty space occurs in the frame.\n",
                         "type": "string",
-                        "default":"proportional",
+                        "default": "proportional",
                         "enum": [
                           "content_aware_fit",
                           "fill_proportional",
@@ -2015,7 +1584,7 @@
                       },
                       "zone": {
                         "type": "number",
-                        "description": "Whitespace ratio allowed at the end of a line before hyphenation begins (0–1)."
+                        "description": "Whitespace ratio allowed at the end of a line before hyphenation begins (0\u20131)."
                       },
                       "capitalizedWords": {
                         "type": "boolean",
@@ -3296,10 +2865,10 @@
             "description": "The length of the response content."
           },
           "Retry-After": {
-              "schema": {
+            "schema": {
               "type": "integer"
-              },
-              "description": "The number of seconds until the user should try again."
+            },
+            "description": "The number of seconds until the user should try again."
           },
           "Access-Control-Allow-Origin": {
             "schema": {
