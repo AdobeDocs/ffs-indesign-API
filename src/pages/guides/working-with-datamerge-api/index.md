@@ -120,6 +120,137 @@ repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-s
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### Variable File Naming
+
+The Data Merge API supports variable file naming, allowing you to dynamically assign output file names using values from your input data. 
+
+How it works 
+
+- Add a dedicated column in your input CSV for file names.
+- Prefix the column header with & (for example: &FileName).
+- Each row value in this column will be used as the output file name for that record.
+
+Note: Only one variable file name column is allowed. If multiple columns have ‘&’ prefix the job will fail.
+
+File Name Constraints 
+
+Certain special characters (e.g., <, >, :, ", /, \, |, ?, * etc) or words (e.g., CON, PRN, AUX etc) are not supported by the platform and are automatically normalized. 
+
+- Consecutive unsupported characters are replaced with a single underscore (e.g., Ab5<>;d → Ab_d) 
+- Windows reserved names (e.g., CON, PRN, AUX etc) are wrapped with underscores (e.g., CON → _CON_)
+- File names (including extension) are limited to 255 characters, with longer names truncated automatically 
+
+Example of input CSV having a column header with prefix ‘&’.
+![records](./records-csv.png)
+
+Example of input payload which is same as it is currently.
+```curl
+{
+  "assets": [
+    {
+      "source": {
+        "url": "string"
+      },
+      "destination": "string"
+    }
+  ],
+  "params": {
+    "generalSettings": {
+      "fonts": {
+        "fontsDirectories": [
+          "string"
+        ]
+      },
+      "links": {
+        "replaceLinks": [
+          {
+            "targetDocument": "string",
+            "mapping": [
+              {
+                "newAssetRelativePath": null,
+                "currentURI": null,
+                "linkID": null
+              }
+            ]
+          }
+        ]
+      },
+      "appLogs": {
+        "logsRelativePath": "string"
+      }
+    },
+    "targetDocument": "string",
+    "dataSource": "string",
+    "outputMediaType": "image/jpeg",
+    "exportSettings": {
+      "jobOptionsFile": "PDF preset `High Quality Print` will be used if not provided.",
+      "pdfPreset": "High Quality Print",
+      "quality": "low",
+      "linkImages": false
+    },
+    "recordRange": "All",
+    "allowMultipleRecordsPerPage": false,
+    "multipleRecordLayoutOptions": {
+      "arrangeBy": "rows_first",
+      "bottomMargin": "string",
+      "topMargin": "string",
+      "leftMargin": "string",
+      "rightMargin": "string",
+      "columnSpacing": "string",
+      "rowSpacing": "string"
+    },
+    "imagePlacementOptions": {
+      "centerImage": false,
+      "fittingOption": "content_aware_fit",
+      "linkImages": false
+    },
+    "hyphenationSettings": {
+      "afterFirst": 0,
+      "beforeLast": 0,
+      "wordsLongerThan": 0,
+      "ladderLimit": 0,
+      "zone": 0,
+      "capitalizedWords": true,
+      "lastWord": true,
+      "acrossColumns": true,
+      "dictionarySettings": [
+        {
+          "language": "Arabic",
+          "wordList": [
+            "string"
+          ]
+        }
+      ]
+    },
+    "pagesPerDocument": "By default this would not be applicable.",
+    "removeBlankLines": false,
+    "convertUrlToHyperlink": true,
+    "outputFileBaseString": "It is derived from the original document filename.", 
+    "outputFolderPath": "A unique temporary folder name would be created." 
+  },
+  "outputs": [
+    { 
+      "destination": { 
+        "url": "string", 
+        "storageType": "Azure" 
+      },
+      "source": "string" 
+    } 
+  ] 
+} 
+```
+When file naming is not supported
+| outputType | Input parameters |
+|------------|------------------|
+| JPEG (image/jpeg) | allowMultipleRecordsPerPage is set to true |
+| PNG (image/png) | allowMultipleRecordsPerPage is set to true |
+| PDF (application/pdf) | pagesPerDocument = 1 and recordRange = "All" |
+| PDF (application/pdf) | pagesPerDocument ≠ 1 and recordRange = "1-2, 5" |
+| PDF (application/pdf) | allowMultipleRecordsPerPage is set to true |
+| InDesign (application/x-indesign) | pagesPerDocument = 1 and recordRange = "All" |
+| InDesign (application/x-indesign) | pagesPerDocument ≠ 1 and recordRange = "1-2, 5" |
+| InDesign (application/x-indesign) | allowMultipleRecordsPerPage is set to true |
+
 ### Multiline Records in Data Merge API
 
 Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing.
