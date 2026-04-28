@@ -120,6 +120,114 @@ repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-s
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### Variable File Naming Support in Data Merge API
+
+The Data Merge API supports variable file naming, allowing you to dynamically assign output file names using values from your input data. 
+
+How it works 
+
+- Add a dedicated column in your input CSV for file names.
+- Prefix the column header with & (for example: &FileName).
+- Each row value in this column will be used as the output file name for that record.
+
+Note: Only one variable file name column is allowed. If multiple columns have ‘&’ prefix the job will fail.
+
+#### File Name Constraints
+
+Certain special characters (e.g., &lt;, &gt;, :, ", /, \, |, ?, * etc) or words (e.g., CON, PRN, AUX etc) are not supported by the platform and are automatically normalized.
+
+- Consecutive unsupported characters are replaced with a single underscore (e.g., `Ab5<>;d` → `Ab5_d`)
+- Windows reserved names (e.g., CON, PRN, AUX etc) are wrapped with underscores (e.g., CON →  `_CON_`)
+- File names (including extension) are limited to 255 characters, with longer names truncated automatically
+
+Here is a sample CSV file demonstrating a column header with prefix ‘&’.
+![Records](./records-csv.png)
+
+```csv
+Name,Course,City,&FileName
+John Smith,Math,New York,John-Smith
+Jane Smith,German,Paris,Jane-Smith
+Steve Smith,Latin,Chicago,Steve-Smith
+Pete Smith,French,Seattle,Pete-Smith
+```
+
+Example of input payload which is same as it is currently.
+
+```curl
+curl --location --request POST 'https://indesign.adobe.io/v3/merge-data' \
+--header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
+--header 'x-api-key: {YOUR_API_KEY}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "assets": [
+    {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "dataMergeTemplate.indd"
+    },
+    {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "FileNames.csv"
+    }
+  ],
+  "params": {
+    "targetDocument": "dataMergeTemplate.indd",
+    "outputMediaType": "image/png",
+    "outputFolderPath": {OUTPUT_FOLDER_PATH},
+    "outputFileBaseString": "merged",
+    "dataSource": "FileNames.csv",
+    "recordRange": "All"
+    "hyphenationSettings": {
+      "afterFirst": 3,
+      "beforeLast": 3,
+      "wordsLongerThan": 6,
+      "ladderLimit": 2,
+      "zone": 0.15,
+      "capitalizedWords": false,
+      "lastWord": true,
+      "acrossColumns": false,
+      "dictionarySettings": [
+        {
+          "language": "English: USA",
+          "wordList": ["~word1", "ex~word2"]
+        },
+        {
+          "language": "English: UK",
+          "wordList": ["~word3", "~word4"]
+        }
+      ]
+    }
+  },
+  "outputs": [
+    {
+      "destination": {
+        "url": "{PUT-SIGNED_URL}"
+      },
+      "source": "{OUTPUT_FOLDER_PATH}/{outputs}"
+    }
+  ]
+}'
+```
+
+#### When file naming is NOT supported
+| outputMediaType                   | params |
+|----------------------------------|--------|
+| JPEG (image/jpeg)                | allowMultipleRecordsPerPage set to true |
+| PNG (image/png)                  | allowMultipleRecordsPerPage set to true |
+| PDF (application/pdf)            | pagesPerDocument ≠ 1 and recordRange = "All" |
+|                                  | pagesPerDocument ≠ 1 and recordRange = "1-2, 5" |
+|                                  | allowMultipleRecordsPerPage set to true |
+| InDesign (application/x-indesign)| pagesPerDocument ≠ 1 and recordRange = "All" |
+|                                  | pagesPerDocument ≠ 1 and recordRange = "1-2, 5" |
+|                                  | allowMultipleRecordsPerPage set to true |
+
+**Why:** Variable file naming gives each data row a single output file name via the `&` column, so it only applies when the merge job has a clear one row–to–one name mapping. If `allowMultipleRecordsPerPage` is true, several records can share a page, so row-level names are ambiguous. If `pagesPerDocument` is not 1, records are merged into multi-page output documents (and for PDF and InDesign you typically get one file per range folder), so many rows contribute to the same file and per-row file names are no longer meaningful. In those situations, variable file naming is not available for the affected output types.
+
 ### Multiline Records in Data Merge API
 
 Multiline content can be included by enclosing field values in double quotes (""), and any line breaks within those values will be preserved during processing.
