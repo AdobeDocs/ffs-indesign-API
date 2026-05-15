@@ -147,10 +147,10 @@ Consult this skeleton [cURL request][6] for more details.
 } 
 ```
 
-[1]: ../writing-scripts-for-custom-scripts-api/
+[1]: ../writing-scripts-for-custom-scripts-api/index.md
 [2]: ../../getting-started/index.md#Access-tokens
-[3]: ../writing-scripts-for-custom-scripts-api/
-[4]: ../../api/
+[3]: ../writing-scripts-for-custom-scripts-api/index.md
+[4]: ../../api/index.md
 [5]: ../../getting-started/concepts/index.md#Pre-signed-URLs
 [6]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/
 [7]: ../../getting-started/concepts/index.md#api-capability-naming-rules
