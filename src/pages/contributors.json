@@ -1,0 +1,123 @@
+{
+  "total": 13,
+  "offset": 0,
+  "limit": 13,
+  "data": [
+    {
+      "page": "/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/51445330?v=4",
+        "https://avatars.githubusercontent.com/u/175690214?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4"
+      ],
+      "lastUpdated": "3/12/2026"
+    },
+    {
+      "page": "/api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/51445330?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "2/27/2026"
+    },
+    {
+      "page": "/config",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/195011431?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "5/4/2026"
+    },
+    {
+      "page": "/getting-started/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "2/25/2026"
+    },
+    {
+      "page": "/getting-started/changelog/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "3/20/2026"
+    },
+    {
+      "page": "/getting-started/concepts/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "3/20/2026"
+    },
+    {
+      "page": "/getting-started/usage/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/41382203?v=4"
+      ],
+      "lastUpdated": "3/16/2026"
+    },
+    {
+      "page": "/guides/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/195011431?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/51445330?v=4"
+      ],
+      "lastUpdated": "3/26/2026"
+    },
+    {
+      "page": "/guides/pdf-to-indesign-conversion-notes/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/195011431?v=4",
+        "https://avatars.githubusercontent.com/u/51445330?v=4"
+      ],
+      "lastUpdated": "3/26/2026"
+    },
+    {
+      "page": "/guides/working-with-custom-scripts-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/175690214?v=4",
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4"
+      ],
+      "lastUpdated": "5/15/2026"
+    },
+    {
+      "page": "/guides/working-with-datamerge-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/274493592?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4"
+      ],
+      "lastUpdated": "5/5/2026"
+    },
+    {
+      "page": "/guides/working-with-rendition-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4"
+      ],
+      "lastUpdated": "2/25/2026"
+    },
+    {
+      "page": "/guides/writing-scripts-for-custom-scripts-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
+        "https://avatars.githubusercontent.com/u/41382203?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/195011431?v=4"
+      ],
+      "lastUpdated": "3/20/2026"
+    }
+  ],
+  ":type": "sheet"
+}
