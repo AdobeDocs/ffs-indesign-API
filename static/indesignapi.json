@@ -1698,8 +1698,8 @@
                   "filter": {
                     "description": "The filter applied for tags. Accepts multiple values.",
                     "type": "array",
-                    "example": "text, image",
-                    "default": "all",
+                    "example": ["text", "image"],
+                    "default": ["all"],
                     "items": {
                       "type": "string",
                       "enum": [
