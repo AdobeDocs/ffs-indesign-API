@@ -51,7 +51,7 @@
     }
   ],
   "paths": {
-    "/v3/merge-data": {
+    "/v4/merge-data": {
       "post": {
         "summary": "Perform a data merge",
         "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`).",
@@ -1623,8 +1623,8 @@
                       }
                     }
                   },
-                  "pagesPerDocument": {
-                    "description": "The maximum number of pages per document.",
+                  "recordsPerFile": {
+                    "description": "The maximum number of records per file.",
                     "type": "integer",
                     "default": "By default this would not be applicable."
                   },
@@ -1647,6 +1647,24 @@
                     "type": "string",
                     "description": "The path of the output folder.",
                     "default": "A unique temporary folder name would be created."
+                  },
+                  "outputCompressMediaType": {
+                    "type": "string",
+                    "description": "The media type of the output compression.",
+                    "enum": [
+                      "application/zip"
+                    ],
+                    "default": "By default this would not be applicable."
+                  },
+                  "outputCompressName": {
+                    "type": "string",
+                    "description": "The name of the output compression. Works only if outputCompressMediaType is provided",
+                    "default": "Result"
+                  },
+                  "outputFolderBaseString": {
+                    "type": "string",
+                    "description": "Specifies the merged output folder name. Used for multi-record outputs and when the `~` column value is empty.",
+                    "default": "mergedFiles"
                   }
                 }
               }

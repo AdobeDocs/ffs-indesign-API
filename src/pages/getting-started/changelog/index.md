@@ -41,6 +41,12 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## July 29, 2026
+
+### Enhancements
+
+- **Folder Structure and Zipped Output Support in Data Merge API:** The `POST /v4/merge-data` endpoint now supports organizing your outputs in a structured folder hierarchy, and a zipped folder containing all the outputs that have been created from the successful data merge. [Learn more about Folder Structure and Zipped Output support.][15]
+
 ## June 2, 2026
 
 ### Enhancements
@@ -143,3 +149,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
 [13]: ../concepts/index.md#api-capability-naming-rules
 [14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
+[15]: ../../guides/working-with-datamerge-api/index.md#folder-structure-and-zipped-output-in-data-merge-api

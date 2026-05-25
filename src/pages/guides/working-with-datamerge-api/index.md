@@ -120,6 +120,128 @@ repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-s
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### Folder Structure and Zipped Output in Data Merge API
+
+The Data Merge API supports organizing your outputs in a structured folder hierarchy, and a zipped folder containing all the outputs that have been created from the successful data merge.
+
+How it works 
+
+- Add a dedicated column in your input CSV for folder names.
+- Prefix the column header with ~ (for example: ~FolderName).
+- Each row value in this column will be used as the folder hierarchy for the output file of that record.
+- Users can opt in for zipped output by setting `outputCompressMediaType`; only `ZIP` is supported for now.
+- Add three input parameters:
+  - **outputCompressMediaType**
+    - **Type:** String
+    - **ENUM:** ["application/zip"]
+    - **Meaning:** The type of compression the user wants (e.g. ZIP, RAR, etc.).
+    - If the user opts for zipped output, the response contains only the zipped output, not individual assets and their links.
+    - If the user does not opt for zipped output, the response is unchanged except that the output path reflects the desired folder hierarchy.
+  - **outputCompressName**
+    - **Type:** String
+    - **Default:** `"Result"`
+    - **Meaning:** Use this value to name the resulting zip.
+  - **outputFolderBaseString**
+    - **Type:** String
+    - **Default:** `mergedFiles`
+    - **Meaning:** Specifies which folder merged files go into and the name of the merged folder; multi-record output files or outputs from empty CSV column values are placed in this folder.
+
+Note:
+- Only one folder name column is allowed. If multiple columns have a ‘~’ prefix, the job will fail.
+- Local or absolute paths (for example, `C:\F1\F2`) are not supported in the `~` column. Provide relative folder hierarchy values (for example, `F1` or `F1\F2`) only. The job will fail if a row uses a local or absolute path.
+
+
+#### Folder Name Constraints
+
+Certain special characters or words are not supported by the platform and are automatically normalized.
+
+- Consecutive unsupported characters (e.g., &lt;, &gt;, :, ", /, \, |, ?, *) are replaced with a single underscore (e.g., `Ab5<>;d` → `Ab5_d`)
+- Windows reserved names (e.g., CON, PRN, AUX, NUL as well as device names like COM1–COM9 and LPT1–LPT9) are wrapped with underscores (e.g., `CON` → `_CON_`)
+- File names (including extension) are limited to 255 characters, with longer names truncated automatically
+
+Here is a sample CSV file demonstrating a column header with prefix ‘~’.
+![Records](./records-foldercsv.png)
+
+Example of input payload which is same as it is currently.
+
+```curl
+curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
+--header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
+--header 'x-api-key: {YOUR_API_KEY}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "assets": [
+    {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "dataMergeTemplate.indd"
+    },
+    {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "FolderNames.csv"
+    }
+  ],
+  "params": {
+    "targetDocument": "dataMergeTemplate.indd",
+    "outputMediaType": "image/png",
+    "outputFolderPath": {OUTPUT_FOLDER_PATH},
+    "outputFileBaseString": "merged",
+    "dataSource": "FolderNames.csv",
+    "recordRange": "All",
+    "outputCompressMediaType": "application/zip", 
+    "outputCompressName": "Works only if outputCompressMediaType is provided",
+    "outputFolderBaseString": "Merged folder name; multi-record outputs and empty ~ values go here. Default: mergedFiles",
+    "hyphenationSettings": {
+      "afterFirst": 3,
+      "beforeLast": 3,
+      "wordsLongerThan": 6,
+      "ladderLimit": 2,
+      "zone": 0.15,
+      "capitalizedWords": false,
+      "lastWord": true,
+      "acrossColumns": false,
+      "dictionarySettings": [
+        {
+          "language": "English: USA",
+          "wordList": ["~word1", "ex~word2"]
+        },
+        {
+          "language": "English: UK",
+          "wordList": ["~word3", "~word4"]
+        }
+      ]
+    }
+  },
+  "outputs": [
+    {
+      "destination": {
+        "url": "{PUT-SIGNED_URL}"
+      },
+      "source": "{OUTPUT_FOLDER_PATH}/{outputs}"
+    }
+  ]
+}'
+```
+
+#### When folder structing is not supported, and output files will move to ‘outputFolderBaseString’
+| outputMediaType                   | params |
+|----------------------------------|--------|
+| JPEG (image/jpeg)                | allowMultipleRecordsPerPage set to true |
+| PNG (image/png)                  | allowMultipleRecordsPerPage set to true |
+| PDF (application/pdf)            | recordsPerFile ≠ 1 and recordRange = "All" |
+|                                  | recordsPerFile ≠ 1 and recordRange = "1-2, 5" |
+|                                  | allowMultipleRecordsPerPage set to true |
+| InDesign (application/x-indesign)| recordsPerFile ≠ 1 and recordRange = "All" |
+|                                  | recordsPerFile ≠ 1 and recordRange = "1-2, 5" |
+|                                  | allowMultipleRecordsPerPage set to true |
+
+**Why:** Folder structuring via the `~` column applies only when the merge job has a clear one-to-one mapping between each data row and its output. In that case, each row’s `~` value defines the folder hierarchy for that record’s output file. If `allowMultipleRecordsPerPage` is true, multiple records can share a page, so per-row folder paths are ambiguous. If `recordsPerFile` is not 1, records are combined into multi-page output documents, so many rows contribute to the same file and per-row folder paths are no longer meaningful. In those situations, folder structuring via the `~` column is not supported for the affected output types, and output files are placed under `outputFolderBaseString` instead.
+
 ### Variable File Naming Support in Data Merge API
 
 The Data Merge API supports variable file naming, allowing you to dynamically assign output file names using values from your input data. 
