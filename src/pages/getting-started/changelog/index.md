@@ -41,6 +41,12 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## June 2, 2026
+
+### Enhancements
+
+- **Variable File Naming Support in Data Merge API:** The `POST /v3/merge-data` and `POST /v3/merge-data-tags` endpoints now support variable file naming. [Learn more about variable file naming support.][14]
+
 ## March 18, 2026
 
 ### Enhancements
@@ -136,3 +142,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [11]: ../../api/index.md
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
 [13]: ../concepts/index.md#api-capability-naming-rules
+[14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
