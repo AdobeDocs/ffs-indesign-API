@@ -38,11 +38,10 @@ To maintain API stability and fair usage across clients, the following limits ar
 
 * Hard limit: 350 requests per minute. Requests beyond this limit are rejected.
 
-### File size
+### File size limits
 
-For the Custom Scripts API, the maximum allowed size for a Custom Script ZIP upload is 5MB.
-
-Otherwise, the maximum supported file size is 1GB.
+* Assets: Maximum supported size is 2GB per asset.
+* Custom Scripts API: Maximum allowed size for a Custom Script ZIP upload is 5MB.
 
 ### Assets
 

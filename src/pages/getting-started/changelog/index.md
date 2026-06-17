@@ -46,6 +46,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 ### Enhancements
 
 - **Variable File Naming Support in Data Merge API:** The `POST /v3/merge-data` endpoint now supports variable file naming. [Learn more about variable file naming support.][14]
+- **Increased Asset Size Limit:** The maximum supported asset size has been increased from 1GB to 2GB, enabling processing of larger InDesign documents and linked assets. [Learn more about file size limits.][15]
 
 ## March 18, 2026
 
@@ -143,3 +144,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [12]: ../../guides/pdf-to-indesign-conversion-notes/index.md
 [13]: ../concepts/index.md#api-capability-naming-rules
 [14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
+[15]: ../usage/index.md#file-size-limits
