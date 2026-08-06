@@ -41,6 +41,12 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## Aug 07, 2026 
+
+### Enhancements 
+
+- **Copyfitting Support in Data Merge API:** The `POST /v4/merge-data` endpoint now supports copyfitting, which automatically fits text that would otherwise overflow its frame after a merge. When a record's text is too long, copyfitting reduces its font size - staying within limits you set - so the text fits without any manual clean-up. To enable it, add a copyfittingSettings object with "enabled": true to params. Within that object you can: set how much the font size may shrink (a minimum size and a per-step amount); apply the same reduction to related frames so they stay visually consistent (multi-frame sync); and decide what happens to any records that still do not fit - keep them with a warning, or leave them out of the output. [For details, see Copyfitting in Data Merge API.][16] 
+
 ## June 2, 2026
 
 ### Enhancements
@@ -145,3 +151,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [13]: ../concepts/index.md#api-capability-naming-rules
 [14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
 [15]: ../usage/index.md#file-size-limits
+[16]: ../../guides/working-with-datamerge-api/index.md#Copyfitting-in-Data-Merge-API

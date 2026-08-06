@@ -120,6 +120,167 @@ repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-s
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### Copyfitting in Data Merge API 
+
+The Data Merge API can automatically resize text that overflows its frame after a merge. When a merged record produces overset text, copyfitting reduces the font size - within limits you define - so that the text fits. Copyfitting runs only when you enable it and only when the merged document has overset present. 
+
+#### Example use cases
+
+Copyfitting is most useful when the length of merged content varies and cannot be predicted at design time: 
+
+- **Multi-language data merge:** A single template is merged with a data source that contains rows in different languages, or a template designed for one language is merged with data that includes others. Translations in longer languages (for example, German or Finnish) often overflow frames sized for the original language. Copyfitting shrinks only the overset rows so each language fits, without redesigning the template or hand-editing records. 
+
+- **Variable-length content at scale:** In catalogues, price lists, or personalized mailers, fields such as product names, descriptions, or addresses vary in length across thousands of records, and some overflow their frames. Copyfitting fits them automatically so more records export cleanly in a single job. 
+
+#### How it works 
+
+Add a copyfittingSettings object inside params. It accepts the following fields: 
+
+- **enabled**
+
+-  Type: boolean 
+
+-  Default: false 
+
+-  Description: Master on/off switch. Copyfitting runs only when set to true. If it is false, absent, or the whole copyfittingSettings block is omitted, copyfitting is off. 
+
+- **unresolvedOversetHandling** 
+
+-  Type: string (enum) 
+
+-  Enum: "warn", "omit_records" 
+
+-  Default: "warn" 
+
+-  Description: What to do when text is still overset after copyfitting. See "Unresolved overset handling" below. 
+
+- **multiFrameSyncScope** 
+
+-  Type: string (enum) 
+
+-  Enum: "paragraph_style", "page", "paragraph_style_and_page", "document" 
+
+-  Default: none - omit the key to skip multi-frame sync 
+
+-  Description: After fitting the overset frames, apply the same font-size reduction to matching non-overset frames for visual consistency. See "Multi-frame sync scopes" below. 
+
+- **scope.global.constraints.fontSize**
+
+-  Type: object - { "minPercent": number } 
+
+-  Default: minPercent 85 
+
+-  Description: Limits for font-size reduction, applied to all text in overset stories. minPercent is the floor (text never shrinks below this percentage of its original size; 100 means it never shrinks). Must be between 1 and 100 (100 means it never shrinks); an out-of-range value fails the job. 
+
+Copyfitting is applied after the merge, before export, once per output document. Threaded text across multiple frames is treated as a single story. 
+
+#### Example request 
+
+Enable copyfitting by adding copyfittingSettings to params: 
+
+```curl
+curl --location --request POST https://indesign.adobe.io/v4/merge-data \ 
+--header "Authorization: Bearer {YOUR_OAUTH_TOKEN}" \ 
+--header "x-api-key: {YOUR_API_KEY}" \ 
+--header "Content-Type: application/json" \ 
+--data-raw '{ 
+"assets": [
+   {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "dataMergeTemplate.indd"
+    },
+    {
+      "source": {
+        "url": "{PRE-SIGNED_URL}",
+        "storageType": "Azure"
+      },
+      "destination": "FileNames.csv"
+    }
+], 
+"params": { 
+ "targetDocument": "dataMergeTemplate.indd", 
+ "outputMediaType": "application/pdf", 
+ "outputFolderPath":  {OUTPUT_FOLDER_PATH},
+ "outputFileBaseString": "merged",
+ "dataSource": "FileNames.csv", 
+ "recordRange": "All",
+ "copyfittingSettings": { 
+    "enabled": true, 
+    "unresolvedOversetHandling": "warn", 
+    "multiFrameSyncScope": "paragraph_style_and_page", 
+    "scope": {
+      "global": {
+        "constraints": { 
+          "fontSize": { "minPercent": 80}
+        } 
+      } 
+    } 
+  } 
+} 
+}' 
+```
+
+To enable copyfitting with default limits, the settings can be as small as "copyfittingSettings": { "enabled": true }. 
+
+#### Multi-frame sync scopes 
+
+Multi-frame sync keeps related frames visually consistent by extending a reduction beyond just the overset frame. Only the font-size **reduction** by percentage is synced (not the absolute point size, and no other property). Omit multiFrameSyncScope to skip sync entirely - only the overset frames change. When present, it must be one of the following. 
+
+- **paragraph_style** - Frames whose text uses the same paragraph style, across all pages, receive the largest reduction required by any of them.
+  - Example: A "Headline" paragraph style is used in frames throughout the document. If one headline must shrink 12 percent to fit, every frame using the "Headline" style - on every page - is reduced by 12 percent, so all headlines stay consistent. 
+
+- **page** - Every text frame on the same page as an overset frame receives the same reduction; paragraph style is ignored. 
+  - Example: On a product page, the description frame oversets and shrinks 10 percent. The other text frames on that page (title, price, footnote) are also reduced by 10 percent, keeping the page uniform. 
+
+- **paragraph_style_and_page** - Like paragraph_style, but limited to the current page: only same-style frames on the same page are matched. 
+  - Example: Two "Callout" frames on page 3 shrink together, but "Callout" frames on page 4 are unaffected. 
+
+- **document** - Every text frame in the entire document receives the same reduction; paragraph style is ignored. 
+  - Example: If any frame anywhere needs a 15 percent reduction to fit, all text frames across all pages are reduced by 15 percent, giving the whole piece one consistent size. 
+
+**Conflict rule:** when frames in a group would need different reductions, the largest (most aggressive) reduction wins for the group, subject to the global minimum — no text shrinks below minPercent of its original size. 
+
+#### Unresolved overset handling 
+
+If text is still overset after copyfitting has reduced text to minPercent of its original size, unresolvedOversetHandling controls the outcome: 
+
+- **"warn"** (default) - the output file is still produced; affected records report warnings.oversetText. 
+
+- **"omit_records"** - pages for the affected data records are removed from the output and the remaining records still export; affected records report warnings.omittedDataRecordNumbers (and not warnings.oversetText). If every record in the batch would be removed, no file is exported (outputs is empty) and omittedDataRecordNumbers lists the full range. 
+
+#### Copyfitting in the response 
+
+Copyfitting adds no new top-level response field. Results appear per record, inside the existing warnings object. 
+
+Still overset with "warn": 
+```
+"warnings": { 
+ "oversetText": [ 
+   { "page": "2",
+     "charactersInOverset": "142",
+     "wordsInOverset": "24", 
+     "oversetText": "...overflowing text..." 
+    } 
+ ] 
+} 
+```
+Records omitted with "omit_records": 
+```
+"warnings": { "omittedDataRecordNumbers": "5,6" } 
+```
+If copyfitting hits a script or engine error, the whole job fails (no output for that job): 
+
+```
+{ 
+"status": "FAILURE", 
+"errorCode": "capability_error", 
+"errorString": "Capability error: Copyfitting failed. <detail>" 
+} 
+```
+
 ### Variable File Naming Support in Data Merge API
 
 The Data Merge API supports variable file naming, allowing you to dynamically assign output file names using values from your input data. 
