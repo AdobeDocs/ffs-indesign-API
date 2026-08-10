@@ -37,7 +37,7 @@ twitter:
 Data merge generates variations of a template document
 from data in a provided CSV file.
 
-The Data Merge API supports UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding.
+The Data Merge API supports UTF-8 and UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding.
 
 The [Data Merge API](../../api/index.md) includes two components to complete the task: the data merge and the data merge tags.
 
