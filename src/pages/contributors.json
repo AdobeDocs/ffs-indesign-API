@@ -1,7 +1,7 @@
 {
-  "total": 13,
+  "total": 14,
   "offset": 0,
-  "limit": 13,
+  "limit": 14,
   "data": [
     {
       "page": "/",
@@ -46,7 +46,7 @@
         "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "6/17/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/getting-started/concepts/",
@@ -67,12 +67,12 @@
     {
       "page": "/guides/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
-        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4"
       ],
-      "lastUpdated": "3/26/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/pdf-to-indesign-conversion-notes/",
@@ -81,6 +81,13 @@
         "https://avatars.githubusercontent.com/u/51445330?v=4"
       ],
       "lastUpdated": "3/26/2026"
+    },
+    {
+      "page": "/guides/working-with-advanced-data-merge-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/66052604?v=4"
+      ],
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/working-with-custom-scripts-api/",
@@ -96,12 +103,12 @@
     {
       "page": "/guides/working-with-datamerge-api/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
-        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "5/5/2026"
+      "lastUpdated": "8/10/2026"
     },
     {
       "page": "/guides/working-with-rendition-api/",
