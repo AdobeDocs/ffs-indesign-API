@@ -175,7 +175,7 @@ Each clause runs an ordered list of actions on its target. Actions apply top-to-
 **Notes**
 
 - **Styles and swatches must already exist** in your template. A rule can apply a named style or swatch, but it cannot create one. Referencing a hex color like `#D4AF37` is always fine.
-- For `resizeFrame`, values must be **non-negative**. Passing `0` for `width` or `height` leaves **that target unchanged** .
+- For `resizeFrame`, values must be **non-negative**. Passing `0` for `width` or `height` leaves **that axis unchanged**.
 - `resizeFrame` and `moveFrame` apply to frames only.
 
 #### Which actions work on which targets
@@ -616,9 +616,7 @@ If copyfitting hits a script or engine error, the whole job fails (no output for
 }
 ```
 
-## Zip output
-
-### Folder Structure and Zipped Output in Data Merge API
+## Folder Structure and Zipped Output
 
 The Data Merge API supports organizing your outputs in a structured folder hierarchy, and a zipped folder containing all the outputs that have been created from the successful data merge.
 
@@ -648,7 +646,7 @@ Note:
 - Only one folder name column is allowed. If multiple columns have a ‘~’ prefix, the job will fail.
 - Local or absolute paths (for example, `C:\F1\F2`) are not supported in the `~` column. Provide relative folder hierarchy values (for example, `F1` or `F1\F2`) only. The job will fail if a row uses a local or absolute path.
 
-#### Folder Name Constraints
+### Folder Name Constraints
 
 Certain special characters or words are not supported by the platform and are automatically normalized.
 
@@ -725,7 +723,7 @@ curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
 }'
 ```
 
-#### When folder structuring is not supported, and output files will move to ‘outputFolderBaseString’
+### When folder structuring is not supported, and output files will move to ‘outputFolderBaseString’
 | outputMediaType                   | params |
 |----------------------------------|--------|
 | JPEG (image/jpeg)                | allowMultipleRecordsPerPage set to true |
@@ -741,7 +739,7 @@ curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
 
 ## Pre-signed URL Support
 
-The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/index.md#supported-storage-types) assets are supported.
+The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/#supported-storage-types) assets are supported.
 
 How it works
 
