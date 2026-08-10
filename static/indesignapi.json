@@ -23,7 +23,7 @@
   "tags": [
     {
       "name": "Data Merge",
-      "description": "Create document variations from CSV data and InDesign templates. Supports UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding."
+      "description": "Create document variations from CSV data and InDesign templates. Supports UTF-8 and UTF-16BE encoded CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding."
     },
     {
       "name": "Remap Links",
