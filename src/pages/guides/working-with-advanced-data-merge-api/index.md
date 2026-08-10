@@ -503,7 +503,7 @@ Add a copyfittingSettings object inside params. It accepts the following fields:
   - **Default:** none — omit the key to skip multi-frame sync
   - **Description:** After fitting the overset frames, apply the same font-size reduction to matching non-overset frames for visual consistency. See [Multi-frame sync scopes](#multi-frame-sync-scopes) below.
 - **scope.global.constraints.fontSize**
-  - **Type:** object — `{ "minPercent": number }`
+  - **Type:** object with a numeric `minPercent` field
   - **Default:** `minPercent` 85
   - **Description:** Limits for font-size reduction, applied to all text in overset stories. `minPercent` is the floor (text never shrinks below this percentage of its original size; 100 means it never shrinks). Must be between 1 and 100; an out-of-range value fails the job.
 
@@ -558,7 +558,7 @@ curl --location --request POST https://indesign.adobe.io/v4/merge-data \
 }'
 ```
 
-To enable copyfitting with default limits, the settings can be as small as "copyfittingSettings": { "enabled": true }.
+To enable copyfitting with default limits, `copyfittingSettings` can be as small as setting `enabled` to `true` and omitting the rest.
 
 ### Multi-frame sync scopes
 
@@ -739,7 +739,7 @@ curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
 
 ## Pre-signed URL Support
 
-The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/#supported-storage-types) assets are supported.
+The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/index.md#supported-storage-types) assets are supported.
 
 How it works
 
