@@ -1496,6 +1496,62 @@
                     "description": "The rule json file having all the conditions and actions.",
                     "type": "string"
                   },
+                  "copyfittingSettings": {
+                    "type": "object",
+                    "description": "Enables automatic copyfitting (font-size reduction) to resolve overset text after a merge. Copyfitting runs only when `enabled` is true; if the object is omitted, copyfitting is off.",
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "Master switch. Copyfitting runs only when true. If false, absent, or the object is omitted, copyfitting is off. Required to turn the feature on.",
+                        "default": false
+                      },
+                      "unresolvedOversetHandling": {
+                        "type": "string",
+                        "description": "Behavior when text is still overset after copyfitting. One of: `warn`, `omit_records`.",
+                        "default": "warn",
+                        "enum": [
+                          "warn",
+                          "omit_records"
+                        ]
+                      },
+                      "multiFrameSyncScope": {
+                        "type": "string",
+                        "description": "Applies the same font-size reduction to matching non-overset frames. One of: `paragraph_style`, `page`, `paragraph_style_and_page`, `document`. Omit to skip multi-frame sync.",
+                        "enum": [
+                          "paragraph_style",
+                          "page",
+                          "paragraph_style_and_page",
+                          "document"
+                        ]
+                      },
+                      "scope": {
+                        "type": "object",
+                        "properties": {
+                          "global": {
+                            "type": "object",
+                            "properties": {
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "fontSize": {
+                                    "type": "object",
+                                    "properties": {
+                                      "minPercent": {
+                                        "type": "number",
+                                        "description": "Floor for font-size reduction, as a percentage of the original size. Must be between 1 and 100; 100 means the text never shrinks.",
+                                        "default": 85
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+
                   "exportSettings": {
                     "type": "object",
                     "description": "The settings corresponding to the output format.",
