@@ -22,7 +22,11 @@
   ],
   "tags": [
     {
-      "name": "Data Merge",
+      "name": "Data Merge (V4)",
+      "description": "Create document variations from CSV data and InDesign templates. Supports UTF-8 and UTF-16BE encoded CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding. Adds advanced capabilities on top of standard data merge: a rules file (`rulesFile`) for conditional visibility, dynamic styling, content replacement, and frame geometry per record; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `preSignedURL` parameter."
+    },
+    {
+      "name": "Data Merge (V3)",
       "description": "Create document variations from CSV data and InDesign templates. Supports UTF-8 and UTF-16BE encoded CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding."
     },
     {
@@ -51,13 +55,58 @@
     }
   ],
   "paths": {
+    "/v4/merge-data": {
+      "post": {
+        "summary": "Perform advanced data merge",
+        "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`). Adds advanced capabilities on top of standard data merge: a `rulesFile` for per-record conditional visibility, dynamic styling, content replacement, and frame geometry; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `preSignedURL` parameter.",
+        "operationId": "dataMergeV4",
+        "tags": [
+          "Data Merge (V4)"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MergeDataRequest"
+              }
+            }
+          },
+          "description": "This job request object specifies parameters for merging the data with the given template.",
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/v3/merge-data": {
       "post": {
         "summary": "Perform a data merge",
         "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`).",
         "operationId": "dataMerge",
         "tags": [
-          "Data Merge"
+          "Data Merge (V3)"
         ],
         "parameters": [],
         "requestBody": {
