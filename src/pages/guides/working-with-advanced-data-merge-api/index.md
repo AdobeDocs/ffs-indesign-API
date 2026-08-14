@@ -131,8 +131,8 @@ A target selects the object(s) an action runs on. It always resolves within the 
 | type | Selects by | Acts on |
 |---|---|---|
 | `layer` | Layer name | The items on that layer |
-| `xmlTag` | XML tag name | A frame or a tagged text range |
-| `dataMergeTag` | Placeholder name | A Data Merge placeholder (image, QR, or text) |
+| `xml_tag` | XML tag name | A frame or a tagged text range |
+| `data_merge_tag` | Placeholder name | A Data Merge placeholder (image, QR, or text) |
 
 ```json
 { "type": "layer", "name": "premium_offer" }
@@ -140,7 +140,7 @@ A target selects the object(s) an action runs on. It always resolves within the 
 
 #### Referencing a Data Merge placeholder by kind
 
-A `dataMergeTag` target chooses which kind of placeholder to act on using a name prefix:
+A `data_merge_tag` target chooses which kind of placeholder to act on using a name prefix:
 
 | Prefix | Kind | Example |
 |---|---|---|
@@ -149,7 +149,7 @@ A `dataMergeTag` target chooses which kind of placeholder to act on using a name
 | (none) | Text placeholder | `"title"` → the text placeholder named `title` |
 
 ```json
-{ "type": "dataMergeTag", "name": "@hero" }
+{ "type": "data_merge_tag", "name": "@hero" }
 ```
 
 ### Actions — what a rule does
@@ -160,36 +160,36 @@ Each clause runs an ordered list of actions on its target. Actions apply top-to-
 |---|---|---|
 | `show` | — | Make the target visible |
 | `hide` | — | Make the target hidden |
-| `replaceText` | `value` (string) | Replace the text content |
-| `setCharacterStyle` | `styleName` (string) | Apply a named character style |
-| `setParagraphStyle` | `styleName` (string) | Apply a named paragraph style |
-| `setFillColor` | `color` (hex `#RRGGBB` or swatch name) | Change the fill color |
-| `setStrokeColor` | `color` (hex `#RRGGBB` or swatch name) | Change the stroke color |
-| `resizeFrame` | `width`, `height` | Resize the frame |
-| `moveFrame` | `x`, `y` | Move the frame's top-left origin |
+| `replace_text` | `value` (string) | Replace the text content |
+| `set_character_style` | `styleName` (string) | Apply a named character style |
+| `set_paragraph_style` | `styleName` (string) | Apply a named paragraph style |
+| `set_fill_color` | `color` (hex `#RRGGBB` or swatch name) | Change the fill color |
+| `set_stroke_color` | `color` (hex `#RRGGBB` or swatch name) | Change the stroke color |
+| `resize_frame` | `width`, `height` | Resize the frame |
+| `move_frame` | `x`, `y` | Move the frame's top-left origin |
 
 ```json
-{ "name": "setFillColor", "color": "#D4AF37" }
+{ "name": "set_fill_color", "color": "#D4AF37" }
 ```
 
 **Notes**
 
 - **Styles and swatches must already exist** in your template. A rule can apply a named style or swatch, but it cannot create one. Referencing a hex color like `#D4AF37` is always fine.
-- For `resizeFrame`, values must be **non-negative**. Passing `0` for `width` or `height` leaves **that axis unchanged**.
-- `resizeFrame` and `moveFrame` apply to frames only.
+- For `resize_frame`, values must be **non-negative**. Passing `0` for `width` or `height` leaves **that axis unchanged**.
+- `resize_frame` and `move_frame` apply to frames only.
 
 #### Which actions work on which targets
 
-| Action \ Target | `layer` | `xmlTag` | `dataMergeTag` |
+| Action \ Target | `layer` | `xml_tag` | `data_merge_tag` |
 |---|---|---|---|
 | `show` / `hide` | ✓ | ✓ | ✓ |
-| `replaceText` | — | ✓ | ✓ |
-| `setCharacterStyle` | — | ✓ | ✓ |
-| `setParagraphStyle` | — | ✓ | ✓ |
-| `setFillColor` | — | ✓ | ✓ |
-| `setStrokeColor` | — | ✓ | ✓ |
-| `resizeFrame` | — | ✓ | ✓ |
-| `moveFrame` | — | ✓ | ✓ |
+| `replace_text` | — | ✓ | ✓ |
+| `set_character_style` | — | ✓ | ✓ |
+| `set_paragraph_style` | — | ✓ | ✓ |
+| `set_fill_color` | — | ✓ | ✓ |
+| `set_stroke_color` | — | ✓ | ✓ |
+| `resize_frame` | — | ✓ | ✓ |
+| `move_frame` | — | ✓ | ✓ |
 
 Using an action on a target that isn't marked ✓ is rejected when your rules file is checked (see [Errors & Warnings](#errors--warnings)).
 
@@ -226,12 +226,12 @@ There are three building blocks:
 | Group | Operators | Notes |
 |---|---|---|
 | Comparison | `==`, `!=`, `>`, `>=`, `<`, `<=` | `>`, `>=`, `<`, `<=` are for numbers (or text, alphabetically) — not booleans |
-| Set membership | `in`, `notIn` | `value` must be a non-empty array; `valueColumn` not allowed |
-| Text matching | `contains`, `startsWith`, `endsWith` | String only, case-sensitive |
+| Set membership | `in`, `not_in` | `value` must be a non-empty array; `valueColumn` not allowed |
+| Text matching | `contains`, `starts_with`, `ends_with` | String only, case-sensitive |
 
 **Right-hand side:** provide exactly one of:
 
-- `value` — a literal number, string, or boolean (or an array of literals for `in`/`notIn`), or
+- `value` — a literal number, string, or boolean (or an array of literals for `in`/`not_in`), or
 - `valueColumn` — the name of another CSV column, to compare column-against-column.
 
 **Value types & how comparisons are made**
@@ -258,7 +258,7 @@ Wrap any single condition to negate it:
 { "not": { "column": "sku", "operator": "contains", "value": "PROMO" } }
 ```
 
-This reads as "SKU does not contain PROMO." (For simple "is not one of a set" tests, the `notIn` operator is usually simpler.)
+This reads as "SKU does not contain PROMO." (For simple "is not one of a set" tests, the `not_in` operator is usually simpler.)
 
 #### Condition examples
 
@@ -294,7 +294,7 @@ Compare two columns — `Life Time Spend` greater than `cost`:
 `region` is not EU or UK:
 
 ```json
-{ "column": "region", "operator": "notIn", "value": ["EU", "UK"] }
+{ "column": "region", "operator": "not_in", "value": ["EU", "UK"] }
 ```
 
 A nested example — VIP, in the US or UK, and not blocked:
@@ -325,14 +325,14 @@ A nested example — VIP, in the US or UK, and not blocked:
         {
           "condition": { "column": "tier", "operator": "==", "value": "VIP" },
           "then": [
-            { "target": { "type": "dataMergeTag", "name": "vip_badge" },
+            { "target": { "type": "data_merge_tag", "name": "vip_badge" },
               "actions": [ { "name": "show" } ] }
           ]
         }
       ],
       "default": {
         "then": [
-          { "target": { "type": "dataMergeTag", "name": "vip_badge" },
+          { "target": { "type": "data_merge_tag", "name": "vip_badge" },
             "actions": [ { "name": "hide" } ] }
         ]
       }
@@ -352,19 +352,19 @@ VIP records show the badge; everyone else hides it.
     {
       "cases": [
         { "condition": { "column": "tier", "operator": "==", "value": "VIP" },
-          "then": [ { "target": { "type": "dataMergeTag", "name": "badge" },
-                      "actions": [ { "name": "setFillColor", "color": "#D4AF37" } ] } ] },
+          "then": [ { "target": { "type": "data_merge_tag", "name": "badge" },
+                      "actions": [ { "name": "set_fill_color", "color": "#D4AF37" } ] } ] },
 
         { "condition": { "column": "spend", "operator": ">", "value": 10000, "type": "number" },
-          "then": [ { "target": { "type": "dataMergeTag", "name": "badge" },
-                      "actions": [ { "name": "setFillColor", "color": "#C0C0C0" } ] } ] },
+          "then": [ { "target": { "type": "data_merge_tag", "name": "badge" },
+                      "actions": [ { "name": "set_fill_color", "color": "#C0C0C0" } ] } ] },
 
         { "condition": { "column": "spend", "operator": ">", "value": 1000, "type": "number" },
-          "then": [ { "target": { "type": "dataMergeTag", "name": "badge" },
-                      "actions": [ { "name": "setFillColor", "color": "#CD7F32" } ] } ] }
+          "then": [ { "target": { "type": "data_merge_tag", "name": "badge" },
+                      "actions": [ { "name": "set_fill_color", "color": "#CD7F32" } ] } ] }
       ],
       "default": {
-        "then": [ { "target": { "type": "dataMergeTag", "name": "badge" },
+        "then": [ { "target": { "type": "data_merge_tag", "name": "badge" },
                     "actions": [ { "name": "hide" } ] } ]
       }
     }
@@ -397,7 +397,7 @@ Reads as: VIP → gold; else if spend > 10,000 → silver; else if spend > 1,000
 
 This assumes the `premium_offer` layer is **hidden** in the template. It stays hidden by default and is shown only for records that match. If the layer were visible in the template instead, add a `default` with a `hide` action to switch it off for non-matching records.
 
-#### Example 4 — Swap disclaimer text by region using an `xmlTag`
+#### Example 4 — Swap disclaimer text by region using an `xml_tag`
 
 ```json
 {
@@ -408,28 +408,28 @@ This assumes the `premium_offer` layer is **hidden** in the template. It stays h
         {
           "condition": { "column": "region", "operator": "==", "value": "EU" },
           "then": [
-            { "target": { "type": "xmlTag", "name": "disclaimer" },
+            { "target": { "type": "xml_tag", "name": "disclaimer" },
               "actions": [
-                { "name": "replaceText", "value": "This offer is subject to EU consumer protection regulations." },
-                { "name": "setCharacterStyle", "styleName": "Legal-EU" }
+                { "name": "replace_text", "value": "This offer is subject to EU consumer protection regulations." },
+                { "name": "set_character_style", "styleName": "Legal-EU" }
               ] }
           ]
         },
         {
           "condition": { "column": "region", "operator": "==", "value": "US" },
           "then": [
-            { "target": { "type": "xmlTag", "name": "disclaimer" },
+            { "target": { "type": "xml_tag", "name": "disclaimer" },
               "actions": [
-                { "name": "replaceText", "value": "Void where prohibited. See terms for details." },
-                { "name": "setCharacterStyle", "styleName": "Legal-US" }
+                { "name": "replace_text", "value": "Void where prohibited. See terms for details." },
+                { "name": "set_character_style", "styleName": "Legal-US" }
               ] }
           ]
         }
       ],
       "default": {
         "then": [
-          { "target": { "type": "xmlTag", "name": "disclaimer" },
-            "actions": [ { "name": "replaceText", "value": "Terms and conditions apply." } ] }
+          { "target": { "type": "xml_tag", "name": "disclaimer" },
+            "actions": [ { "name": "replace_text", "value": "Terms and conditions apply." } ] }
         ]
       }
     }
@@ -748,12 +748,12 @@ How it works
 - The image will be fetched from the pre-signed URL and made available for use in the data merge.
 - If a URL cannot be fetched or has expired, that row's image asset will be reported in warnings as a failed download, and the rest of the merge will proceed unaffected.
 - Add a new input parameter
-  - **preSignedURL**
+  - **presignedUrlsInDataSource**
     - **Type:** Boolean
     - **Meaning:** Whether the user wants to enable fetching image assets via pre-signed URLs provided in the CSV.
     - If the user sets this to true, the Image column values in the CSV can be pre-signed URLs, and these will be fetched and used in the data merge.
     - If the user doesn't set this (or sets it to false), there is no change in behavior — the Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
-    - If a pre-signed URL is included in the Image column but the preSignedURL parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
+    - If a pre-signed URL is included in the Image column but the presignedUrlsInDataSource parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
 
 Example of input CSV having an Image column value (prefixed with ‘@’) containing a pre-signed URL
 ![Records](./records-urlcsv.png)
@@ -787,7 +787,7 @@ curl --location --request POST 'https://indesign.adobe.io/v3/merge-data' \
    "outputFolderPath": {OUTPUT_FOLDER_PATH},
    "outputFileBaseString": "merged",
    "dataSource": "Directory_Names.csv",
-   "preSignedURL": true
+   "presignedUrlsInDataSource": true
  },
  "outputs": [
    {

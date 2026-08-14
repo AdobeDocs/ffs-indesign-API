@@ -23,7 +23,7 @@
   "tags": [
     {
       "name": "Data Merge (V4)",
-      "description": "Create document variations from CSV data and InDesign templates. Supports UTF-8 and UTF-16BE encoded CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding. Adds advanced capabilities on top of standard data merge: a rules file (`rulesFile`) for conditional visibility, dynamic styling, content replacement, and frame geometry per record; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `preSignedURL` parameter."
+      "description": "Create document variations from CSV data and InDesign templates. Supports UTF-8 and UTF-16BE encoded CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding. Adds advanced capabilities on top of standard data merge: a rules file (`rulesFile`) for conditional visibility, dynamic styling, content replacement, and frame geometry per record; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `presignedUrlsInDataSource` parameter."
     },
     {
       "name": "Data Merge (V3)",
@@ -58,7 +58,7 @@
     "/v4/merge-data": {
       "post": {
         "summary": "Perform advanced data merge",
-        "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`). Adds advanced capabilities on top of standard data merge: a `rulesFile` for per-record conditional visibility, dynamic styling, content replacement, and frame geometry; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `preSignedURL` parameter.",
+        "description": "Creates InDesign documents or PDFs by merging CSV data with InDesign templates. Supports multiple output formats: JPEG (`image/jpeg`), PNG (`image/png`), PDF (`application/pdf`), and InDesign (`application/x-indesign`). Adds advanced capabilities on top of standard data merge: a `rulesFile` for per-record conditional visibility, dynamic styling, content replacement, and frame geometry; `copyfittingSettings` to automatically shrink overset text within defined limits; folder structure and zipped output via a `~`-prefixed CSV column and `outputCompressMediaType`; and pre-signed image URLs supplied directly in the CSV via the `presignedUrlsInDataSource` parameter.",
         "operationId": "dataMergeV4",
         "tags": [
           "Data Merge (V4)"
@@ -1498,6 +1498,9 @@
                   },
                   "copyfittingSettings": {
                     "type": "object",
+                    "required": [
+                      "enabled"
+                    ],
                     "description": "Enables automatic copyfitting (font-size reduction) to resolve overset text after a merge. Copyfitting runs only when `enabled` is true; if the object is omitted, copyfitting is off.",
                     "properties": {
                       "enabled": {
@@ -1757,7 +1760,7 @@
                     "description": "The path of the output folder.",
                     "default": "A unique temporary folder name would be created."
                   },
-                  "preSignedURL": {
+                  "presignedUrlsInDataSource": {
                     "description": "If true, fetches images from pre-signed URLs in the datasource `Image` column.",
                     "type": "boolean",
                     "default": false
