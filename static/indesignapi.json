@@ -2386,12 +2386,12 @@
                   "exportingSpread": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Specify `true` if you consider range as spread numbers. Use `false` if you treat range as pages."
+                    "description": "Specify `true` to export pages as spreads. Use `false` to export pages individually. This does not change how `pageRange` is interpreted."
                   },
                   "pageRange": {
                     "type": "string",
                     "default": "All",
-                    "description": "The page ranges, based on the index of the page within the document. The value can be 'All', as well as numeral ranges. If `exportingSpread` is true, this range would represent spread indices in the document."
+                    "description": "The page ranges, based on the index of the page within the document. The value can be 'All', as well as numeral ranges. This always refers to the absolute page range in the document, regardless of the value of `exportingSpread`."
                   },
                   "quality": {
                     "type": "string",
