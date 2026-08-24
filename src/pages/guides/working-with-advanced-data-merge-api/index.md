@@ -32,7 +32,112 @@ twitter:
 ---
 # Working with Advanced Data Merge API
 
-This guide covers advanced techniques for the [Data Merge API](../../api/index.md), building on the basics from [Working with the Data Merge API](../working-with-datamerge-api/index.md), including conditional visibility, dynamic styling, copyfitting, zip output and pre-signed URL support in CSV.
+This guide covers advanced techniques for the [Data Merge API](../../api/index.md), building on the basics from [Working with the Data Merge API](../working-with-datamerge-api/index.md), including output path variations, conditional visibility, dynamic styling, copyfitting, zip output and pre-signed URL support in CSV.
+
+### Output Path Variations in Advanced Data Merge API
+
+When using the Data Merge API, the output file paths are determined by the `outputFolderPath` and `outputFileBaseString` parameters in the request. Here are the different scenarios and their corresponding output paths.
+
+Unlike the base [Data Merge API](../working-with-datamerge-api/index.md#output-path-variations-in-data-merge-api), the Advanced Data Merge API does **not** nest outputs into `range1`, `range2`, ... subfolders. Every output file for a job is written directly into the resolved output folder (temporary or `outputFolderPath`); any naming collision — between batches or between records — is resolved with a `(n)` suffix on the filename itself instead of a subfolder.
+
+> **Note:** The `pagesPerDocument` parameter from the base Data Merge API has been renamed to `recordsPerFile` in the Advanced Data Merge API. The name changed, but the behavior — how many records are merged into each output document/batch — is the same.
+
+#### Case 1: Both Parameters Missing
+
+When neither `outputFolderPath` nor `outputFileBaseString` is provided:
+
+- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
+- The output filename is derived from the original document filename
+
+Example:
+
+- Source: `Template.indd`
+- Output: `tmp0696/Template.indd`
+- In case of multiple output documents/pdf (e.g. `recordsPerFile` splits the merge into more than one batch):
+  - `tmp0696/Template.indd`
+  - `tmp0696/Template(1).indd`
+  - `tmp0696/Template.pdf`
+  - `tmp0696/Template(1).pdf`
+- For PNG/JPEG outputs (one image per record):
+  - `tmp0696/Template.png`
+  - `tmp0696/Template(1).png`
+  - `tmp0696/Template(2).png`
+
+#### Case 2: Only outputFileBaseString Provided
+
+When only `outputFileBaseString` is specified:
+
+- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
+- Filename uses the provided base string
+
+Example:
+
+- Source: `Template.indd`
+- `outputFileBaseString`: "MergedOutput"
+- Output: `tmp0696/MergedOutput.indd`
+- In case of multiple output documents/pdf:
+  - `tmp0696/MergedOutput.indd`
+  - `tmp0696/MergedOutput(1).indd`
+  - `tmp0696/MergedOutput.pdf`
+  - `tmp0696/MergedOutput(1).pdf`
+- For PNG/JPEG outputs:
+  - `tmp0696/MergedOutput.png`
+  - `tmp0696/MergedOutput(1).png`
+  - `tmp0696/MergedOutput(2).png`
+
+#### Case 3: Only outputFolderPath Provided
+
+When only `outputFolderPath` is specified:
+
+- Output is created in the specified folder
+- Filename is derived from the original template
+
+Example:
+
+- Source: `Template.indd`
+- `outputFolderPath`: "ResultFolder"
+- Output: `ResultFolder/Template.indd`
+- In case of multiple output documents/pdf:
+  - `ResultFolder/Template.indd`
+  - `ResultFolder/Template(1).indd`
+  - `ResultFolder/Template.pdf`
+  - `ResultFolder/Template(1).pdf`
+- For PNG/JPEG outputs:
+  - `ResultFolder/Template.png`
+  - `ResultFolder/Template(1).png`
+  - `ResultFolder/Template(2).png`
+
+#### Case 4: Both Parameters Provided
+
+When both parameters are specified:
+
+- Output is created in the specified folder
+- Filename uses the provided base string
+
+Example:
+
+- Source: `Template.indd`
+- `outputFileBaseString`: "MergedOutput"
+- `outputFolderPath`: "ResultFolder"
+- Output: `ResultFolder/MergedOutput.indd`
+- In case of multiple output documents/pdf:
+  - `ResultFolder/MergedOutput.indd`
+  - `ResultFolder/MergedOutput(1).indd`
+  - `ResultFolder/MergedOutput.pdf`
+  - `ResultFolder/MergedOutput(1).pdf`
+- For PNG/JPEG outputs:
+  - `ResultFolder/MergedOutput.png`
+  - `ResultFolder/MergedOutput(1).png`
+  - `ResultFolder/MergedOutput(2).png`
+
+#### Note:
+
+- Advanced Data Merge API (v4) never creates a `rangeX` subfolder for batching. All output files for a job are written directly into the resolved output folder — there is no per-batch nesting.
+- Missing-link and overset reports are no longer split per `rangeX` batch folder either. Instead of a separate `MissingLinkReport.txt`/`OversetReport.txt` pair inside each `rangeX` folder, Advanced Data Merge API (v4) writes a single `MissingLinkReport.txt` and a single `OversetReport.txt` at the root of the output folder, with each batch's findings appended as its own "Record Range: ..." section — one global report pair for the whole job instead of one pair per range.
+- Batching is still controlled by `recordsPerFile` (the v4 equivalent of the base API's `pagesPerDocument`): for example, if `recordsPerFile` is 10 and the total record count is 20, the merge still runs as two batches, but both batches write into the same folder. The second (and any later) batch's file is disambiguated with a `(1)`, `(2)`, ... suffix on the base filename — e.g. `Template.pdf`, `Template(1).pdf` — instead of a `range2` folder.
+- For output types where each record maps 1:1 to its own file — PNG, JPEG, PDF with `createSeparateFiles` enabled, or InDesign with `recordsPerFile` set to `1` — every record's output file is named from `outputFileBaseString` (or its resolved `&` filename, when the CSV provides one), and any duplicate names are disambiguated the same way with a `(n)` suffix. This means even a plain CSV with no special columns produces per-record names like `MergedOutput.png`, `MergedOutput(1).png`, `MergedOutput(2).png` — not the sequential `MergedOutput2.png`, `MergedOutput3.png` style used by the base API.
+- If a single record spans multiple pages, an additional `-<page>` suffix is inserted before the `(n)` de-duplication suffix for pages after the first — e.g. `MergedOutput.png`, `MergedOutput-2.png` (page 2 of the first record), `MergedOutput(1).png`, `MergedOutput-2(1).png` (page 2 of the second record).
+- For output types where multiple records are combined into one file (multi-record PDF/InDesign documents, or `allowMultipleRecordsPerPage`), there is no per-record naming — the whole batch's file uses the base filename, disambiguated per batch with a `(n)` suffix only when more than one batch is produced.
 
 ## Conditional Visibility & Dynamic Styling
 
@@ -737,7 +842,7 @@ curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
 
 **Why:** Folder structuring via the `~` column applies only when the merge job has a clear one-to-one mapping between each data row and its output. In that case, each row’s `~` value defines the folder hierarchy for that record’s output file. If `allowMultipleRecordsPerPage` is true, multiple records can share a page, so per-row folder paths are ambiguous. If `recordsPerFile` is not 1, records are combined into multi-page output documents, so many rows contribute to the same file and per-row folder paths are no longer meaningful. In those situations, folder structuring via the `~` column is not supported for the affected output types, and output files are placed under `outputFolderBaseString` instead.
 
-## Pre-signed URL Support
+## Pre-signed URL Support in CSV
 
 The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/index.md#supported-storage-types) assets are supported.
 
@@ -747,6 +852,7 @@ How it works
 - In addition, providing pre-signed URLs of image assets in the input request continues to be supported as before; this feature does not remove or restrict that option.
 - The image will be fetched from the pre-signed URL and made available for use in the data merge.
 - If a URL cannot be fetched or has expired, that row's image asset will be reported in warnings as a failed download, and the rest of the merge will proceed unaffected.
+  - These failures are reported under a `failedAssets` key in the response's `warnings` object — an array of `{ columnIndex, rows: [{ row, url }, ...] }` entries, one per Image column that had at least one invalid pre-signed URL, listing every affected row number and the URL that failed.
 - Add a new input parameter
   - **presignedUrlsInDataSource**
     - **Type:** Boolean

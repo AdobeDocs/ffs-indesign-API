@@ -47,6 +47,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 *Advanced Data Merge*
 
+- **Output Path Structure**: The `POST /v4/merge-data` endpoint no longer nests outputs into `rangeN` batch subfolders. Every output file is written directly into the resolved output folder, and naming collisions between batches or records are resolved with a `(n)` suffix on the filename instead. [Learn more about output path variations.][20]
 - **Conditional Visibility & Dynamic Styling**: The `POST /v4/merge-data` endpoint now accepts a `rulesFile` parameter, letting a rules JSON file show/hide layers, frames, and placeholders, restyle and recolor content, replace text, and resize or move frames — differently per record. [Learn more about conditional visibility & dynamic styling.][16]
 - **Copyfitting**: New `copyfittingSettings` object in `params` automatically reduces font size within defined limits to resolve overset text after a merge. [Learn more about copyfitting.][17]
 - **Folder Structure & Zipped Output**: The `POST /v4/merge-data` endpoint supports organizing merge outputs into a folder hierarchy via a `~`-prefixed CSV column, plus optional zipped output using `outputCompressMediaType`. [Learn more about folder structure and zipped output.][18]
@@ -160,3 +161,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [17]: ../../guides/working-with-advanced-data-merge-api/index.md#copyfitting
 [18]: ../../guides/working-with-advanced-data-merge-api/index.md#folder-structure-and-zipped-output
 [19]: ../../guides/working-with-advanced-data-merge-api/index.md#pre-signed-url-support
+[20]: ../../guides/working-with-advanced-data-merge-api/index.md#output-path-variations-in-advanced-data-merge-api
