@@ -75,10 +75,15 @@ parts:
 - **assets** - Input assets for the request.
 - **params** - Information about what to do with the input assets.
 - **outputs** - Specify locations where the output assets are uploaded. Without an `outputs` parameter, the output assets are stored in a temporary
-repository, and a [pre-signed URL][2] will be shared for those assets, which will be valid for 24hrs.
+repository, and a [pre-signed URL][2] will be shared for those assets, which will be valid for 24hrs. For multi-page exports, see [Output file naming for multi-page renditions](#output-file-naming-for-multi-page-renditions) below to predict each page's file name when setting `source`.
 
 Consult this skeleton [cURL request][3] for more details.
+
+### Output file naming for multi-page renditions
+
+When `pageRange` spans more than one page or spread (for example, with `createSeparateFiles: true`), the Rendition API generates one output file per page, following the platform's [output file naming convention][4].
 
 [1]: ../../getting-started/concepts/index.md#Pre-signed-URLs
 [2]: ../../getting-started/concepts/index.md#Pre-signed-URLs
 [3]: https://developer.adobe.com/commerce/webapi/get-started/gs-curl/
+[4]: ../../getting-started/concepts/index.md#output-file-naming-convention
