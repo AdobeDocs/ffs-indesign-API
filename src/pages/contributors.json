@@ -52,10 +52,11 @@
     {
       "page": "/getting-started/concepts/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/175690214?v=4",
         "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "3/20/2026"
+      "lastUpdated": "8/27/2026"
     },
     {
       "page": "/getting-started/usage/",
@@ -104,20 +105,22 @@
     {
       "page": "/guides/working-with-datamerge-api/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/175690214?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "8/10/2026"
+      "lastUpdated": "8/27/2026"
     },
     {
       "page": "/guides/working-with-rendition-api/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/175690214?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "2/25/2026"
+      "lastUpdated": "8/27/2026"
     },
     {
       "page": "/guides/writing-scripts-for-custom-scripts-api/",
