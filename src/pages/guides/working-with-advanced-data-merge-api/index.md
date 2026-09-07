@@ -34,13 +34,30 @@ twitter:
 
 This guide covers advanced techniques for the [Data Merge API](../../api/index.md), building on the basics from [Working with the Data Merge API](../working-with-datamerge-api/index.md), including output path variations, conditional visibility, dynamic styling, copyfitting, zip output and pre-signed URL support in CSV.
 
-### Output Path Variations in Advanced Data Merge API
+## Output Path Variations in Advanced Data Merge API
 
-When using the Data Merge API, the output file paths are determined by the `outputFolderPath` and `outputFileBaseString` parameters in the request. Here are the different scenarios and their corresponding output paths.
+This section explains where the Advanced Data Merge API writes its output files, and how that location and filename change depending on whether you provide the `outputFolderPath` and `outputFileBaseString` parameters in the request. There are four possible combinations of these two parameters; the table below summarizes all four before the detailed cases and examples that follow.
+
+| | `outputFileBaseString` omitted | `outputFileBaseString` provided |
+|---|---|---|
+| **`outputFolderPath` omitted** | [Case 1](#case-1-both-parameters-missing): temporary folder, filename from source document | [Case 2](#case-2-only-outputfilebasestring-provided): temporary folder, filename from base string |
+| **`outputFolderPath` provided** | [Case 3](#case-3-only-outputfolderpath-provided): `outputFolderPath`, filename from source document | [Case 4](#case-4-both-parameters-provided): `outputFolderPath`, filename from base string |
 
 Unlike the base [Data Merge API](../working-with-datamerge-api/index.md#output-path-variations-in-data-merge-api), the Advanced Data Merge API does **not** nest outputs into `range1`, `range2`, ... subfolders. Every output file for a job is written directly into the resolved output folder (temporary or `outputFolderPath`); any naming collision — between batches or between records — is resolved with a `(n)` suffix on the filename itself instead of a subfolder.
 
-> **Note:** The `pagesPerDocument` parameter from the base Data Merge API has been renamed to `recordsPerFile` in the Advanced Data Merge API. The name changed, but the behavior — how many records are merged into each output document/batch — is the same.
+#### Comparing v3 and v4 output structure
+
+To see that difference concretely, here is the same job — `outputFolderPath`: `"ResultFolder"`, `outputFileBaseString`: `"MergedOutput"`, output split into two batches — under each API version:
+
+Base API (v3):
+- `ResultFolder/range1/MergedOutput.pdf`
+- `ResultFolder/range2/MergedOutput.pdf`
+
+Advanced Data Merge API (v4):
+- `ResultFolder/MergedOutput.pdf`
+- `ResultFolder/MergedOutput(1).pdf`
+
+v3 gives each batch its own `rangeN` folder and reuses the same filename inside each one; v4 writes every batch into the same flat folder and disambiguates them with a `(n)` suffix on the filename instead.
 
 #### Case 1: Both Parameters Missing
 
@@ -138,6 +155,16 @@ Example:
 - For output types where each record maps 1:1 to its own file — PNG, JPEG, PDF with `createSeparateFiles` enabled, or InDesign with `recordsPerFile` set to `1` — every record's output file is named from `outputFileBaseString` (or its resolved `&` filename, when the CSV provides one), and any duplicate names are disambiguated the same way with a `(n)` suffix. This means even a plain CSV with no special columns produces per-record names like `MergedOutput.png`, `MergedOutput(1).png`, `MergedOutput(2).png` — not the sequential `MergedOutput2.png`, `MergedOutput3.png` style used by the base API.
 - If a single record spans multiple pages, an additional `-<page>` suffix is inserted before the `(n)` de-duplication suffix for pages after the first — e.g. `MergedOutput.png`, `MergedOutput-2.png` (page 2 of the first record), `MergedOutput(1).png`, `MergedOutput-2(1).png` (page 2 of the second record).
 - For output types where multiple records are combined into one file (multi-record PDF/InDesign documents, or `allowMultipleRecordsPerPage`), there is no per-record naming — the whole batch's file uses the base filename, disambiguated per batch with a `(n)` suffix only when more than one batch is produced.
+
+## Parameter Name Change in Advanced Data Merge API
+
+The `pagesPerDocument` parameter from the base [Data Merge API](../working-with-datamerge-api/index.md) has been renamed to `recordsPerFile` in the Advanced Data Merge API. The name changed, but the underlying behavior — controlling how many records are merged into each output document/batch — is the same.
+
+- `recordsPerFile` omitted or set to the total record count: All records are merged into a single output document/batch. No batching occurs.
+
+- `recordsPerFile` set to a value smaller than the total record count: Records are split across multiple batches, each containing up to `recordsPerFile` records. For example, with 20 total records and `recordsPerFile` set to 10, the merge produces two batches of 10 records each. As described in [Output Path Variations](#output-path-variations-in-advanced-data-merge-api), each additional batch's file is disambiguated with a `(1)`, `(2)`, ... suffix on the base filename rather than being written into a separate `rangeX` subfolder.
+
+- `recordsPerFile` set to `1`: Each record produces its own output document/batch, one record per file. This is also the mode used to get one file per record for InDesign output; PNG and JPEG outputs always behave this way regardless of `recordsPerFile`.
 
 ## Conditional Visibility & Dynamic Styling
 
