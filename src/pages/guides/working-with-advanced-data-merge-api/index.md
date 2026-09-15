@@ -641,6 +641,8 @@ Add a copyfittingSettings object inside params. It accepts the following fields:
 
 Copyfitting is applied after the merge, before export, once per output document. Threaded text across multiple frames is treated as a single story.
 
+> **Note:** Missing template fonts are automatically replaced with the default font, and output generation continues normally. However, copyfitting calculations are then based on the substitute font, not the original, so the output may not appear as expected.
+
 ### Example request
 
 Enable copyfitting by adding copyfittingSettings to params:
