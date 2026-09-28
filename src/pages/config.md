@@ -33,6 +33,7 @@
     - Guides header
     - [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/index.md)
     - [Working with Data Merge API](/guides/working-with-datamerge-api/index.md)
+    - [Working with Advanced Data Merge API](/guides/working-with-advanced-data-merge-api/index.md)
     - [Working with Rendition API](/guides/working-with-rendition-api/index.md)
     - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md)
     - [Tips for PDF to InDesign Conversion](/guides/pdf-to-indesign-conversion-notes/index.md)
