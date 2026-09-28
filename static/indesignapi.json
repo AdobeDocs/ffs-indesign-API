@@ -1095,7 +1095,7 @@
     "/v3/convert-to-idml": {
       "post": {
         "summary": "Convert an InDesign document to IDML",
-        "description": "Converts an INDD or INDDC document to IDML. The output file uses the input asset's `destination` filename with an `.idml` extension; output folder and filename parameters are not supported. Returns a job ID and status URL for polling. When the job succeeds, the status response contains an output download URL or ACP asset ID for the input document, along with any warnings.",
+        "description": "Converts an INDD or INDDC document to IDML. The output file uses the input asset's `destination` filename with an `.idml` extension. Returns a job ID and status URL for polling. When the job succeeds, the status response contains an output download URL or ACP asset ID for the input document, along with any warnings.",
         "operationId": "convertToIdml",
         "servers": [
           {
