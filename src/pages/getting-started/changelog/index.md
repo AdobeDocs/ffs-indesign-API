@@ -13,6 +13,7 @@ keywords:
   - Custom Scripts API
   - Remap Links API
   - Convert PDF to InDesign API
+  - Convert to IDML API
   - PDF to InDesign
   - REST API
   - cloud services
@@ -40,6 +41,14 @@ twitter:
 ## Overview
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
+
+## September 28, 2026
+
+### New Features
+
+*Convert to IDML API*
+
+- **Convert InDesign documents to IDML:** New `POST /v3/convert-to-idml` endpoint converts INDD and INDDC files to IDML. [View endpoint documentation][22]. See [Working with the Convert to IDML API][23] for a quickstart.
 
 ## August 11, 2026
 
@@ -164,3 +173,5 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [19]: ../../guides/working-with-advanced-data-merge-api/index.md#pre-signed-url-support
 [20]: ../../guides/working-with-advanced-data-merge-api/index.md#output-path-variations-in-advanced-data-merge-api
 [21]: ../../guides/working-with-advanced-data-merge-api/index.md#parameter-name-change-in-advanced-data-merge-api
+[22]: ../../api/index.md#tag/Convert-to-IDML
+[23]: ../../guides/working-with-convert-to-idml-api/index.md
