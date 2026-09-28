@@ -48,7 +48,7 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 *Convert to IDML API*
 
-- **Convert InDesign documents to IDML:** New `POST /v3/convert-to-idml` endpoint converts INDD and INDDC files to IDML. [View endpoint documentation][22]. See [Working with the Convert to IDML API][23] for a quickstart.
+- **Convert an InDesign document to IDML:** New `POST /v3/convert-to-idml` endpoint converts an INDD or INDDC file to IDML. [View endpoint documentation][22]. See [Working with the Convert to IDML API][23] for a quickstart.
 
 ## August 11, 2026
 

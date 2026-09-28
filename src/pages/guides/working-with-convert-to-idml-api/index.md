@@ -16,7 +16,9 @@ Use the Convert to IDML API to convert an INDD or INDDC file to IDML.
 
 ## Submit a conversion
 
-Send a `POST` request to `/v3/convert-to-idml`. Include a pre-signed URL for the document and its destination file name.
+Send a `POST` request to `/v3/convert-to-idml`. Include a pre-signed URL for the document and its destination file name. Currently, only one document can be converted per request.
+
+The output file takes the name from the input asset's `destination`, replacing its extension with `.idml`. For example, `example.indd` produces `example.idml`. The API does not support separate output folder or filename parameters.
 
 ```curl
 curl --request POST \

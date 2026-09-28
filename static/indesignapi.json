@@ -51,7 +51,7 @@
     },
     {
       "name": "Convert to IDML",
-      "description": "Convert InDesign (INDD/INDDC) documents to IDML."
+      "description": "Convert an InDesign (INDD/INDDC) document to IDML."
     },
     {
       "name": "Job Status",
@@ -1095,7 +1095,7 @@
     "/v3/convert-to-idml": {
       "post": {
         "summary": "Convert an InDesign document to IDML",
-        "description": "Converts an INDD or INDDC document to IDML. Linked assets not included in the request and fonts unavailable on the IDS server are reported as missing. Fonts can be supplied using a pre-signed URL. Request, response, and error behavior otherwise follows the Create Rendition API.",
+        "description": "Converts an INDD or INDDC document to IDML. The output file uses the input asset's `destination` filename with an `.idml` extension; output folder and filename parameters are not supported. Returns a job ID and status URL for polling. When the job succeeds, the status response contains an output download URL or ACP asset ID for the input document, along with any warnings.",
         "operationId": "convertToIdml",
         "servers": [
           {
@@ -2357,7 +2357,7 @@
             "$ref": "#/components/schemas/BaseJobRequestWithOutput"
           },
           {
-            "description": "Inputs for converting InDesign documents to IDML.",
+            "description": "Inputs for converting an InDesign document to IDML.",
             "type": "object",
             "required": [
               "params"
@@ -2371,11 +2371,12 @@
                 "properties": {
                   "targetDocuments": {
                     "type": "array",
-                    "description": "The InDesign documents to convert to IDML.",
+                    "description": "The InDesign document to convert to IDML. Provide exactly one document in the array.",
                     "items": {
                       "type": "string"
                     },
-                    "minItems": 1
+                    "minItems": 1,
+                    "maxItems": 1
                   }
                 }
               }
@@ -2408,7 +2409,7 @@
           },
           "outputs": {
             "type": "array",
-            "description": "One result per input file.",
+            "description": "The result for the input document.",
             "items": {
               "type": "object",
               "properties": {

@@ -35,7 +35,7 @@ This guide covers advanced scripting techniques for automating InDesign tasks.
 - [Working with Data Merge API](./working-with-datamerge-api/index.md) - Data merge automation
 - [Working with Advanced Data Merge API](./working-with-advanced-data-merge-api/index.md) - Advanced data merge techniques, Conditional Visibility, Styling, Copyfitting and more
 - [Working with Rendition API](./working-with-rendition-api/index.md) - Document rendering
-- [Working with the Convert to IDML API](./working-with-convert-to-idml-api/index.md) - Convert InDesign documents to IDML
+- [Working with the Convert to IDML API](./working-with-convert-to-idml-api/index.md) - Convert an InDesign document to IDML
 - [Tips for PDF to InDesign Conversion](./pdf-to-indesign-conversion-notes/index.md) - PDF To InDesign Points to note and limitations
 
 <HorizontalLine />

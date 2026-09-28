@@ -60,7 +60,7 @@ Convert PDF documents to editable InDesign format. Output includes all converted
 
 [Convert to IDML API][7]
 
-Convert INDD or INDDC documents to IDML.
+Convert an INDD or INDDC document to IDML.
 
 [1]: /api/#tag/Data-Merge
 [2]: /api/#tag/Rendition
