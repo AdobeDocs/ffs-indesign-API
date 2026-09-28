@@ -1,18 +1,17 @@
 ---
 title: Working with the Convert to IDML API
-description: Convert an InDesign document to IDML with the Convert to IDML API.
+description: Convert an InDesign document to IDML using the Convert to IDML API.
 keywords:
   - Adobe InDesign API
   - Convert to IDML API
   - IDML
   - INDD
-  - INDDC
   - document conversion
 ---
 
 # Working with the Convert to IDML API
 
-Use the Convert to IDML API to convert an INDD or INDDC file to IDML.
+Use the Convert to IDML API to convert an INDD file to IDML.
 
 ## Submit a conversion
 
@@ -22,7 +21,7 @@ The output file takes the name from the input asset's `destination`, replacing i
 
 ```curl
 curl --request POST \
-  --url https://indesign-stage.adobe.io/v3/convert-to-idml \
+  --url https://indesign.adobe.io/v3/convert-to-idml \
   --header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
   --header 'x-api-key: {YOUR_API_KEY}' \
   --header 'Content-Type: application/json' \
@@ -46,7 +45,7 @@ An accepted request returns a `jobId` and `statusUrl`. Poll the status endpoint 
 ```json
 {
   "jobId": "{JOB_ID}",
-  "statusUrl": "https://indesign-stage.adobe.io/v3/status/{JOB_ID}"
+  "statusUrl": "https://indesign.adobe.io/v3/status/{JOB_ID}"
 }
 ```
 
