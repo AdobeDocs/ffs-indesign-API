@@ -1,17 +1,17 @@
 ---
-title: Working with the Convert to IDML API
-description: Convert an InDesign document to IDML using the Convert to IDML API.
+title: Working with the Convert InDesign to IDML API
+description: Convert an InDesign document to IDML using the Convert InDesign to IDML API.
 keywords:
   - Adobe InDesign API
-  - Convert to IDML API
+  - Convert InDesign to IDML API
   - IDML
   - INDD
   - document conversion
 ---
 
-# Working with the Convert to IDML API
+# Working with the Convert InDesign to IDML API
 
-Use the Convert to IDML API to convert an INDD file to IDML.
+Use the Convert InDesign to IDML API to convert an INDD file to IDML.
 
 ## Submit a conversion
 

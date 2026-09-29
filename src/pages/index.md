@@ -58,7 +58,7 @@ Convert PDF documents to editable InDesign format. Output includes all converted
 
 <DiscoverBlock slots="link, text"/>
 
-[Convert to IDML API][7]
+[Convert InDesign to IDML API][7]
 
 Convert an INDD document to IDML.
 
