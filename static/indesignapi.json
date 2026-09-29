@@ -46,7 +46,7 @@
       "description": "Convert PDF documents to InDesign (INDD or IDML) format. The output is a ZIP file containing the converted documents and all associated assets."
     },
     {
-      "name": "Convert to IDML",
+      "name": "Convert InDesign to IDML",
       "description": "Convert an InDesign (INDD) document to IDML."
     },
     {
@@ -1049,7 +1049,7 @@
         "description": "Converts an INDD document to IDML. The completed job's status includes a download URL for the converted document and any warnings.",
         "operationId": "convertToIdml",
         "tags": [
-          "Convert to IDML"
+          "Convert InDesign to IDML"
         ],
         "requestBody": {
           "content": {
@@ -1090,15 +1090,15 @@
       "get": {
         "operationId": "getConvertToIdmlJobStatus",
         "summary": "Get status - Convert InDesign to IDML API",
-        "description": "Returns the latest status of a Convert to IDML job.",
+        "description": "Returns the latest status of a Convert InDesign to IDML job.",
         "tags": [
-          "Convert to IDML"
+          "Convert InDesign to IDML"
         ],
         "parameters": [
           {
             "name": "convert-to-idml_job_id",
             "in": "path",
-            "description": "The job ID returned by the Convert to IDML request.",
+            "description": "The job ID returned by the Convert InDesign to IDML request.",
             "required": true,
             "schema": {
               "type": "string"
@@ -1998,7 +1998,7 @@
       },
       "ConvertToIdmlJobStatus": {
         "type": "object",
-        "description": "Status and output details for a Convert to IDML job.",
+        "description": "Status and output details for a Convert InDesign to IDML job.",
         "properties": {
           "jobId": {
             "type": "string",
