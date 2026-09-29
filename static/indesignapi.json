@@ -1094,7 +1094,7 @@
     },
     "/v3/convert-to-idml": {
       "post": {
-        "summary": "Convert an InDesign document to IDML",
+        "summary": "Convert InDesign to IDML",
         "description": "Converts an INDD document to IDML. The completed job's status includes a download URL for the converted document and any warnings.",
         "operationId": "convertToIdml",
         "tags": [
