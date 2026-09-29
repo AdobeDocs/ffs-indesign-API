@@ -13,7 +13,7 @@ keywords:
   - Remap Links API
   - Document Info API
   - Convert PDF to InDesign API
-  - Convert to IDML API
+  - Convert InDesign to IDML API
   - REST API
   - cloud services
   - enterprise solutions

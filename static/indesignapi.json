@@ -1089,7 +1089,7 @@
     "/v3/status/{convert-to-idml_job_id}": {
       "get": {
         "operationId": "getConvertToIdmlJobStatus",
-        "summary": "Get status - Convert to IDML API",
+        "summary": "Get status - Convert InDesign to IDML API",
         "description": "Returns the latest status of a Convert to IDML job.",
         "tags": [
           "Convert to IDML"

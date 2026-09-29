@@ -34,6 +34,6 @@
     - [Working with Custom Scripts API](/guides/working-with-custom-scripts-api/index.md)
     - [Working with Data Merge API](/guides/working-with-datamerge-api/index.md)
     - [Working with Rendition API](/guides/working-with-rendition-api/index.md)
-    - [Working with the Convert to IDML API](/guides/working-with-convert-to-idml-api/index.md)
+    - [Working with the Convert InDesign to IDML API](/guides/working-with-convert-to-idml-api/index.md)
     - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md)
     - [Tips for PDF to InDesign Conversion](/guides/pdf-to-indesign-conversion-notes/index.md)
