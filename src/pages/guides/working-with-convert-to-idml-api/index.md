@@ -51,4 +51,4 @@ An accepted request returns a `jobId` and `statusUrl`. Poll the status endpoint 
 
 ## Links and fonts
 
-If linked assets in the document are not included with the request, they are reported as missing links. Fonts unavailable on the IDS server are reported as missing fonts unless supplied using a pre-signed URL.
+If linked assets in the document are not included with the request, they are reported as missing links. Fonts unavailable are reported as missing fonts unless supplied using a pre-signed URL.
