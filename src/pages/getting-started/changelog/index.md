@@ -13,6 +13,7 @@ keywords:
   - Custom Scripts API
   - Remap Links API
   - Convert PDF to InDesign API
+  - Convert InDesign to IDML API
   - PDF to InDesign
   - REST API
   - cloud services
@@ -40,6 +41,27 @@ twitter:
 ## Overview
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
+
+## September 28, 2026
+
+### New Features
+
+*Convert InDesign to IDML API*
+
+- **Convert an InDesign document to IDML:** New `POST /v3/convert-to-idml` endpoint converts an INDD file to IDML. [View endpoint documentation][22]. See [Working with the Convert InDesign to IDML API][23] for a quickstart.
+
+## August 11, 2026
+
+### New Features
+
+*Advanced Data Merge*
+
+- **Output Path Structure**: The `POST /v4/merge-data` endpoint no longer nests outputs into `rangeN` batch subfolders. Every output file is written directly into the resolved output folder, and naming collisions between batches or records are resolved with a `(n)` suffix on the filename instead. [Learn more about output path variations.][20]
+- **Parameter Name Change**: The `pagesPerDocument` parameter from the base Data Merge API has been renamed to `recordsPerFile` in the `POST /v4/merge-data` endpoint. The underlying behavior is unchanged. [Learn more about the parameter name change.][21]
+- **Conditional Visibility & Dynamic Styling**: The `POST /v4/merge-data` endpoint now accepts a `rulesFile` parameter, letting a rules JSON file show/hide layers, frames, and placeholders, restyle and recolor content, replace text, and resize or move frames — differently per record. [Learn more about conditional visibility & dynamic styling.][16]
+- **Copyfitting**: New `copyfittingSettings` object in `params` automatically reduces font size within defined limits to resolve overset text after a merge. [Learn more about copyfitting.][17]
+- **Folder Structure & Zipped Output**: The `POST /v4/merge-data` endpoint supports organizing merge outputs into a folder hierarchy via a `~`-prefixed CSV column, plus optional zipped output using `outputCompressMediaType`. [Learn more about folder structure and zipped output.][18]
+- **Pre-signed URL Support in CSV**: A new `preSignedURL` parameter allows image placeholder columns (prefixed with `@`) to contain pre-signed URLs directly in the CSV, fetched during the merge. [Learn more about pre-signed URL support.][19]
 
 ## June 2, 2026
 
@@ -145,3 +167,11 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [13]: ../concepts/index.md#api-capability-naming-rules
 [14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
 [15]: ../usage/index.md#file-size-limits
+[16]: ../../guides/working-with-advanced-data-merge-api/index.md#conditional-visibility--dynamic-styling
+[17]: ../../guides/working-with-advanced-data-merge-api/index.md#copyfitting
+[18]: ../../guides/working-with-advanced-data-merge-api/index.md#folder-structure-and-zipped-output
+[19]: ../../guides/working-with-advanced-data-merge-api/index.md#pre-signed-url-support
+[20]: ../../guides/working-with-advanced-data-merge-api/index.md#output-path-variations-in-advanced-data-merge-api
+[21]: ../../guides/working-with-advanced-data-merge-api/index.md#parameter-name-change-in-advanced-data-merge-api
+[22]: ../../api/index.md#tag/Convert-to-IDML
+[23]: ../../guides/working-with-convert-to-idml-api/index.md

@@ -92,6 +92,25 @@ platform can upload. You can provide this information in the `outputs` array wit
 
 Each storage provider may have its own requirements for creating PUT or POST pre-signed URLs. Please follow the documentation from the individual storage provider creating these URLs.
 
+## Output file naming convention
+
+When a request produces more than one output file from a single base name (for example, one file per page in the [Rendition API][10], or one file per record in the [Data Merge API][11]), the file names follow InDesign's own native sequential-export naming convention — not an underscore- or hyphen-delimited scheme:
+
+- The first file uses the base name as-is: `{outputFileBaseString}.{ext}`
+- Each subsequent file appends its index directly after the base name, with no separator: `{outputFileBaseString}{index}.{ext}`
+- `{ext}` is derived from the requested `outputMediaType` (for example, `image/png` → `.png`, `image/jpeg` → `.jpg`).
+
+For example, with `outputFileBaseString` set to `banner`:
+
+- `banner.png`
+- `banner2.png`
+- `banner3.png`
+- ...
+
+**Caution:** Because there is no separator, a base string that ends in a digit makes the generated file names ambiguous to parse back into base + index without already knowing the base string. For example, base string `hero9` at index 10 produces `hero910.png`, which is indistinguishable from base string `hero91` at index 0. Avoid base strings that end in a digit if your integration needs to derive the page or record index from the file name, or track expected file names by position/index rather than by parsing the generated name.
+
+If you register per-file destinations using the `outputs` array (see [Output assets](#output-assets)), predict each file's name using this convention when setting its `source` field — a mismatched `source` means that file silently fails to upload to your registered destination.
+
 ## About custom script bundles
 
 To create a script to use with the Custom Scripts API, you'll need to prepare a script bundle, a ZIP file with a predefined structure.
@@ -436,3 +455,5 @@ Once validation is complete, update your production scripts to use the new app v
 [7]: https://learn.microsoft.com/en-us/azure/ai-services/translator/document-translation/how-to-guides/create-sas-tokens?tabs=Containers
 [8]: ../../guides/writing-scripts-for-custom-scripts-api/index.md
 [9]: https://developer.adobe.com/events/docs/guides/using/indesign-apis/indesign-apis-events-data-stream-setup/
+[10]: ../../guides/working-with-rendition-api/index.md
+[11]: ../../guides/working-with-datamerge-api/index.md
