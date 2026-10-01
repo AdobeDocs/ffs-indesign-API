@@ -68,4 +68,4 @@ Convert an INDD document to IDML.
 [4]: /api/#tag/Job-Status
 [5]: /api/#tag/Document-Info
 [6]: /api/#tag/Convert-PDF-to-InDesign
-[7]: /api/#tag/Convert-to-IDML
+[7]: /api/#tag/Convert-InDesign-to-IDML

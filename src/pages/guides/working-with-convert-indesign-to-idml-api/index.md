@@ -15,13 +15,13 @@ Use the Convert InDesign to IDML API to convert an INDD file to IDML.
 
 ## Submit a conversion
 
-Send a `POST` request to `/v3/convert-to-idml`. Include a pre-signed URL for the document and its destination file name. Currently, only one document can be converted per request.
+Send a `POST` request to `/v3/convert-indesign-to-idml`. Include a pre-signed URL for the document and its destination file name. Currently, only one document can be converted per request.
 
 The output file takes the name from the input asset's `destination`, replacing its extension with `.idml`. For example, `example.indd` produces `example.idml`.
 
 ```curl
 curl --request POST \
-  --url https://indesign.adobe.io/v3/convert-to-idml \
+  --url https://indesign.adobe.io/v3/convert-indesign-to-idml \
   --header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
   --header 'x-api-key: {YOUR_API_KEY}' \
   --header 'Content-Type: application/json' \

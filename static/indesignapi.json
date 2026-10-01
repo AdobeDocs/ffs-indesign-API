@@ -1043,11 +1043,11 @@
         }
       }
     },
-    "/v3/convert-to-idml": {
+    "/v3/convert-indesign-to-idml": {
       "post": {
         "summary": "Convert InDesign to IDML",
         "description": "Converts an INDD document to IDML. The completed job's status includes a download URL for the converted document and any warnings.",
-        "operationId": "convertToIdml",
+        "operationId": "convertIndesignToIdml",
         "tags": [
           "Convert InDesign to IDML"
         ],
@@ -1055,7 +1055,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConvertToIdmlRequest"
+                "$ref": "#/components/schemas/ConvertIndesignToIdmlRequest"
               }
             }
           },
@@ -1086,9 +1086,9 @@
         }
       }
     },
-    "/v3/status/{convert-to-idml_job_id}": {
+    "/v3/status/{convert-indesign-to-idml_job_id}": {
       "get": {
-        "operationId": "getConvertToIdmlJobStatus",
+        "operationId": "getConvertIndesignToIdmlJobStatus",
         "summary": "Get status - Convert InDesign to IDML API",
         "description": "Returns the latest status of a Convert InDesign to IDML job.",
         "tags": [
@@ -1096,7 +1096,7 @@
         ],
         "parameters": [
           {
-            "name": "convert-to-idml_job_id",
+            "name": "convert-indesign-to-idml_job_id",
             "in": "path",
             "description": "The job ID returned by the Convert InDesign to IDML request.",
             "required": true,
@@ -1111,7 +1111,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConvertToIdmlJobStatus"
+                  "$ref": "#/components/schemas/ConvertIndesignToIdmlJobStatus"
                 }
               }
             }
@@ -1963,7 +1963,7 @@
           }
         ]
       },
-      "ConvertToIdmlRequest": {
+      "ConvertIndesignToIdmlRequest": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BaseJobRequestWithOutput"
@@ -1996,7 +1996,7 @@
           }
         ]
       },
-      "ConvertToIdmlJobStatus": {
+      "ConvertIndesignToIdmlJobStatus": {
         "type": "object",
         "description": "Status and output details for a Convert InDesign to IDML job.",
         "properties": {
