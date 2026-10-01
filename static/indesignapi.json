@@ -46,6 +46,10 @@
       "description": "Convert PDF documents to InDesign (INDD or IDML) format. The output is a ZIP file containing the converted documents and all associated assets."
     },
     {
+      "name": "Convert InDesign to IDML",
+      "description": "Convert an InDesign (INDD) document to IDML."
+    },
+    {
       "name": "Job Status",
       "description": "Track job execution status and lifecycle events. Retrieves the most recent status event for jobs across different execution stages: `not_started` (job creation), `running` (execution begins), `succeeded` (complete), `partial_success` (complete with non-critical errors), `failed` (execution failure)."
     }
@@ -1039,6 +1043,100 @@
         }
       }
     },
+    "/v3/convert-indesign-to-idml": {
+      "post": {
+        "summary": "Convert InDesign to IDML",
+        "description": "Converts an INDD document to IDML. The completed job's status includes a download URL for the converted document and any warnings.",
+        "operationId": "convertIndesignToIdml",
+        "tags": [
+          "Convert InDesign to IDML"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConvertIndesignToIdmlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "$ref": "#/components/responses/Accepted"
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/v3/status/{convert-indesign-to-idml_job_id}": {
+      "get": {
+        "operationId": "getConvertIndesignToIdmlJobStatus",
+        "summary": "Get status - Convert InDesign to IDML API",
+        "description": "Returns the latest status of a Convert InDesign to IDML job.",
+        "tags": [
+          "Convert InDesign to IDML"
+        ],
+        "parameters": [
+          {
+            "name": "convert-indesign-to-idml_job_id",
+            "in": "path",
+            "description": "The job ID returned by the Convert InDesign to IDML request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The current job status, including any output details or warnings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConvertIndesignToIdmlJobStatus"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadParams"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
     "/v3/status/{id}": {
       "get": {
         "operationId": "getJobStatus",
@@ -1864,6 +1962,124 @@
             }
           }
         ]
+      },
+      "ConvertIndesignToIdmlRequest": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseJobRequestWithOutput"
+          },
+          {
+            "description": "Inputs for converting an InDesign document to IDML.",
+            "type": "object",
+            "required": [
+              "params"
+            ],
+            "properties": {
+              "params": {
+                "type": "object",
+                "required": [
+                  "targetDocuments"
+                ],
+                "properties": {
+                  "targetDocuments": {
+                    "type": "array",
+                    "description": "The InDesign document to convert to IDML. Provide exactly one document in the array.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1,
+                    "maxItems": 1
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ConvertIndesignToIdmlJobStatus": {
+        "type": "object",
+        "description": "Status and output details for a Convert InDesign to IDML job.",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "description": "The unique job identifier."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time when the job reached this status."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "not_started",
+              "running",
+              "succeeded",
+              "partial_success",
+              "failed"
+            ]
+          },
+          "outputs": {
+            "type": "array",
+            "description": "The result for the input document.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "input": {
+                  "type": "string",
+                  "description": "The submitted input file name."
+                },
+                "output": {
+                  "type": "object",
+                  "description": "The generated IDML file location.",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "A pre-signed URL to download the IDML file."
+                    }
+                  }
+                },
+                "warnings": {
+                  "type": "object",
+                  "properties": {
+                    "missingLinks": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "missingFonts": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "otherWarnings": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "error_code": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       },
       "ConvertToInDesignRequest": {
         "allOf": [

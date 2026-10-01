@@ -56,9 +56,16 @@ Retrieve information from INDD / IDML documents including layers, links and font
 
 Convert PDF documents to editable InDesign format. Output includes all converted files and assets in a ZIP archive.
 
+<DiscoverBlock slots="link, text"/>
+
+[Convert InDesign to IDML API][7]
+
+Convert an INDD document to IDML.
+
 [1]: /api/#tag/Data-Merge
 [2]: /api/#tag/Rendition
 [3]: /api/#tag/Custom-Scripts
 [4]: /api/#tag/Job-Status
 [5]: /api/#tag/Document-Info
 [6]: /api/#tag/Convert-PDF-to-InDesign
+[7]: /api/#tag/Convert-InDesign-to-IDML
