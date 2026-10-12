@@ -41,6 +41,13 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## Aug 7, 2026
+
+### Enhancements
+
+- **PreSigned URLs Support in Data Merge API:** The `POST /v4/merge-data` endpoint now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. [Learn more about PreSigned URLs support.][18]
+
+
 ## June 2, 2026
 
 ### Enhancements
@@ -145,3 +152,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [13]: ../concepts/index.md#api-capability-naming-rules
 [14]: ../../guides/working-with-datamerge-api/index.md#variable-file-naming-support-in-data-merge-api
 [15]: ../usage/index.md#file-size-limits
+[18]: ../../guides/working-with-datamerge-api/index.md#presigned-urls-support-in-data-merge-api

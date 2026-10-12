@@ -120,6 +120,68 @@ repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-s
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
+### PreSigned URLs Support in Data Merge API
+The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/#supported-storage-types) assets are supported.
+
+How it works 
+
+- Pre-signed URLs of image assets can now be provided directly in the Image column (prefixed with @) of the input CSV, for each row 
+- In addition, providing pre-signed URLs of image assets in the input request continues to be supported as before; this feature does not remove or restrict that option. 
+- The image will be fetched from the pre-signed URL and made available for use in the data merge. 
+- If a URL cannot be fetched or has expired, that row's image asset will be reported in warnings as a failed download, and the rest of the merge will proceed unaffected. 
+- Add a new input parameter
+  - **preSignedURL**
+    - **Type:** Boolean
+    - **Meaning:** Whether the user wants to enable fetching image assets via pre-signed URLs provided in the CSV. 
+    - If the user sets this to true, the Image column values in the CSV can be pre-signed URLs, and these will be fetched and used in the data merge.
+    - If the user doesn't set this (or sets it to false), there is no change in behavior — the Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
+    - If a pre-signed URL is included in the Image column but the preSignedURL parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
+
+Example of input CSV having an Image column value (prefixed with ‘@’) containing a pre-signed URL
+![Records](./records-urlcsv.png)
+
+Example of input payload
+```curl
+curl --location --request POST 'https://indesign.adobe.io/v3/merge-data' \ 
+--header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \ 
+--header 'x-api-key: {YOUR_API_KEY}' \ 
+--header 'Content-Type: application/json' \ 
+--data-raw '{ 
+ "assets": [ 
+   { 
+     "source": { 
+       "url": "{PRE-SIGNED_URL}", 
+       "storageType": "Azure" 
+     }, 
+     "destination": "dataMergeTemplate.indd" 
+   }, 
+   { 
+     "source": { 
+       "url": "{PRE-SIGNED_URL}", 
+       "storageType": "Azure" 
+     }, 
+     "destination": "Directory_Names.csv" 
+   } 
+ ], 
+ "params": { 
+   "targetDocument": "dataMergeTemplate.indd", 
+   "outputMediaType": "application/x-indesign", 
+   "outputFolderPath": {OUTPUT_FOLDER_PATH}, 
+   "outputFileBaseString": "merged", 
+   "dataSource": "Directory_Names.csv",
+   “preSignedURL”:true 
+ }, 
+ "outputs": [ 
+   { 
+     "destination": { 
+       "url": "{PUT-SIGNED_URL}" 
+     }, 
+     "source": "{OUTPUT_FOLDER_PATH}/merged-1.pdf" 
+   } 
+ ] 
+}'
+```
+
 ### Variable File Naming Support in Data Merge API
 
 The Data Merge API supports variable file naming, allowing you to dynamically assign output file names using values from your input data. 
