@@ -37,7 +37,7 @@ twitter:
 Data merge generates variations of a template document
 from data in a provided CSV file.
 
-The Data Merge API supports UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding.
+The Data Merge API supports UTF-8 and UTF-16BE encoding for CSV files, which is necessary for languages or characters requiring multi-byte representation. For plain English characters, the CSV will function correctly even without this encoding.
 
 The [Data Merge API](../../api/index.md) includes two components to complete the task: the data merge and the data merge tags.
 
@@ -116,7 +116,7 @@ parts:
 - **assets** - Input assets for the request.
 - **params** - Information about what to do with the input assets.
 - **outputs** - Specify locations where the output assets are uploaded. Without an `outputs` parameter, the output assets are stored in a temporary
-repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-signed-urls) will be shared for those assets, which will be valid for 24hrs.
+repository, and a [pre-signed URL](../../getting-started/concepts/index.md#pre-signed-urls) will be shared for those assets, which will be valid for 24hrs. For multi-record PNG/JPEG output, see [Output Path Variations in Data Merge API](#output-path-variations-in-data-merge-api) below to predict each file's name when setting `source`.
 
 Consult this skeleton [cURL request](https://developer.adobe.com/commerce/webapi/get-started/gs-curl/) for more details.
 
@@ -268,6 +268,8 @@ When you upload this UTF-8 encoded CSV to the Data Merge API, the merged documen
 ### Output Path Variations in Data Merge API
 
 When using the Data Merge API, the output file paths are determined by the `outputFolderPath` and `outputFileBaseString` parameters in the request. Here are the different scenarios and their corresponding output paths:
+
+For PNG/JPEG outputs, the per-record file names below follow the platform's [output file naming convention](../../getting-started/concepts/index.md#output-file-naming-convention).
 
 #### Case 1: Both Parameters Missing
 
