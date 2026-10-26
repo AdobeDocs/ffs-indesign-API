@@ -32,11 +32,9 @@ For the latest updates, new features, and bug fixes, [check InDesign's changelog
 
 ### Rate limits
 
-To maintain API stability and fair usage across clients, the following limits are enforced:
+To maintain API stability and fair usage across clients, the following limit is enforced:
 
-* Soft limit: 250 requests per minute across all endpoints. Once this limit is crossed, you may experience slower responses.
-
-* Hard limit: 350 requests per minute. Requests beyond this limit are rejected.
+* Hard limit: 250 requests per minute across all endpoints. Requests beyond this limit are rejected.
 
 ### File size limits
 
