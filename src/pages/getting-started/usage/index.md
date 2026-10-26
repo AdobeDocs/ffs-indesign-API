@@ -43,6 +43,10 @@ To maintain API stability and fair usage across clients, the following limits ar
 * Assets: Maximum supported size is 2GB per asset.
 * Custom Scripts API: Maximum allowed size for a Custom Script ZIP upload is 5MB.
 
+### Payload size limit
+
+The total request payload size must not exceed 1 MB.
+
 ### Assets
 
 The number of assets (input + output) that can be passed in a single payload is 1000.
