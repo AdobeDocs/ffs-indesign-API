@@ -35,6 +35,8 @@ This guide covers advanced scripting techniques for automating InDesign tasks.
 - [Working with Advanced Data Merge API](./working-with-advanced-data-merge-api/index.md) - Advanced data merge techniques, Conditional Visibility, Styling, Copyfitting and more
 - [Working with Rendition API](./working-with-rendition-api/index.md) - Document rendering
 - [Tips for PDF to InDesign Conversion](./pdf-to-indesign-conversion-notes/index.md) - PDF To InDesign Points to note and limitations
+- [Using Adobe Fonts(Free) with InDesign API](./using-adobe-fonts/index.md) - Enable Free Adobe Fonts
+
 
 <HorizontalLine />
 
