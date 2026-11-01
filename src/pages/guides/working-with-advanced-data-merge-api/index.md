@@ -168,11 +168,11 @@ The `pagesPerDocument` parameter from the base [Data Merge API](../working-with-
 
 ## Conditional Visibility & Dynamic Styling
 
-Make your Data Merge output react to your data. With a simple rules file, you can show or hide elements, restyle and recolor content, replace text, and resize or move frames — differently for every record — all from a single template and data file.
+Make your Data Merge output react to your data. With a simple rules file, you can show or hide elements, restyle and recolor content, replace text, and resize or move frames, differently for every record, all from a single template and data file.
 
 ### Overview
 
-Traditionally, Data Merge drops the text or image from each record into fixed placeholders in your template. The layout stays the same for everyone — only the placeholder content changes.
+Traditionally, Data Merge drops the text or image from each record into fixed placeholders in your template. The layout stays the same for everyone. Only the placeholder content changes.
 
 This feature adds a third input to a merge job: a rules file (JSON) that travels alongside your template and data.
 
@@ -180,9 +180,9 @@ This feature adds a third input to a merge job: a rules file (JSON) that travels
 Template (.indd / .idml) + Data (.csv) + Rules (.json) → Output (INDD / PDF / PNG / JPEG)
 ```
 
-For each record, the merge reads your rules and applies whichever actions match that record's data. The result is one job that produces genuinely different-looking documents per record — a VIP badge that appears only for VIP customers, a price that turns red when it exceeds a threshold, a promo layer that shows only for high-spend recipients, and so on.
+For each record, the merge reads your rules and applies whichever actions match that record's data. The result is one job that produces genuinely different-looking documents per record: a VIP badge that appears only for VIP customers, a price that turns red when it exceeds a threshold, a promo layer that shows only for high-spend recipients, and so on.
 
-The feature is fully optional and backward compatible: if you don't provide a rules file, your merge behaves exactly as it does today.
+This feature is optional omitting a rules file leaves merge behavior unchanged from a standard Data Merge job.
 
 ### What you can do
 
@@ -198,10 +198,10 @@ All decisions are driven by the values in your CSV columns.
 
 ### Getting started
 
-1. **Author your template** as you normally would for Data Merge, including your placeholders. Give the elements you want to control a name you can reference — a dataMerge placeholder name, an XML tag, or a layer name (see [Targets](#targets--what-a-rule-acts-on)).
-2. **Prepare your CSV** as usual. Any column you want to test in a rule must exist in the CSV — even if that column isn't placed anywhere in the template.
-3. **Write a rules file** (a `.json` file) describing your conditions and actions (see below).
-4. **Submit the merge job** with the new `rulesFile` parameter pointing at your rules file:
+1. **Author your template.** Create the Data Merge template, including placeholders. Assign each element you intend to control a reference name: a Data Merge placeholder name, an XML tag, or a layer name (see [Targets](#targets--what-a-rule-acts-on)).
+2. **Prepare your CSV.** Ensure every column referenced by a rule exists in the CSV, even if that column is not placed anywhere in the template.
+3. **Write a rules file.** Define the conditions and actions in a `.json` file (see below).
+4. **Submit the merge job.** Include the `rulesFile` parameter, pointing to the rules file:
 
 ```json
 {
@@ -242,17 +242,17 @@ A rules file is a JSON document. At the top level it contains an optional `ruleS
 }
 ```
 
-- `version` — optional, defaults to the current version.
-- `ruleSetName` — optional, a label shown in logs/reports.
-- `rules` — required, one or more rules. Each rule contains an ordered list of `cases`. Each case has a `condition` (when this is true...) and a `then` list (...do this). A rule can also define a `default`, which runs only if no case matched.
+- `version`: optional, defaults to the current version.
+- `ruleSetName`: optional, a label shown in logs/reports.
+- `rules`: required, one or more rules. Each rule contains an ordered list of `cases`. Each case has a `condition` (when this is true...) and a `then` list (...do this). A rule can also define a `default`, which runs only if no case matched.
 
 #### How a rule is evaluated, per record
 
-- Each rule contains an ordered list of **cases**. The engine tests each case's `condition` in order and runs the **first** one that is true — then stops looking at the remaining cases in that rule.
+- Each rule contains an ordered list of **cases**. The engine tests each case's `condition` in order and runs the **first** one that is true, then stops looking at the remaining cases in that rule.
 - If **no** case matches and a `default` is present, the `default` runs. If there's no `default`, the rule simply does nothing for that record.
 - **At most one** case (or the default) fires per rule.
 
-**Multiple rules:** you can list several rules. Every rule is evaluated for every record, in order. Rules are **cumulative** — more than one can fire for the same record. Use `cases`/`default` when you want a single "pick one" outcome; use separate rules for independent effects that can happen together. If two rules change the *same* property of the *same* target, the **last one wins**.
+**Multiple rules:** you can list several rules. Every rule is evaluated for every record, in order. Rules are **cumulative**: more than one can fire for the same record. Use `cases`/`default` when you want a single "pick one" outcome; use separate rules for independent effects that can happen together. If two rules change the *same* property of the *same* target, the **last one wins**.
 
 Each entry in a `then` list is a **clause**: one `target` plus an ordered list of `actions` to run on it.
 
@@ -327,7 +327,7 @@ Using an action on a target that isn't marked ✓ is rejected when your rules fi
 
 ### Conditions — deciding when a rule applies
 
-A condition is a small JSON structure — never a text expression to be parsed — so column names with spaces or punctuation (e.g. `Life Time Spend`) are written verbatim with no escaping.
+A condition is a small JSON structure, never a text expression to be parsed, so column names with spaces or punctuation (e.g. `Life Time Spend`) are written verbatim with no escaping.
 
 There are three building blocks:
 
@@ -347,29 +347,29 @@ There are three building blocks:
 }
 ```
 
-- `column` — required, the CSV column to test.
-- `operator` — required, see the operator list below.
-- `value` — the value to compare against, **or**
-- `valueColumn` — another column (use exactly one of `value` / `valueColumn`).
-- `type` — optional, force `number` | `string` | `boolean` comparison.
+- `column`: required, the CSV column to test.
+- `operator`: required, see the operator list below.
+- `value`: the value to compare against, **or**
+- `valueColumn`: another column (use exactly one of `value` / `valueColumn`).
+- `type`: optional, force `number` | `string` | `boolean` comparison.
 
 **Operators**
 
 | Group | Operators | Notes |
 |---|---|---|
-| Comparison | `==`, `!=`, `>`, `>=`, `<`, `<=` | `>`, `>=`, `<`, `<=` are for numbers (or text, alphabetically) — not booleans |
+| Comparison | `==`, `!=`, `>`, `>=`, `<`, `<=` | `>`, `>=`, `<`, `<=` are for numbers (or text, alphabetically), not booleans |
 | Set membership | `in`, `not_in` | `value` must be a non-empty array; `valueColumn` not allowed |
 | Text matching | `contains`, `starts_with`, `ends_with` | String only, case-sensitive |
 
 **Right-hand side:** provide exactly one of:
 
-- `value` — a literal number, string, or boolean (or an array of literals for `in`/`not_in`), or
-- `valueColumn` — the name of another CSV column, to compare column-against-column.
+- `value`: a literal number, string, or boolean (or an array of literals for `in`/`not_in`), or
+- `valueColumn`: the name of another CSV column, to compare column-against-column.
 
 **Value types & how comparisons are made**
 
 - Add `"type": "number"`, `"string"`, or `"boolean"` to force how both sides are compared. If you omit `type`, the type is inferred (a numeric or boolean literal makes the comparison numeric or boolean; otherwise text).
-- **Numbers** must be plain decimals (an optional leading `-` is fine). Thousands separators, currency symbols, and locale decimal commas are **not** recognized — `"10,000"`, `"$10,000"`, and `"1.000,50"` will not parse as numbers. If a value can't be parsed as the required type, that comparison is treated as **false** (it won't stop your job).
+- **Numbers** must be plain decimals (an optional leading `-` is fine). Thousands separators, currency symbols, and locale decimal commas are **not** recognized: `"10,000"`, `"$10,000"`, and `"1.000,50"` will not parse as numbers. If a value can't be parsed as the required type, that comparison is treated as **false** (it won't stop your job).
 - **Booleans** accept only `true`/`false` (any case). Anything else is treated as false.
 - **Text** comparisons and text-matching operators are **case-sensitive**. Leading/trailing spaces are trimmed before comparing.
 
@@ -406,7 +406,7 @@ This reads as "SKU does not contain PROMO." (For simple "is not one of a set" te
 { "column": "Life Time Spend", "operator": ">", "value": 10000, "type": "number" }
 ```
 
-Compare two columns — `Life Time Spend` greater than `cost`:
+Compare `Life Time Spend` to `cost`:
 
 ```json
 { "column": "Life Time Spend", "operator": ">", "valueColumn": "cost", "type": "number" }
@@ -429,7 +429,7 @@ Compare two columns — `Life Time Spend` greater than `cost`:
 { "column": "region", "operator": "not_in", "value": ["EU", "UK"] }
 ```
 
-A nested example — VIP, in the US or UK, and not blocked:
+A nested example combining VIP status, US or UK region, and not blocked:
 
 ```json
 {
@@ -573,10 +573,10 @@ This targets the text range tagged `disclaimer` in the template. EU records get 
 
 ### Constraints
 
-- **Single record per page.** Rules are supported only when each page corresponds to one record — the standard Data Merge layout. Jobs configured for multiple records per page are not supported with rules and will be rejected before processing.
+- **Single record per page.** Rules are supported only when each page corresponds to one record (the standard Data Merge layout). Jobs configured for multiple records per page are not supported with rules and will be rejected before processing.
 - **Columns must exist.** A rule can only reference CSV columns that are present in your data file. A missing column is reported when your rules file is checked.
 - **Styles and swatches must exist** in the template before the merge; rules apply them but do not create them.
-- **Layer visibility for non-layer targets.** An element renders only if its layer is visible. If you target a placeholder or XML tag that sits on a layer you authored as *hidden*, a `show` action will not make it appear — put rule-driven elements on a visible layer, or target the layer itself.
+- **Layer visibility for non-layer targets.** An element renders only if its layer is visible. If you target a placeholder or XML tag that sits on a layer you authored as *hidden*, a `show` action will not make it appear. Put rule-driven elements on a visible layer, or target the layer itself.
 - **Record ranges.** Contiguous, ascending record ranges (for example `1-50`) are fully supported. Out-of-order or overlapping comma-separated ranges may be restricted; use ascending ranges for rule-driven jobs.
 - **Numeric formatting.** Keep numeric columns as plain numbers (no currency symbols, thousands separators, or locale decimals) so numeric comparisons behave as expected.
 
@@ -600,7 +600,7 @@ Fixing these means correcting the rules file (or the job configuration) and resu
 - a target name that can't be found for a record;
 - a style or swatch named in an action that doesn't exist;
 - an action that can't apply to the resolved object (for example, resizing something that isn't a frame);
-- a value that can't be read as the required number or boolean — that single comparison is treated as false.
+- a value that can't be read as the required number or boolean; that single comparison is treated as false.
 
 Review the warnings after a run to catch typos in names or unexpected data.
 
@@ -632,7 +632,7 @@ Add a copyfittingSettings object inside params. It accepts the following fields:
 - **multiFrameSyncScope**
   - **Type:** string (enum)
   - **Enum:** `"paragraph_style"`, `"page"`, `"paragraph_style_and_page"`, `"document"`
-  - **Default:** none — omit the key to skip multi-frame sync
+  - **Default:** none (omit the key to skip multi-frame sync)
   - **Description:** After fitting the overset frames, apply the same font-size reduction to matching non-overset frames for visual consistency. See [Multi-frame sync scopes](#multi-frame-sync-scopes) below.
 - **scope.global.constraints.fontSize**
   - **Type:** object with a numeric `minPercent` field
@@ -710,7 +710,7 @@ Multi-frame sync keeps related frames visually consistent by extending a reducti
 - **document** - Every text frame in the entire document receives the same reduction; paragraph style is ignored.
   - Example: If any frame anywhere needs a 15 percent reduction to fit, all text frames across all pages are reduced by 15 percent, giving the whole piece one consistent size.
 
-**Conflict rule:** when frames in a group would need different reductions, the largest (most aggressive) reduction wins for the group, subject to the global minimum — no text shrinks below minPercent of its original size.
+**Conflict rule:** when frames in a group would need different reductions, the largest (most aggressive) reduction wins for the group, subject to the global minimum: no text shrinks below minPercent of its original size.
 
 ### Unresolved overset handling
 
@@ -887,7 +887,7 @@ How it works
     - **Type:** Boolean
     - **Meaning:** Whether the user wants to enable fetching image assets via pre-signed URLs provided in the CSV.
     - If the user sets this to true, the Image column values in the CSV can be pre-signed URLs, and these will be fetched and used in the data merge.
-    - If the user doesn't set this (or sets it to false), there is no change in behavior — the Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
+    - If the user doesn't set this (or sets it to false), there is no change in behavior. The Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
     - If a pre-signed URL is included in the Image column but the presignedUrlsInDataSource parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
 
 Example of input CSV having an Image column value (prefixed with ‘@’) containing a pre-signed URL
