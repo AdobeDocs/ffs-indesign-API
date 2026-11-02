@@ -161,6 +161,6 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [16]: ../../guides/working-with-advanced-data-merge-api/index.md#conditional-visibility--dynamic-styling
 [17]: ../../guides/working-with-advanced-data-merge-api/index.md#copyfitting
 [18]: ../../guides/working-with-advanced-data-merge-api/index.md#folder-structure-and-zipped-output
-[19]: ../../guides/working-with-advanced-data-merge-api/index.md#pre-signed-url-support
+[19]: ../../guides/working-with-advanced-data-merge-api/index.md#pre-signed-url-support-in-csv
 [20]: ../../guides/working-with-advanced-data-merge-api/index.md#output-path-variations-in-advanced-data-merge-api
 [21]: ../../guides/working-with-advanced-data-merge-api/index.md#parameter-name-change-in-advanced-data-merge-api
