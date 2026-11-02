@@ -1,36 +1,39 @@
 {
-  "total": 15,
+  "total": 16,
   "offset": 0,
-  "limit": 15,
+  "limit": 16,
   "data": [
     {
       "page": "/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4",
         "https://avatars.githubusercontent.com/u/175690214?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "3/12/2026"
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/api/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "2/27/2026"
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/config",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/1/2026"
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/getting-started/",
@@ -42,12 +45,12 @@
     {
       "page": "/getting-started/changelog/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "9/15/2026"
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/getting-started/concepts/",
@@ -70,12 +73,13 @@
     {
       "page": "/guides/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4"
       ],
-      "lastUpdated": "11/1/2026"
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/guides/pdf-to-indesign-conversion-notes/",
@@ -99,6 +103,13 @@
         "https://avatars.githubusercontent.com/u/274493592?v=4"
       ],
       "lastUpdated": "11/1/2026"
+    },
+    {
+      "page": "/guides/working-with-convert-indesign-to-idml-api/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/264675027?v=4"
+      ],
+      "lastUpdated": "11/2/2026"
     },
     {
       "page": "/guides/working-with-custom-scripts-api/",
