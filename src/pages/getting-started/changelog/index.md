@@ -59,6 +59,10 @@ This page contains the release notes and version history for Adobe InDesign APIs
 - **Folder Structure & Zipped Output**: The `POST /v4/merge-data` endpoint supports organizing merge outputs into a folder hierarchy via a `~`-prefixed CSV column, plus optional zipped output using `outputCompressMediaType`. [Learn more about folder structure and zipped output.][18]
 - **Pre-signed URL Support in CSV**: A new `preSignedURL` parameter allows image placeholder columns (prefixed with `@`) to contain pre-signed URLs directly in the CSV, fetched during the merge. [Learn more about pre-signed URL support.][19]
 
+*Adobe Fonts Enablement*
+
+- **Adobe Fonts Free library support**: InDesign API can now resolve fonts from the [Adobe Fonts Free library](https://fonts.adobe.com/fonts?library=basic) automatically through your Adobe entitlement, so you no longer need to upload or host those font files. To enable this feature, add a Fonts-enabled product profile to your API credential. [Learn more about using Adobe Fonts.][24]
+
 ## June 2, 2026
 
 ### Enhancements
@@ -171,3 +175,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [21]: ../../guides/working-with-advanced-data-merge-api/index.md#parameter-name-change-in-advanced-data-merge-api
 [22]: ../../api/index.md#tag/Convert-InDesign-to-IDML
 [23]: ../../guides/working-with-convert-indesign-to-idml-api/index.md
+[24]: ../../guides/using-adobe-fonts/index.md
