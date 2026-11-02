@@ -34,14 +34,18 @@ For the latest updates, new features, and bug fixes, [check InDesign's changelog
 
 To maintain API stability and fair usage across clients, the following limits are enforced:
 
-* Soft limit: 250 requests per minute across all endpoints. Once this limit is crossed, you may experience slower responses.
+* General API requests: A hard limit of 250 requests per minute (RPM) applies across all endpoints except the Status API. You can send all 250 requests at once. Once the limit is reached, additional requests within the same one-minute window are throttled.
 
-* Hard limit: 350 requests per minute. Requests beyond this limit are rejected.
+* Status API requests: These do not count toward the 250 RPM limit and have a separate rate limit of 1,000 RPM.
 
 ### File size limits
 
 * Assets: Maximum supported size is 2GB per asset.
 * Custom Scripts API: Maximum allowed size for a Custom Script ZIP upload is 5MB.
+
+### Payload size limit
+
+The total request payload size must not exceed 1 MB.
 
 ### Assets
 
