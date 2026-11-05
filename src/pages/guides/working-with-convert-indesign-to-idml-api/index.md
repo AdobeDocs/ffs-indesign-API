@@ -11,7 +11,9 @@ keywords:
 
 # Working with the Convert InDesign to IDML API
 
-Use the Convert InDesign to IDML API to convert an INDD file to IDML.
+IDML (InDesign Markup Language) lets you share documents with users of earlier versions of InDesign. See [Open InDesign documents in previous versions](https://helpx.adobe.com/indesign/desktop/troubleshoot/file-and-output-issues/cant-open-in-previous-versions.html) in Adobe Help for details.
+
+For request parameters, response schemas, and error codes, see the [Convert InDesign to IDML API reference](../../api/index.md#tag/Convert-InDesign-to-IDML).
 
 ## Submit a conversion
 

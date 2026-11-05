@@ -51,7 +51,7 @@
     },
     {
       "name": "Convert InDesign to IDML",
-      "description": "Convert an InDesign (INDD) document to IDML."
+      "description": "IDML (InDesign Markup Language) lets you share documents with users of earlier versions of InDesign. See [Open InDesign documents in previous versions](https://helpx.adobe.com/indesign/desktop/troubleshoot/file-and-output-issues/cant-open-in-previous-versions.html) in Adobe Help for details."
     },
     {
       "name": "Job Status",
@@ -1094,8 +1094,8 @@
     },
     "/v3/convert-indesign-to-idml": {
       "post": {
-        "summary": "Convert InDesign to IDML",
-        "description": "Converts an INDD document to IDML. The completed job's status includes a download URL for the converted document and any warnings.",
+        "summary": "Submit a conversion",
+        "description": "The completed job's status includes a download URL for the converted document and any warnings.",
         "operationId": "convertIndesignToIdml",
         "tags": [
           "Convert InDesign to IDML"
