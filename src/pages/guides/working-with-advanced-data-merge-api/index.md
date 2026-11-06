@@ -32,139 +32,9 @@ twitter:
 ---
 # Working with Advanced Data Merge API
 
-This guide covers advanced techniques for the [Data Merge API](../../api/index.md), building on the basics from [Working with the Data Merge API](../working-with-datamerge-api/index.md), including output path variations, conditional visibility, dynamic styling, copyfitting, zip output and pre-signed URL support in CSV.
+This guide covers advanced techniques for the [Advanced Data Merge API](../../api/index.md), building on the basics from [Working with the Data Merge API](../working-with-datamerge-api/index.md), including output path variations, conditional visibility, dynamic styling, copyfitting, zip output and pre-signed URL support in CSV.
 
-## Output Path Variations in Advanced Data Merge API
 
-This section explains where the Advanced Data Merge API writes its output files, and how that location and filename change depending on whether you provide the `outputFolderPath` and `outputFileBaseString` parameters in the request. There are four possible combinations of these two parameters; the table below summarizes all four before the detailed cases and examples that follow.
-
-| | `outputFileBaseString` omitted | `outputFileBaseString` provided |
-|---|---|---|
-| **`outputFolderPath` omitted** | [Case 1](#case-1-both-parameters-missing): temporary folder, filename from source document | [Case 2](#case-2-only-outputfilebasestring-provided): temporary folder, filename from base string |
-| **`outputFolderPath` provided** | [Case 3](#case-3-only-outputfolderpath-provided): `outputFolderPath`, filename from source document | [Case 4](#case-4-both-parameters-provided): `outputFolderPath`, filename from base string |
-
-Unlike the base [Data Merge API](../working-with-datamerge-api/index.md#output-path-variations-in-data-merge-api), the Advanced Data Merge API does **not** nest outputs into `range1`, `range2`, ... subfolders. Every output file for a job is written directly into the resolved output folder (temporary or `outputFolderPath`); any naming collision — between batches or between records — is resolved with a `(n)` suffix on the filename itself instead of a subfolder.
-
-#### Comparing v3 and v4 output structure
-
-To see that difference concretely, here is the same job — `outputFolderPath`: `"ResultFolder"`, `outputFileBaseString`: `"MergedOutput"`, output split into two batches — under each API version:
-
-Base API (v3):
-- `ResultFolder/range1/MergedOutput.pdf`
-- `ResultFolder/range2/MergedOutput.pdf`
-
-Advanced Data Merge API (v4):
-- `ResultFolder/MergedOutput.pdf`
-- `ResultFolder/MergedOutput(1).pdf`
-
-v3 gives each batch its own `rangeN` folder and reuses the same filename inside each one; v4 writes every batch into the same flat folder and disambiguates them with a `(n)` suffix on the filename instead.
-
-#### Case 1: Both Parameters Missing
-
-When neither `outputFolderPath` nor `outputFileBaseString` is provided:
-
-- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
-- The output filename is derived from the original document filename
-
-Example:
-
-- Source: `Template.indd`
-- Output: `tmp0696/Template.indd`
-- In case of multiple output documents/pdf (e.g. `recordsPerFile` splits the merge into more than one batch):
-  - `tmp0696/Template.indd`
-  - `tmp0696/Template(1).indd`
-  - `tmp0696/Template.pdf`
-  - `tmp0696/Template(1).pdf`
-- For PNG/JPEG outputs (one image per record):
-  - `tmp0696/Template.png`
-  - `tmp0696/Template(1).png`
-  - `tmp0696/Template(2).png`
-
-#### Case 2: Only outputFileBaseString Provided
-
-When only `outputFileBaseString` is specified:
-
-- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
-- Filename uses the provided base string
-
-Example:
-
-- Source: `Template.indd`
-- `outputFileBaseString`: "MergedOutput"
-- Output: `tmp0696/MergedOutput.indd`
-- In case of multiple output documents/pdf:
-  - `tmp0696/MergedOutput.indd`
-  - `tmp0696/MergedOutput(1).indd`
-  - `tmp0696/MergedOutput.pdf`
-  - `tmp0696/MergedOutput(1).pdf`
-- For PNG/JPEG outputs:
-  - `tmp0696/MergedOutput.png`
-  - `tmp0696/MergedOutput(1).png`
-  - `tmp0696/MergedOutput(2).png`
-
-#### Case 3: Only outputFolderPath Provided
-
-When only `outputFolderPath` is specified:
-
-- Output is created in the specified folder
-- Filename is derived from the original template
-
-Example:
-
-- Source: `Template.indd`
-- `outputFolderPath`: "ResultFolder"
-- Output: `ResultFolder/Template.indd`
-- In case of multiple output documents/pdf:
-  - `ResultFolder/Template.indd`
-  - `ResultFolder/Template(1).indd`
-  - `ResultFolder/Template.pdf`
-  - `ResultFolder/Template(1).pdf`
-- For PNG/JPEG outputs:
-  - `ResultFolder/Template.png`
-  - `ResultFolder/Template(1).png`
-  - `ResultFolder/Template(2).png`
-
-#### Case 4: Both Parameters Provided
-
-When both parameters are specified:
-
-- Output is created in the specified folder
-- Filename uses the provided base string
-
-Example:
-
-- Source: `Template.indd`
-- `outputFileBaseString`: "MergedOutput"
-- `outputFolderPath`: "ResultFolder"
-- Output: `ResultFolder/MergedOutput.indd`
-- In case of multiple output documents/pdf:
-  - `ResultFolder/MergedOutput.indd`
-  - `ResultFolder/MergedOutput(1).indd`
-  - `ResultFolder/MergedOutput.pdf`
-  - `ResultFolder/MergedOutput(1).pdf`
-- For PNG/JPEG outputs:
-  - `ResultFolder/MergedOutput.png`
-  - `ResultFolder/MergedOutput(1).png`
-  - `ResultFolder/MergedOutput(2).png`
-
-#### Note:
-
-- Advanced Data Merge API (v4) never creates a `rangeX` subfolder for batching. All output files for a job are written directly into the resolved output folder — there is no per-batch nesting.
-- Missing-link and overset reports are no longer split per `rangeX` batch folder either. Instead of a separate `MissingLinkReport.txt`/`OversetReport.txt` pair inside each `rangeX` folder, Advanced Data Merge API (v4) writes a single `MissingLinkReport.txt` and a single `OversetReport.txt` at the root of the output folder, with each batch's findings appended as its own "Record Range: ..." section — one global report pair for the whole job instead of one pair per range.
-- Batching is still controlled by `recordsPerFile` (the v4 equivalent of the base API's `pagesPerDocument`): for example, if `recordsPerFile` is 10 and the total record count is 20, the merge still runs as two batches, but both batches write into the same folder. The second (and any later) batch's file is disambiguated with a `(1)`, `(2)`, ... suffix on the base filename — e.g. `Template.pdf`, `Template(1).pdf` — instead of a `range2` folder.
-- For output types where each record maps 1:1 to its own file — PNG, JPEG, PDF with `createSeparateFiles` enabled, or InDesign with `recordsPerFile` set to `1` — every record's output file is named from `outputFileBaseString` (or its resolved `&` filename, when the CSV provides one), and any duplicate names are disambiguated the same way with a `(n)` suffix. This means even a plain CSV with no special columns produces per-record names like `MergedOutput.png`, `MergedOutput(1).png`, `MergedOutput(2).png` — not the sequential `MergedOutput2.png`, `MergedOutput3.png` style used by the base API.
-- If a single record spans multiple pages, an additional `-<page>` suffix is inserted before the `(n)` de-duplication suffix for pages after the first — e.g. `MergedOutput.png`, `MergedOutput-2.png` (page 2 of the first record), `MergedOutput(1).png`, `MergedOutput-2(1).png` (page 2 of the second record).
-- For output types where multiple records are combined into one file (multi-record PDF/InDesign documents, or `allowMultipleRecordsPerPage`), there is no per-record naming — the whole batch's file uses the base filename, disambiguated per batch with a `(n)` suffix only when more than one batch is produced.
-
-## Parameter Name Change in Advanced Data Merge API
-
-The `pagesPerDocument` parameter from the base [Data Merge API](../working-with-datamerge-api/index.md) has been renamed to `recordsPerFile` in the Advanced Data Merge API. The name changed, but the underlying behavior — controlling how many records are merged into each output document/batch — is the same.
-
-- `recordsPerFile` omitted or set to the total record count: All records are merged into a single output document/batch. No batching occurs.
-
-- `recordsPerFile` set to a value smaller than the total record count: Records are split across multiple batches, each containing up to `recordsPerFile` records. For example, with 20 total records and `recordsPerFile` set to 10, the merge produces two batches of 10 records each. As described in [Output Path Variations](#output-path-variations-in-advanced-data-merge-api), each additional batch's file is disambiguated with a `(1)`, `(2)`, ... suffix on the base filename rather than being written into a separate `rangeX` subfolder.
-
-- `recordsPerFile` set to `1`: Each record produces its own output document/batch, one record per file. This is also the mode used to get one file per record for InDesign output; PNG and JPEG outputs always behave this way regardless of `recordsPerFile`.
 
 ## Conditional Visibility & Dynamic Styling
 
@@ -180,9 +50,9 @@ This feature adds a third input to a merge job: a rules file (JSON) that travels
 Template (.indd / .idml) + Data (.csv) + Rules (.json) → Output (INDD / PDF / PNG / JPEG)
 ```
 
-For each record, the merge reads your rules and applies whichever actions match that record's data. The result is one job that produces genuinely different-looking documents per record: a VIP badge that appears only for VIP customers, a price that turns red when it exceeds a threshold, a promo layer that shows only for high-spend recipients, and so on.
+For each record, the merge applies the rule actions that match that record's data. A single job can then produce a different layout for each record. For example, you can show a VIP badge only for VIP customers, display a price in red when it exceeds a threshold, or show a promotional layer only for high-spend recipients.
 
-This feature is optional omitting a rules file leaves merge behavior unchanged from a standard Data Merge job.
+This feature is optional. If you don't provide a rules file, the merge runs without any rules.
 
 ### What you can do
 
@@ -191,7 +61,7 @@ This feature is optional omitting a rules file leaves merge behavior unchanged f
 | Conditional visibility | Show or hide a layer, a frame, or a placeholder per record. |
 | Dynamic styling | Apply a named character or paragraph style, or change fill/stroke color, per record. |
 | Content replacement | Replace the text of a placeholder or tagged text range per record. |
-| Geometry | Resize or move a frame per record. |
+| Frame adjustments | Resize or move a frame per record. |
 | Business logic | Combine conditions with AND / OR / NOT, ranges, and text matching to decide what happens. |
 
 All decisions are driven by the values in your CSV columns.
@@ -214,7 +84,7 @@ All decisions are driven by the values in your CSV columns.
 }
 ```
 
-If `rulesFile` is omitted, the merge runs exactly as a standard Data Merge with no rules applied.
+If you omit `rulesFile`, the merge runs without any rules.
 
 ### The rules file
 
@@ -315,13 +185,13 @@ Each clause runs an ordered list of actions on its target. Actions apply top-to-
 | Action \ Target | `layer` | `xml_tag` | `data_merge_tag` |
 |---|---|---|---|
 | `show` / `hide` | ✓ | ✓ | ✓ |
-| `replace_text` | — | ✓ | ✓ |
-| `set_character_style` | — | ✓ | ✓ |
-| `set_paragraph_style` | — | ✓ | ✓ |
-| `set_fill_color` | — | ✓ | ✓ |
-| `set_stroke_color` | — | ✓ | ✓ |
-| `resize_frame` | — | ✓ | ✓ |
-| `move_frame` | — | ✓ | ✓ |
+| `replace_text` | Not supported | ✓ | ✓ |
+| `set_character_style` | Not supported | ✓ | ✓ |
+| `set_paragraph_style` | Not supported | ✓ | ✓ |
+| `set_fill_color` | Not supported | ✓ | ✓ |
+| `set_stroke_color` | Not supported | ✓ | ✓ |
+| `resize_frame` | Not supported | ✓ | ✓ |
+| `move_frame` | Not supported | ✓ | ✓ |
 
 Using an action on a target that isn't marked ✓ is rejected when your rules file is checked (see [Errors & Warnings](#errors--warnings)).
 
@@ -373,7 +243,7 @@ There are three building blocks:
 - **Booleans** accept only `true`/`false` (any case). Anything else is treated as false.
 - **Text** comparisons and text-matching operators are **case-sensitive**. Leading/trailing spaces are trimmed before comparing.
 
-#### Group — `all` (AND) and `any` (OR)
+#### Group: `all` (AND) and `any` (OR)
 
 ```json
 { "all": [] }
@@ -446,7 +316,7 @@ A nested example combining VIP status, US or UK region, and not blocked:
 
 ### Worked examples
 
-#### Example 1 — Show a VIP badge only for VIP records
+#### Example 1: Show a VIP badge only for VIP records
 
 ```json
 {
@@ -475,7 +345,7 @@ A nested example combining VIP status, US or UK region, and not blocked:
 
 VIP records show the badge; everyone else hides it.
 
-#### Example 2 — Color a badge by tier (first match wins)
+#### Example 2: Color a badge by tier (first match wins)
 
 ```json
 {
@@ -506,7 +376,7 @@ VIP records show the badge; everyone else hides it.
 
 Reads as: VIP → gold; else if spend > 10,000 → silver; else if spend > 1,000 → bronze; otherwise hide the badge. Cases are tested top-to-bottom and only the first match applies.
 
-#### Example 3 — Reveal a promo layer for high-spend records
+#### Example 3: Reveal a promo layer for high-spend records
 
 ```json
 {
@@ -527,9 +397,9 @@ Reads as: VIP → gold; else if spend > 10,000 → silver; else if spend > 1,000
 }
 ```
 
-This assumes the `premium_offer` layer is **hidden** in the template. It stays hidden by default and is shown only for records that match. If the layer were visible in the template instead, add a `default` with a `hide` action to switch it off for non-matching records.
+This assumes the `premium_offer` layer is **hidden** in the template. It stays hidden by default and is shown only for records that match. If the layer is visible in the template, add a `default` case with a `hide` action to hide it for records that don't match.
 
-#### Example 4 — Swap disclaimer text by region using an `xml_tag`
+#### Example 4: Swap disclaimer text by region using an `xml_tag`
 
 ```json
 {
@@ -573,7 +443,7 @@ This targets the text range tagged `disclaimer` in the template. EU records get 
 
 ### Constraints
 
-- **Single record per page.** Rules are supported only when each page corresponds to one record (the standard Data Merge layout). Jobs configured for multiple records per page are not supported with rules and will be rejected before processing.
+- **Single record per page.** Rules are supported only when each page contains one record. Jobs with `allowMultipleRecordsPerPage` set to `true` are rejected before processing.
 - **Columns must exist.** A rule can only reference CSV columns that are present in your data file. A missing column is reported when your rules file is checked.
 - **Styles and swatches must exist** in the template before the merge; rules apply them but do not create them.
 - **Layer visibility for non-layer targets.** An element renders only if its layer is visible. If you target a placeholder or XML tag that sits on a layer you authored as *hidden*, a `show` action will not make it appear. Put rule-driven elements on a visible layer, or target the layer itself.
@@ -606,7 +476,7 @@ Review the warnings after a run to catch typos in names or unexpected data.
 
 ## Copyfitting
 
-The Data Merge API can automatically resize text that overflows its frame after a merge. When a merged record produces overset text, copyfitting reduces the font size - within limits you define - so that the text fits. Copyfitting runs only when you enable it and only when the merged document has overset present.
+The Data Merge API can automatically resize text that overflows its frame after a merge. When a merged record produces overset text, copyfitting reduces the font size, within limits that you define, so that the text fits. Copyfitting runs only when you enable it and only when the merged document has overset present.
 
 ### Example use cases
 
@@ -696,18 +566,18 @@ To enable copyfitting with default limits, `copyfittingSettings` can be as small
 
 ### Multi-frame sync scopes
 
-Multi-frame sync keeps related frames visually consistent by extending a reduction beyond just the overset frame. Only the font-size **reduction** by percentage is synced (not the absolute point size, and no other property). Omit multiFrameSyncScope to skip sync entirely - only the overset frames change. When present, it must be one of the following.
+Multi-frame sync keeps related frames visually consistent by extending a reduction beyond just the overset frame. Only the font-size **reduction** by percentage is synced (not the absolute point size, and no other property). If you omit multiFrameSyncScope, sync is skipped and only the overset frames change. When present, it must be one of the following.
 
-- **paragraph_style** - Frames whose text uses the same paragraph style, across all pages, receive the largest reduction required by any of them.
-  - Example: A "Headline" paragraph style is used in frames throughout the document. If one headline must shrink 12 percent to fit, every frame using the "Headline" style - on every page - is reduced by 12 percent, so all headlines stay consistent.
+- **paragraph_style**: Frames whose text uses the same paragraph style, across all pages, receive the largest reduction required by any of them.
+  - Example: A "Headline" paragraph style is used in frames throughout the document. If one headline must shrink 12 percent to fit, every frame that uses the "Headline" style is reduced by 12 percent on every page, so all headlines stay consistent.
 
-- **page** - Every text frame on the same page as an overset frame receives the same reduction; paragraph style is ignored.
+- **page**: Every text frame on the same page as an overset frame receives the same reduction; paragraph style is ignored.
   - Example: On a product page, the description frame oversets and shrinks 10 percent. The other text frames on that page (title, price, footnote) are also reduced by 10 percent, keeping the page uniform.
 
-- **paragraph_style_and_page** - Like paragraph_style, but limited to the current page: only same-style frames on the same page are matched.
+- **paragraph_style_and_page**: Like paragraph_style, but limited to the current page: only same-style frames on the same page are matched.
   - Example: Two "Callout" frames on page 3 shrink together, but "Callout" frames on page 4 are unaffected.
 
-- **document** - Every text frame in the entire document receives the same reduction; paragraph style is ignored.
+- **document**: Every text frame in the entire document receives the same reduction; paragraph style is ignored.
   - Example: If any frame anywhere needs a 15 percent reduction to fit, all text frames across all pages are reduced by 15 percent, giving the whole piece one consistent size.
 
 **Conflict rule:** when frames in a group would need different reductions, the largest (most aggressive) reduction wins for the group, subject to the global minimum: no text shrinks below minPercent of its original size.
@@ -716,9 +586,9 @@ Multi-frame sync keeps related frames visually consistent by extending a reducti
 
 If text is still overset after copyfitting has reduced text to minPercent of its original size, unresolvedOversetHandling controls the outcome:
 
-- **"warn"** (default) - the output file is still produced; affected records report warnings.oversetText.
+- **"warn"** (default): The output file is still produced, and affected records report warnings.oversetText.
 
-- **"omit_records"** - pages for the affected data records are removed from the output and the remaining records still export; affected records report warnings.omittedDataRecordNumbers (and not warnings.oversetText). If every record in the batch would be removed, no file is exported (outputs is empty) and omittedDataRecordNumbers lists the full range.
+- **"omit_records"**: Pages for the affected data records are removed from the output, and the remaining records still export. Affected records report warnings.omittedDataRecordNumbers (and not warnings.oversetText). If every record in the batch would be removed, no file is exported (outputs is empty) and omittedDataRecordNumbers lists the full range.
 
 ### Copyfitting in the response
 
@@ -748,6 +618,71 @@ If copyfitting hits a script or engine error, the whole job fails (no output for
 "errorCode": "capability_error",
 "errorString": "Capability error: Copyfitting failed. <detail>"
 }
+```
+
+
+## Pre-signed URL Support in CSV
+
+You can provide pre-signed URLs for image assets directly in the CSV file, in addition to the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/index.md#supported-storage-types) assets are supported.
+
+How it works
+
+- Pre-signed URLs of image assets can now be provided directly in the Image column (prefixed with @) of the input CSV, for each row
+- In addition, providing pre-signed URLs of image assets in the input request continues to be supported as before; this feature does not remove or restrict that option.
+- The image will be fetched from the pre-signed URL and made available for use in the data merge.
+- If a URL cannot be fetched or has expired, that row's image asset will be reported in warnings as a failed download, and the rest of the merge will proceed unaffected.
+  - These failures are reported in the `failedAssets` array of the response's `warnings` object. The array contains one `{ columnIndex, rows: [{ row, url }, ...] }` entry for each Image column that has at least one invalid pre-signed URL. Each entry lists every affected row number and the URL that failed.
+- Add a new input parameter
+  - **presignedUrlsInDataSource**
+    - **Type:** Boolean
+    - **Meaning:** Whether the user wants to enable fetching image assets via pre-signed URLs provided in the CSV.
+    - If the user sets this to true, the Image column values in the CSV can be pre-signed URLs, and these will be fetched and used in the data merge.
+    - If the user doesn't set this (or sets it to false), there is no change in behavior. The Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
+    - If a pre-signed URL is included in the Image column but the presignedUrlsInDataSource parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
+
+Example of input CSV having an Image column value (prefixed with ‘@’) containing a pre-signed URL
+![Records](./records-urlcsv.png)
+
+Example of input payload
+```curl
+curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
+--header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
+--header 'x-api-key: {YOUR_API_KEY}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "assets": [
+   {
+     "source": {
+       "url": "{PRE-SIGNED_URL}",
+       "storageType": "Azure"
+     },
+     "destination": "dataMergeTemplate.indd"
+   },
+   {
+     "source": {
+       "url": "{PRE-SIGNED_URL}",
+       "storageType": "Azure"
+     },
+     "destination": "Directory_Names.csv"
+   }
+ ],
+ "params": {
+   "targetDocument": "dataMergeTemplate.indd",
+   "outputMediaType": "application/x-indesign",
+   "outputFolderPath": {OUTPUT_FOLDER_PATH},
+   "outputFileBaseString": "merged",
+   "dataSource": "Directory_Names.csv",
+   "presignedUrlsInDataSource": true
+ },
+ "outputs": [
+   {
+     "destination": {
+       "url": "{PUT-SIGNED_URL}"
+     },
+     "source": "{OUTPUT_FOLDER_PATH}/merged-1.pdf"
+   }
+ ]
+}'
 ```
 
 ## Folder Structure and Zipped Output
@@ -785,7 +720,7 @@ Note:
 Certain special characters or words are not supported by the platform and are automatically normalized.
 
 - Consecutive unsupported characters (e.g., &lt;, &gt;, :, ", /, \, |, ?, *) are replaced with a single underscore (e.g., `Ab5<>;d` → `Ab5_d`)
-- Windows reserved names (e.g., CON, PRN, AUX, NUL as well as device names like COM1–COM9 and LPT1–LPT9) are wrapped with underscores (e.g., `CON` → `_CON_`)
+- Windows reserved names (e.g., CON, PRN, AUX, NUL as well as device names like COM1 to COM9 and LPT1 to LPT9) are wrapped with underscores (e.g., `CON` → `_CON_`)
 - File names (including extension) are limited to 255 characters, with longer names truncated automatically
 
 Here is a sample CSV file demonstrating a column header with prefix ‘~’.
@@ -869,68 +804,138 @@ curl --location --request POST 'https://indesign.adobe.io/v4/merge-data' \
 |                                  | recordsPerFile ≠ 1 and recordRange = "1-2, 5" |
 |                                  | allowMultipleRecordsPerPage set to true |
 
-**Why:** Folder structuring via the `~` column applies only when the merge job has a clear one-to-one mapping between each data row and its output. In that case, each row’s `~` value defines the folder hierarchy for that record’s output file. If `allowMultipleRecordsPerPage` is true, multiple records can share a page, so per-row folder paths are ambiguous. If `recordsPerFile` is not 1, records are combined into multi-page output documents, so many rows contribute to the same file and per-row folder paths are no longer meaningful. In those situations, folder structuring via the `~` column is not supported for the affected output types, and output files are placed under `outputFolderBaseString` instead.
+**Why:** Folder structuring via the `~` column applies only when the merge job has a clear one-to-one mapping between each data row and its output. In that case, each row’s `~` value defines the folder hierarchy for that record’s output file. If `allowMultipleRecordsPerPage` is true, multiple records can share a page, so per-row folder paths are ambiguous. If `recordsPerFile` is not 1, records are combined into multi-page output documents, so many rows contribute to the same file and per-row folder paths are no longer meaningful. In these cases, the API ignores the `~` column and saves output files to the folder specified by `outputFolderBaseString`.
 
-## Pre-signed URL Support in CSV
 
-The Data Merge API now supports pre-signed URLs for image assets directly in the CSV, instead of requiring them in the input request. In the Image column (prefixed with "@"), a pre-signed URL of the image asset can be provided for each row; the images will be fetched from the URL and made available for use. Only existing [DAM](../../getting-started/usage/index.md#supported-storage-types) assets are supported.
+## Parameter Name Change in Advanced Data Merge API
 
-How it works
+The `pagesPerDocument` parameter from the base [Data Merge API](../working-with-datamerge-api/index.md) has been renamed to `recordsPerFile` in the Advanced Data Merge API. Only the name has changed. The parameter still controls how many records are merged into each output document or batch.
 
-- Pre-signed URLs of image assets can now be provided directly in the Image column (prefixed with @) of the input CSV, for each row
-- In addition, providing pre-signed URLs of image assets in the input request continues to be supported as before; this feature does not remove or restrict that option.
-- The image will be fetched from the pre-signed URL and made available for use in the data merge.
-- If a URL cannot be fetched or has expired, that row's image asset will be reported in warnings as a failed download, and the rest of the merge will proceed unaffected.
-  - These failures are reported under a `failedAssets` key in the response's `warnings` object — an array of `{ columnIndex, rows: [{ row, url }, ...] }` entries, one per Image column that had at least one invalid pre-signed URL, listing every affected row number and the URL that failed.
-- Add a new input parameter
-  - **presignedUrlsInDataSource**
-    - **Type:** Boolean
-    - **Meaning:** Whether the user wants to enable fetching image assets via pre-signed URLs provided in the CSV.
-    - If the user sets this to true, the Image column values in the CSV can be pre-signed URLs, and these will be fetched and used in the data merge.
-    - If the user doesn't set this (or sets it to false), there is no change in behavior. The Image column will be treated as before, and pre-signed URLs can still only be provided in the input request.
-    - If a pre-signed URL is included in the Image column but the presignedUrlsInDataSource parameter is not set to true, this enhancement will not take effect. The Image column value will be handled just as it always has been, without any change in behavior. Since the value is a URL and not a valid asset reference, the image for that record will show up as a missing link in the data merge.
+- `recordsPerFile` omitted or set to the total record count: All records are merged into a single output document/batch. No batching occurs.
 
-Example of input CSV having an Image column value (prefixed with ‘@’) containing a pre-signed URL
-![Records](./records-urlcsv.png)
+- `recordsPerFile` set to a value smaller than the total record count: Records are split across multiple batches, each containing up to `recordsPerFile` records. For example, with 20 total records and `recordsPerFile` set to 10, the merge produces two batches of 10 records each. As described in [Output Path Variations](#output-path-variations-in-advanced-data-merge-api), each additional batch's file is disambiguated with a `(1)`, `(2)`, ... suffix on the base filename rather than being written into a separate `rangeX` subfolder.
 
-Example of input payload
-```curl
-curl --location --request POST 'https://indesign.adobe.io/v3/merge-data' \
---header 'Authorization: Bearer {YOUR_OAUTH_TOKEN}' \
---header 'x-api-key: {YOUR_API_KEY}' \
---header 'Content-Type: application/json' \
---data-raw '{
- "assets": [
-   {
-     "source": {
-       "url": "{PRE-SIGNED_URL}",
-       "storageType": "Azure"
-     },
-     "destination": "dataMergeTemplate.indd"
-   },
-   {
-     "source": {
-       "url": "{PRE-SIGNED_URL}",
-       "storageType": "Azure"
-     },
-     "destination": "Directory_Names.csv"
-   }
- ],
- "params": {
-   "targetDocument": "dataMergeTemplate.indd",
-   "outputMediaType": "application/x-indesign",
-   "outputFolderPath": {OUTPUT_FOLDER_PATH},
-   "outputFileBaseString": "merged",
-   "dataSource": "Directory_Names.csv",
-   "presignedUrlsInDataSource": true
- },
- "outputs": [
-   {
-     "destination": {
-       "url": "{PUT-SIGNED_URL}"
-     },
-     "source": "{OUTPUT_FOLDER_PATH}/merged-1.pdf"
-   }
- ]
-}'
-```
+- `recordsPerFile` set to `1`: Each record produces its own output document/batch, one record per file. This is also the mode used to get one file per record for InDesign output; PNG and JPEG outputs always behave this way regardless of `recordsPerFile`.
+
+## Output Path Variations in Advanced Data Merge API
+
+This section explains where the Advanced Data Merge API writes its output files, and how that location and filename change depending on whether you provide the `outputFolderPath` and `outputFileBaseString` parameters in the request. There are four possible combinations of these two parameters; the table below summarizes all four before the detailed cases and examples that follow.
+
+| | `outputFileBaseString` omitted | `outputFileBaseString` provided |
+|---|---|---|
+| **`outputFolderPath` omitted** | [Case 1](#case-1-both-parameters-missing): temporary folder, filename from source document | [Case 2](#case-2-only-outputfilebasestring-provided): temporary folder, filename from base string |
+| **`outputFolderPath` provided** | [Case 3](#case-3-only-outputfolderpath-provided): `outputFolderPath`, filename from source document | [Case 4](#case-4-both-parameters-provided): `outputFolderPath`, filename from base string |
+
+Unlike the base [Data Merge API](../working-with-datamerge-api/index.md#output-path-variations-in-data-merge-api), the Advanced Data Merge API writes all output files for a job directly to the output folder (temporary or `outputFolderPath`). It doesn't create `range1`, `range2`, or other batch subfolders. If two files have the same name, the API adds a numbered suffix such as `(1)` to the filename.
+
+#### Comparing v3 and v4 output structure
+
+The following example shows the output of the same job in each API version. The job sets `outputFolderPath` to `"ResultFolder"` and `outputFileBaseString` to `"MergedOutput"`, and the output is split into two batches.
+
+Base API (v3):
+- `ResultFolder/range1/MergedOutput.pdf`
+- `ResultFolder/range2/MergedOutput.pdf`
+
+Advanced Data Merge API (v4):
+- `ResultFolder/MergedOutput.pdf`
+- `ResultFolder/MergedOutput(1).pdf`
+
+In v3, each batch is saved to its own `rangeN` folder with the same filename. In v4, all batches are saved to one folder, and each additional batch gets a numbered suffix, such as `(1)`.
+
+#### Case 1: Both Parameters Missing
+
+When neither `outputFolderPath` nor `outputFileBaseString` is provided:
+
+- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
+- The output filename is derived from the original document filename
+
+Example:
+
+- Source: `Template.indd`
+- Output: `tmp0696/Template.indd`
+- In case of multiple output documents/pdf (e.g. `recordsPerFile` splits the merge into more than one batch):
+  - `tmp0696/Template.indd`
+  - `tmp0696/Template(1).indd`
+  - `tmp0696/Template.pdf`
+  - `tmp0696/Template(1).pdf`
+- For PNG/JPEG outputs (one image per record):
+  - `tmp0696/Template.png`
+  - `tmp0696/Template(1).png`
+  - `tmp0696/Template(2).png`
+
+#### Case 2: Only outputFileBaseString Provided
+
+When only `outputFileBaseString` is specified:
+
+- Output is created in a temporary folder with a random number prefix (e.g. tmp0696)
+- Filename uses the provided base string
+
+Example:
+
+- Source: `Template.indd`
+- `outputFileBaseString`: "MergedOutput"
+- Output: `tmp0696/MergedOutput.indd`
+- In case of multiple output documents/pdf:
+  - `tmp0696/MergedOutput.indd`
+  - `tmp0696/MergedOutput(1).indd`
+  - `tmp0696/MergedOutput.pdf`
+  - `tmp0696/MergedOutput(1).pdf`
+- For PNG/JPEG outputs:
+  - `tmp0696/MergedOutput.png`
+  - `tmp0696/MergedOutput(1).png`
+  - `tmp0696/MergedOutput(2).png`
+
+#### Case 3: Only outputFolderPath Provided
+
+When only `outputFolderPath` is specified:
+
+- Output is created in the specified folder
+- Filename is derived from the original template
+
+Example:
+
+- Source: `Template.indd`
+- `outputFolderPath`: "ResultFolder"
+- Output: `ResultFolder/Template.indd`
+- In case of multiple output documents/pdf:
+  - `ResultFolder/Template.indd`
+  - `ResultFolder/Template(1).indd`
+  - `ResultFolder/Template.pdf`
+  - `ResultFolder/Template(1).pdf`
+- For PNG/JPEG outputs:
+  - `ResultFolder/Template.png`
+  - `ResultFolder/Template(1).png`
+  - `ResultFolder/Template(2).png`
+
+#### Case 4: Both Parameters Provided
+
+When both parameters are specified:
+
+- Output is created in the specified folder
+- Filename uses the provided base string
+
+Example:
+
+- Source: `Template.indd`
+- `outputFileBaseString`: "MergedOutput"
+- `outputFolderPath`: "ResultFolder"
+- Output: `ResultFolder/MergedOutput.indd`
+- In case of multiple output documents/pdf:
+  - `ResultFolder/MergedOutput.indd`
+  - `ResultFolder/MergedOutput(1).indd`
+  - `ResultFolder/MergedOutput.pdf`
+  - `ResultFolder/MergedOutput(1).pdf`
+- For PNG/JPEG outputs:
+  - `ResultFolder/MergedOutput.png`
+  - `ResultFolder/MergedOutput(1).png`
+  - `ResultFolder/MergedOutput(2).png`
+
+#### Note:
+
+- Advanced Data Merge API (v4) never creates a `rangeX` subfolder for batching. All output files for a job are written directly to the resolved output folder.
+- The API creates one `MissingLinkReport.txt` and one `OversetReport.txt` for the whole job, saved at the root of the output folder. Each report has a separate "Record Range" section for each batch.
+- `recordsPerFile` controls batching (it replaces `pagesPerDocument` from the base API). For example, if `recordsPerFile` is 10 and there are 20 records, the merge creates two batches in the same folder. The first file uses the base filename, and each later file gets a numbered suffix, for example `Template.pdf` and `Template(1).pdf`.
+- Some output types create one file per record: PNG, JPEG, PDF with `createSeparateFiles` enabled, and InDesign with `recordsPerFile` set to `1`. For these types, each file is named from `outputFileBaseString` (or from the resolved `&` filename, when the CSV provides one), and duplicate names get a `(n)` suffix. For example, a CSV with no special columns produces `MergedOutput.png`, `MergedOutput(1).png`, and `MergedOutput(2).png`. The base API uses sequential names such as `MergedOutput2.png` and `MergedOutput3.png`.
+- If a record spans multiple pages, each page after the first gets a `-<page>` suffix, added before the `(n)` suffix. For example: `MergedOutput.png`, `MergedOutput-2.png` (page 2 of the first record), `MergedOutput(1).png`, and `MergedOutput-2(1).png` (page 2 of the second record).
+- For output types that combine multiple records into one file (multi-record PDF or InDesign documents, or `allowMultipleRecordsPerPage`), files aren't named per record. Each batch's file uses the base filename, and a `(n)` suffix is added only when the job produces more than one batch.
+
