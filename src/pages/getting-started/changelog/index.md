@@ -48,20 +48,21 @@ This page contains the release notes and version history for Adobe InDesign APIs
 
 *Convert InDesign to IDML API*
 
-- **Convert an InDesign document to IDML:** New `POST /v3/convert-indesign-to-idml` endpoint converts an INDD file to IDML. [View endpoint documentation][22]. See [Working with the Convert InDesign to IDML API][23] for a quickstart.
+- **Convert an InDesign document to IDML**: New `POST /v3/convert-indesign-to-idml` endpoint converts an INDD file to IDML. [View endpoint documentation][22]. See [Working with the Convert InDesign to IDML API][23] for a quickstart.
 
-*Advanced Data Merge*
+*Advanced Data Merge API*
 
-- **Output Path Structure**: The `POST /v4/merge-data` endpoint no longer nests outputs into `rangeN` batch subfolders. Every output file is written directly into the resolved output folder, and naming collisions between batches or records are resolved with a `(n)` suffix on the filename instead. [Learn more about output path variations.][20]
-- **Parameter Name Change**: The `pagesPerDocument` parameter from the base Data Merge API has been renamed to `recordsPerFile` in the `POST /v4/merge-data` endpoint. The underlying behavior is unchanged. [Learn more about the parameter name change.][21]
-- **Conditional Visibility & Dynamic Styling**: The `POST /v4/merge-data` endpoint now accepts a `rulesFile` parameter, letting a rules JSON file show/hide layers, frames, and placeholders, restyle and recolor content, replace text, and resize or move frames — differently per record. [Learn more about conditional visibility & dynamic styling.][16]
-- **Copyfitting**: New `copyfittingSettings` object in `params` automatically reduces font size within defined limits to resolve overset text after a merge. [Learn more about copyfitting.][17]
-- **Folder Structure & Zipped Output**: The `POST /v4/merge-data` endpoint supports organizing merge outputs into a folder hierarchy via a `~`-prefixed CSV column, plus optional zipped output using `outputCompressMediaType`. [Learn more about folder structure and zipped output.][18]
-- **Pre-signed URL Support in CSV**: A new `preSignedURL` parameter allows image placeholder columns (prefixed with `@`) to contain pre-signed URLs directly in the CSV, fetched during the merge. [Learn more about pre-signed URL support.][19]
+- **New endpoint**: `POST /v4/merge-data` merges CSV data with InDesign templates and adds support for rules, copyfitting, folder output, and pre-signed URLs. [View endpoint documentation][25]
+- **Conditional Visibility and Dynamic Styling**: The `rulesFile` parameter accepts a JSON rules file that can show or hide layers, frames, and placeholders, restyle and recolor content, replace text, and resize or move frames for each record. [Learn more about conditional visibility and dynamic styling.][16]
+- **Copyfitting**: The `copyfittingSettings` object in `params` automatically reduces font size within defined limits to resolve overset text after a merge. [Learn more about copyfitting.][17]
+- **Folder Structure and Zipped Output**: Organize merge outputs into a folder hierarchy using a CSV column prefixed with `~`, and optionally compress the output using `outputCompressMediaType`. [Learn more about folder structure and zipped output.][18]
+- **Pre-signed URL Support in CSV**: Set the `presignedUrlsInDataSource` parameter to `true` to supply pre-signed image URLs directly in the CSV Image columns (prefixed with `@`). The images are fetched during the merge. [Learn more about pre-signed URL support.][19]
+- **Output Path Structure**: Unlike `/v3/merge-data`, the `POST /v4/merge-data` endpoint does not nest outputs in `rangeN` batch subfolders. All output files are saved in the resolved output folder, and duplicate file names get a `(n)` suffix. [Learn more about output path variations.][20]
+- **Parameter Name Change**: The `pagesPerDocument` parameter from `/v3/merge-data` is named `recordsPerFile` in `/v4/merge-data`. The behavior is the same. [Learn more about the parameter name change.][21]
 
 *Adobe Fonts Enablement*
 
-- **Adobe Fonts Free library support**: InDesign API can now resolve fonts from the [Adobe Fonts Free library](https://fonts.adobe.com/fonts?library=basic) automatically through your Adobe entitlement, so you no longer need to upload or host those font files. To enable this feature, add a Fonts-enabled product profile to your API credential. [Learn more about using Adobe Fonts.][24]
+- **Adobe Fonts Free library support**: The InDesign API can now resolve fonts from the [Adobe Fonts Free library](https://fonts.adobe.com/fonts?library=basic) automatically through your Adobe entitlement, so you no longer need to upload or host those font files. To enable this feature, add a product profile with Fonts enabled to your API credential. [Learn more about using Adobe Fonts.][24]
 
 ## June 2, 2026
 
@@ -176,3 +177,4 @@ This page contains the release notes and version history for Adobe InDesign APIs
 [22]: ../../api/index.md#tag/Convert-InDesign-to-IDML
 [23]: ../../guides/working-with-convert-indesign-to-idml-api/index.md
 [24]: ../../guides/using-adobe-fonts/index.md
+[25]: ../../api/index.md#tag/Advanced-Data-Merge
