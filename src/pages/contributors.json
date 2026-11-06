@@ -7,7 +7,6 @@
       "page": "/",
       "avatars": [
         "https://avatars.githubusercontent.com/u/66052604?v=4",
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4",
         "https://avatars.githubusercontent.com/u/175690214?v=4",
@@ -18,22 +17,21 @@
     {
       "page": "/api/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/2/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/config",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/2/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/getting-started/",
@@ -46,8 +44,8 @@
       "page": "/getting-started/changelog/",
       "avatars": [
         "https://avatars.githubusercontent.com/u/66052604?v=4",
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
       "lastUpdated": "11/6/2026"
@@ -55,11 +53,11 @@
     {
       "page": "/getting-started/concepts/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/175690214?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/getting-started/usage/",
@@ -73,13 +71,12 @@
     {
       "page": "/guides/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4"
       ],
-      "lastUpdated": "11/2/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/pdf-to-indesign-conversion-notes/",
@@ -94,22 +91,21 @@
       "avatars": [
         "https://avatars.githubusercontent.com/u/66052604?v=4"
       ],
-      "lastUpdated": "11/1/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/working-with-advanced-data-merge-api/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/66052604?v=4",
-        "https://avatars.githubusercontent.com/u/274493592?v=4"
+        "https://avatars.githubusercontent.com/u/66052604?v=4"
       ],
       "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/working-with-convert-indesign-to-idml-api/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4"
+        "https://avatars.githubusercontent.com/u/66052604?v=4"
       ],
-      "lastUpdated": "11/5/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/working-with-custom-scripts-api/",
@@ -125,22 +121,21 @@
     {
       "page": "/guides/working-with-datamerge-api/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/175690214?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/working-with-rendition-api/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/175690214?v=4",
+        "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4"
       ],
-      "lastUpdated": "8/27/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/writing-scripts-for-custom-scripts-api/",
