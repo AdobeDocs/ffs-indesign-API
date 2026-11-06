@@ -22,9 +22,21 @@ InDesign APIs enable enterprises to automate tedious, time-consuming design task
 
 ### API References
 
-[Data Merge API][1]
+[Data Merge API (V3)][1]
 
 Creates document variations from CSV data and an InDesign file.
+
+<DiscoverBlock slots="link, text"/>
+
+[Advanced Data Merge API][8]
+
+Creates document variations from CSV data and an InDesign file, with support for rules, copyfitting, and pre-signed URLs.
+
+<DiscoverBlock slots="link, text"/>
+
+[Remap Links API][9]
+
+Replaces file-based links in InDesign documents with Adobe Experience Manager (AEM) URLs.
 
 <DiscoverBlock slots="link, text"/>
 
@@ -56,9 +68,18 @@ Retrieve information from INDD / IDML documents including layers, links and font
 
 Convert PDF documents to editable InDesign format. Output includes all converted files and assets in a ZIP archive.
 
-[1]: /api/#tag/Data-Merge
+<DiscoverBlock slots="link, text"/>
+
+[Convert InDesign to IDML API][7]
+
+Convert an INDD document to IDML.
+
+[1]: /api/#tag/Data-Merge-(V3)
 [2]: /api/#tag/Rendition
 [3]: /api/#tag/Custom-Scripts
 [4]: /api/#tag/Job-Status
 [5]: /api/#tag/Document-Info
 [6]: /api/#tag/Convert-PDF-to-InDesign
+[7]: /api/#tag/Convert-InDesign-to-IDML
+[8]: /api/#tag/Advanced-Data-Merge
+[9]: /api/#tag/Remap-Links
