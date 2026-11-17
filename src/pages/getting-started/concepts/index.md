@@ -73,6 +73,8 @@ In the examples above, you can see that data is divided into `source` and `desti
 
 The `source` attribute is where the asset is downloaded from. The `destination` attribute refers to where the asset would be downloaded to.
 
+[Input asset caching](../../guides/input-asset-caching/index.md) reuses downloaded input assets across jobs and is enabled by default. Set `params.generalSettings.assetCache.enabled` to `false` to disable it for a job, or contact the InDesign APIs team to disable it for your organization.
+
 ### Output assets
 
 The platform supports multiple asset types for output. These asset types signify storage repositories to which the
