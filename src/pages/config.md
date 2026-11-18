@@ -39,3 +39,4 @@
     - [Writing Scripts for Custom Scripts API](/guides/writing-scripts-for-custom-scripts-api/index.md)
     - [Tips for PDF to InDesign Conversion](/guides/pdf-to-indesign-conversion-notes/index.md)
     - [Using Adobe Fonts](/guides/using-adobe-fonts/index.md)
+    - [Input Asset Caching](/guides/input-asset-caching/index.md)
