@@ -15,7 +15,24 @@ hideBreadcrumbNav: true
 
 Input asset caching lets InDesign API reuse previously downloaded input assets instead of downloading the same asset for every job. This can reduce download latency and network usage when jobs reuse assets such as documents, images, or fonts.
 
-Caching is enabled by default. It does not change asset content, asset format, or job output. If caching is unavailable or an asset cannot be safely identified for caching, InDesign API uses the existing download flow.
+Caching is enabled by default unless disabled for your organization or an individual job. It does not change asset content, asset format, or job output. If caching is unavailable or an asset cannot be safely identified for caching, InDesign API uses the existing download flow.
+
+## How caching settings work together
+
+Organization-level settings take precedence over job-level settings:
+
+- **Organization level:** Your organization can disable caching for all its jobs. Job parameters cannot override an organization-level disablement.
+- **Job level:** When your organization allows caching, you can disable it for an individual job by setting `params.generalSettings.assetCache.enabled` to `false`.
+
+In the table below, **Job setting** refers to `params.generalSettings.assetCache.enabled`.
+
+| Organization setting | Job setting | Effective caching behavior |
+| --- | --- | --- |
+| Disabled | `true`, `false`, or omitted | Disabled |
+| Enabled | `false` | Disabled |
+| Enabled | `true` or omitted | Enabled |
+
+**Setting `enabled` to `true` does not force caching on.** For example, if caching is disabled for your organization, it remains disabled even when your request includes `"assetCache": { "enabled": true }` inside `params.generalSettings`.
 
 ## Control caching for a job
 
@@ -53,13 +70,13 @@ Keep the other parameters required by the API you are calling. See the [API refe
 
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `params.generalSettings.assetCache.enabled` | boolean | No | `true` | Set to `false` to disable input asset caching for the job and use the normal download flow. |
+| `params.generalSettings.assetCache.enabled` | boolean | No | `true` | Set to `false` to disable caching for the job. A value of `true` allows caching only when it is also enabled for your organization. |
 
-The `assetCache` object is optional. If `generalSettings`, `assetCache`, or `enabled` is omitted, caching is enabled by default unless it has been disabled for your organization.
+The `assetCache` object is optional. If `generalSettings`, `assetCache`, or `enabled` is omitted, the job-level setting defaults to `true`. Organization-level disablement still takes precedence.
 
 ### Disable caching for your organization
 
-To disable caching at the organization level, contact the InDesign APIs team. This lets your organization opt out without setting `params.generalSettings.assetCache.enabled` to `false` in each job request.
+To disable caching at the organization level, contact the InDesign APIs team. This disables caching for all jobs in your organization, including requests that set `params.generalSettings.assetCache.enabled` to `true`. You do not need to update each job request.
 
 ## How assets are reused
 

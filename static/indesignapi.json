@@ -1405,12 +1405,12 @@
       },
       "AssetCacheSettings": {
         "type": "object",
-        "description": "Input asset caching settings for the job. Caching is enabled by default unless disabled for your organization. Contact the InDesign APIs team to request organization-level disablement. Assets are isolated by organization and client application. Pre-signed URLs and authentication credentials are not stored in the cache.",
+        "description": "Input asset caching settings for the job. Caching is enabled by default unless disabled for your organization or an individual job. Organization-level disablement cannot be overridden by job settings. Contact the InDesign APIs team to request organization-level disablement. Assets are isolated by organization and client application. Pre-signed URLs and authentication credentials are not stored in the cache.",
         "properties": {
           "enabled": {
             "type": "boolean",
             "default": true,
-            "description": "Set to false to disable input asset caching for this job and use the normal download flow. Omitting this field or the assetCache object enables caching by default unless disabled for your organization. Cached assets are identified by their ETag and retained for at most 24 hours or the remaining pre-signed URL validity, whichever is shorter. Assets with expired URLs are not cached. If caching is unavailable, a cached file is missing or unreadable, or no usable ETag is available, the normal download flow is used. Cache failures alone do not fail the job."
+            "description": "Set to false to disable input asset caching for this job and use the normal download flow. Setting this field to true allows caching only when enabled for your organization; it cannot override organization-level disablement. Omitting this field or the assetCache object defaults the job-level setting to true, subject to the organization-level setting. Cached assets are identified by their ETag and retained for at most 24 hours or the remaining pre-signed URL validity, whichever is shorter. Assets with expired URLs are not cached. If caching is unavailable, a cached file is missing or unreadable, or no usable ETag is available, the normal download flow is used. Cache failures alone do not fail the job."
           }
         }
       },

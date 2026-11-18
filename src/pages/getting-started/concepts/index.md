@@ -75,6 +75,8 @@ The `source` attribute is where the asset is downloaded from. The `destination` 
 
 [Input asset caching](../../guides/input-asset-caching/index.md) reuses downloaded input assets across jobs and is enabled by default. Set `params.generalSettings.assetCache.enabled` to `false` to disable it for a job, or contact the InDesign APIs team to disable it for your organization.
 
+Job settings cannot enable caching when it is disabled for your organization, even if `params.generalSettings.assetCache.enabled` is `true`.
+
 ### Output assets
 
 The platform supports multiple asset types for output. These asset types signify storage repositories to which the
