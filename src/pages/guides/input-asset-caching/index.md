@@ -15,7 +15,7 @@ hideBreadcrumbNav: true
 
 Input asset caching lets InDesign API reuse previously downloaded input assets instead of downloading the same asset for every job. This can reduce download latency and network usage when jobs reuse assets such as documents, images, or fonts.
 
-Caching is enabled by default unless disabled for your organization or an individual job. It does not change asset content, asset format, or job output. If caching is unavailable or an asset cannot be safely identified for caching, InDesign API uses the existing download flow.
+Caching is enabled by default unless disabled for your organization or an individual job. It does not change asset content, asset format, or job output. If caching is unavailable or an asset cannot be safely identified for caching, InDesign API downloads the asset from its source URL.
 
 ## How caching settings work together
 
@@ -76,19 +76,15 @@ The `assetCache` object is optional. If `generalSettings`, `assetCache`, or `ena
 
 ### Disable caching for your organization
 
-To disable caching at the organization level, contact the InDesign APIs team. This disables caching for all jobs in your organization, including requests that set `params.generalSettings.assetCache.enabled` to `true`. You do not need to update each job request.
+To disable caching for your organization, [submit a support request](https://airtable.com/appu5RTWgdM95jynx/pagyuT1qspNJcPU2E/form) to the InDesign APIs team. This disables caching for all jobs in your organization, and ignores the API attribute `params.generalSettings.assetCache.enabled`. You do not need to update each job request.
 
 ## How assets are reused
 
-When caching is enabled, InDesign API automatically determines the underlying storage type and retrieves the asset's ETag, a value provided by the storage service to identify the asset version. You do not need to supply a storage type, ETag, or cache identifier.
+When caching is enabled, InDesign API identifies each input asset by its ETag, a version identifier provided by your storage service, together with your organization and client application. You do not need to supply an ETag or cache identifier.
 
-For HTTP sources backed by Azure or Google Cloud Storage, the service uses a `HEAD` request to retrieve the ETag. For AWS sources, it uses a ranged `GET` request with `Range: bytes=0-0` to retrieve response headers.
-
-If a usable ETag is available, the service uses it with your organization and client application identifiers to identify the cached asset:
-
-- If a matching cached file is available and readable, the job reuses it.
-- If no matching cached file is available, the service downloads the asset and caches it when eligible.
-- If no usable ETag is available, the service downloads the asset without caching.
+- If a matching cached asset is available, the job reuses it.
+- If no matching cached asset is available, InDesign API downloads the asset and caches it when eligible.
+- If the asset has no usable ETag, InDesign API downloads it without caching.
 
 Caching does not guarantee a cache hit for every asset or job.
 
@@ -114,6 +110,6 @@ Continue to provide valid [pre-signed URLs](../../getting-started/concepts/index
 
 ## Fallback behavior
 
-Cache failures do not fail a job on their own. If the cache is unavailable, or a cached file is missing or unreadable, the service falls back to the normal download flow. The job still requires a successful download and remains subject to normal asset access and processing errors.
+Cache failures do not fail a job on their own. If the cache is unavailable, or a cached file is missing or unreadable, InDesign API downloads the asset from its source URL. The job still requires a successful download and remains subject to normal asset access and processing errors.
 
-No request changes are needed to use the default caching behavior; set `params.generalSettings.assetCache.enabled` to `false` when a job must use the normal download flow.
+No request changes are needed to use the default caching behavior; set `params.generalSettings.assetCache.enabled` to `false` when a job must always download its assets from their source URLs.

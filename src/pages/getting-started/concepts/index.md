@@ -73,9 +73,11 @@ In the examples above, you can see that data is divided into `source` and `desti
 
 The `source` attribute is where the asset is downloaded from. The `destination` attribute refers to where the asset would be downloaded to.
 
-[Input asset caching](../../guides/input-asset-caching/index.md) reuses downloaded input assets across jobs and is enabled by default. Set `params.generalSettings.assetCache.enabled` to `false` to disable it for a job, or contact the InDesign APIs team to disable it for your organization.
+#### Input asset caching
 
-Job settings cannot enable caching when it is disabled for your organization, even if `params.generalSettings.assetCache.enabled` is `true`.
+Input asset caching reuses downloaded input assets across jobs and is enabled by default. Set `params.generalSettings.assetCache.enabled` to `false` to disable it for a job, or [submit a support request](https://airtable.com/appu5RTWgdM95jynx/pagyuT1qspNJcPU2E/form) to disable it for your organization.
+
+Job settings cannot enable caching when it is disabled for your organization, even if `params.generalSettings.assetCache.enabled` is `true`. See [Input asset caching](../../guides/input-asset-caching/index.md) to learn how it works.
 
 ### Output assets
 
