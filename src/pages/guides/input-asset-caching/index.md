@@ -76,7 +76,7 @@ The `assetCache` object is optional. If `generalSettings`, `assetCache`, or `ena
 
 ### Disable caching for your organization
 
-To disable caching for your organization, [submit a support request](https://airtable.com/appu5RTWgdM95jynx/pagyuT1qspNJcPU2E/form) to the InDesign APIs team. This disables caching for all jobs in your organization, and ignores the API attribute `params.generalSettings.assetCache.enabled`. You do not need to update each job request.
+To disable caching for your organization, contact the InDesign APIs team at [sharewithID@adobe.com](mailto:sharewithID@adobe.com). This disables caching for all jobs in your organization, and ignores the API attribute `params.generalSettings.assetCache.enabled`. You do not need to update each job request.
 
 ## How assets are reused
 
