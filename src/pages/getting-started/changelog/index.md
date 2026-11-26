@@ -42,7 +42,7 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
-## November 18, 2026
+## November 26, 2026
 
 ### Enhancements
 
