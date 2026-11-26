@@ -42,6 +42,12 @@ twitter:
 
 This page contains the release notes and version history for Adobe InDesign APIs. Stay updated with the latest features, improvements, and bug fixes.
 
+## November 26, 2026
+
+### Enhancements
+
+- **Input asset caching**: InDesign API can now reuse previously downloaded input assets across jobs, reducing repeated downloads. Caching is enabled by default. Set `params.generalSettings.assetCache.enabled` to `false` to disable caching for an individual job, or contact the InDesign APIs team at [sharewithID@adobe.com](mailto:sharewithID@adobe.com) to disable it for your organization. Setting the job parameter to `true` cannot override organization-level disablement. [Learn more about input asset caching](../../guides/input-asset-caching/index.md).
+
 ## November 6, 2026
 
 ### New Features
