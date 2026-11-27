@@ -1,7 +1,7 @@
 {
-  "total": 17,
+  "total": 16,
   "offset": 0,
-  "limit": 17,
+  "limit": 16,
   "data": [
     {
       "page": "/",
@@ -27,12 +27,11 @@
     {
       "page": "/config",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/26/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/getting-started/",
@@ -44,21 +43,21 @@
     {
       "page": "/getting-started/changelog/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/274493592?v=4",
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/26/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/getting-started/concepts/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
+        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/26/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/getting-started/usage/",
@@ -68,25 +67,17 @@
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "11/26/2026"
+      "lastUpdated": "10/27/2026"
     },
     {
       "page": "/guides/",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4",
         "https://avatars.githubusercontent.com/u/66052604?v=4",
         "https://avatars.githubusercontent.com/u/195011431?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4",
         "https://avatars.githubusercontent.com/u/51445330?v=4"
       ],
-      "lastUpdated": "11/26/2026"
-    },
-    {
-      "page": "/guides/input-asset-caching/",
-      "avatars": [
-        "https://avatars.githubusercontent.com/u/264675027?v=4"
-      ],
-      "lastUpdated": "11/26/2026"
+      "lastUpdated": "11/6/2026"
     },
     {
       "page": "/guides/pdf-to-indesign-conversion-notes/",
