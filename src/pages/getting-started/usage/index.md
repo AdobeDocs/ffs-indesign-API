@@ -100,8 +100,7 @@ Ensuring transparency in the way we handle User Generated Content (UGC) is our p
 This refers to files that have been submitted for processing.
 
 * Stored temporarily on the local system during processing.
-* Deleted from the local system after processing is complete.
-* When [input asset caching](../../guides/input-asset-caching/index.md) is enabled (the default), a copy may be kept in a temporary cache, isolated by organization and client application, and reused for up to 24 hours or until the asset's pre-signed URL expires, whichever is sooner. Cached copies are then deleted. Pre-signed URLs and authentication credentials are not stored in the cache.
+* Deleted after processing is complete.
 
 ### Processed documents
 

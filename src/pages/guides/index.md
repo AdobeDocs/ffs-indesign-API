@@ -38,7 +38,6 @@ This guide covers advanced scripting techniques for automating InDesign tasks.
 - [Working with the Convert InDesign to IDML API](./working-with-convert-indesign-to-idml-api/index.md) - Convert an InDesign document to IDML
 - [Tips for PDF to InDesign Conversion](./pdf-to-indesign-conversion-notes/index.md) - PDF To InDesign Points to note and limitations
 - [Using Adobe Fonts(Free) with InDesign API](./using-adobe-fonts/index.md) - Enable Free Adobe Fonts
-- [Input Asset Caching](./input-asset-caching/index.md) - Reuse downloaded input assets across jobs
 
 
 <HorizontalLine />
